@@ -12,6 +12,9 @@ class ActivitiesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Activity::create(['name' => 'Actividad 1']);
+        Activity::create(['name' => 'Actividad 2']);
+        Activity::create(['name' => 'Actividad 3']);
+        Activity::create(['name' => 'Actividad 4']);
     }
 }

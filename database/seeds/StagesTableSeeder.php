@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Stage;
 use Illuminate\Database\Seeder;
 
 class StagesTableSeeder extends Seeder
