@@ -10,9 +10,22 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::middleware('auth')->group(function () {
 
-Route::get('/', function () {
-    return view('welcome');
+    Route::resource('/update-data', 'UpdateUserData')->only(['index', 'store', 'update']);
+
+    Route::middleware('update.data')->group(function () {
+
+
+
+        Route::get('/', function () {
+            return view('welcome');
+        });
+        
+        Route::get('/ingreso', function () {
+            return view('welcome');
+        });
+    });
 });
 
 Auth::routes();

@@ -15,10 +15,10 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->boolean('active');
-            $table->integer('code')->unique()->nullable();
             $table->integer('identification')->unique();
             $table->string('name');
+            $table->boolean('active');
+            $table->integer('code')->unique()->nullable();
             $table->string('email')->unique();
             $table->string('password');
             $table->string('in_charge')->nullable();
@@ -28,8 +28,8 @@ class CreateUsersTable extends Migration
             $table->foreign('city_id')->references('id')->on('cities');
             $table->unsignedBigInteger('activity_id')->nullable();
             $table->foreign('activity_id')->references('id')->on('activities');
-            $table->dateTime('afiliation_at')->nullable();
             $table->rememberToken();
+            $table->dateTime('afiliation_at')->nullable();
             $table->timestamps();
         });
     }

@@ -37,4 +37,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function userData()
+    {
+        return $this->hasOne('App\Models\UserData');
+    }
+
+    public function getUpdatedAttribute()
+    {
+        return $retVal = ($this->userData) ? true : false ;
+    }
+
 }
