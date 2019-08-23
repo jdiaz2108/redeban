@@ -3,7 +3,28 @@
 @section('content')
 <div class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-12">
+        <div class="col-12 py-3">
+            <div class="card shadow">
+                <div class="card-body mx-auto">
+                    {{$user->name_company}}
+                </div>
+            </div>
+        </div>
+        <div class="col-6 py-3">
+            <div class="card shadow">
+                <div class="card-body mx-auto">
+                    {{$user->sumpoints}}
+                </div>
+            </div>
+        </div>
+        <div class="col-6 py-3">
+                <div class="card shadow">
+                    <div class="card-body mx-auto">
+                        categoría
+                    </div>
+                </div>
+            </div>
+        <div class="col-12 py-3">
             <div class="card shadow">
                 <div class="card-header">Actualización de datos</div>
 
@@ -13,13 +34,13 @@
                         {{ session('status') }}
                     </div>
                     @endif
-                    <form @if (Auth::user()->updated)
-                        action="/update-data/{{$updatedData['id']}}"
+                    <form @if ($user->updated)
+                        action="/update-data/{{$updatedData['id']}}" {{ route('login') }}
                         @else
-                        action="/update-data"
+                        action="/update-data" 
                         @endif method="POST">
-                        @if (Auth::user()->updated)
-                        <input type="hidden" name="_method" value="PUT">
+                        @if ($user->updated)
+                        @method('PUT')
                         @endif
                         @csrf
                         <div class="row pb-4">

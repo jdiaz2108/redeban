@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserData extends Model
+class Point extends Model
 {
     protected $fillable = [
-        'name', 'email', 'phone', 'address', 'city_id', 'user_id',
+        'event', 'value', 'user_id', 'month', 'year'
     ];
 }

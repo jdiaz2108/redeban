@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-use Carbon\Carbon;
-use App\Models\UserData;
-use App\Models\Point;
 use Illuminate\Http\Request;
-use App\Http\Requests\ValidateUpdateDataRequest;
 
-class UpdateUserData extends Controller
+class PrizeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +13,7 @@ class UpdateUserData extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $updatedData = ($user->updated) ? $user->userData : $user ;
-        return view('pages.updateData', compact('updatedData', 'user'));
+        //
     }
 
     /**
@@ -39,23 +32,9 @@ class UpdateUserData extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ValidateUpdateDataRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->all();
-        $data['user_id'] = $request->user()->id;
-        $userData = new UserData($data);
-        $userData->save();
-        $date = Carbon::now();
-        $points = new Point([
-            'event' => 'Actualización de datos',
-            'value' => 100,
-            'user_id' => $request->user()->id,
-            'month' => $date->month,
-            'year' => $date->year
-        ]);
-        $points->save();
-        return redirect('/')->with('status', 'Se han actualizado los datos correctamente');
-        return back()->with('status', 'Se han actualizado los datos correctamente');
+        //
     }
 
     /**
@@ -89,8 +68,7 @@ class UpdateUserData extends Controller
      */
     public function update(Request $request, $id)
     {
-        $userData = UserData::find($id)->update($request->all());
-        return back()->with('status', 'Se ha actializado los datos correctamente');
+        //
     }
 
     /**

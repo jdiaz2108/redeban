@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'email', 'password',
     ];
 
     /**
@@ -43,9 +43,21 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\UserData');
     }
 
+    /* return an atribute in boolean variable if the user has updated data accessing with $user->updated */
     public function getUpdatedAttribute()
     {
         return $retVal = ($this->userData) ? true : false ;
+    }
+
+    public function points()
+    {
+        return $this->hasMany('App\Models\Point');
+    }
+
+    /* return the sum of points in value column 'value' accessing with $user->sumpoints */
+    public function getSumPointsAttribute()
+    {
+        return $this->points()->sum('value');
     }
 
 }
