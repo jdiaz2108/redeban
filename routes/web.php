@@ -16,8 +16,6 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('update.data')->group(function () {
 
-
-
         Route::get('/', function () {
             return view('welcome');
         });
@@ -25,9 +23,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/ingreso', function () {
             return view('welcome');
         });
+        Route::get('/home', 'HomeController@index')->name('home');
     });
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');

@@ -14,29 +14,29 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 @if(Auth::check())
-                @if(Auth::user()->hasAnyRole(['user']))
+                 @if(Auth::user()->hasAnyRole(['user'])) 
                 <ul class="nav navbar-nav">
-                    <li><a href="{{route('posts.show', 'noticias')}}">Noticias</a></li>
+                    <li><a href="#">Noticias</a></li>
                     <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"
                      role="button" aria-haspopup="true" aria-expanded="false">Herramientas<span class="caret"></span></a>
                      <ul class="dropdown-menu">
-                        <li><a href="{{route('home.directory')}}">Directorio</a></li>
-                        <li><a href="{{route('home.canvas')}}">Canvas</a></li>
+                        <li><a href="#">Directorio</a></li>
+                        <li><a href="#">Canvas</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                   role="button" aria-haspopup="true" aria-expanded="false">Acerca de<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="{{route('about')}}">¿Qué es Club MiniDatáfono?</a></li>
-                    <li><a href="{{route('how-it-works')}}">¿Cómo operar?</a></li>
+                    <li><a href="#">¿Qué es Club MiniDatáfono?</a></li>
+                    <li><a href="#">¿Cómo operar?</a></li>
                 </ul>
             </li>
-            <li><a href="{{route('posts.show', 'blog')}}">Blog</a></li>
-            <li><a href="{{route('home.contact')}}">Contacto</a></li>
-            <li><button class="btn-accumulation" onclick="window.location='{{route('home')}}'">Programa de Acumulación</button></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contacto</a></li>
+            <li><button class="btn-accumulation" onclick="#">Programa de Acumulación</button></li>
         </ul>
-        @endif
+         @endif 
         <ul class="nav navbar-nav navbar-right">
             <li>
                 <label class="user-info">

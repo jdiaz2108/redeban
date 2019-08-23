@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Models\UserData;
 use Illuminate\Http\Request;
+use App\Http\Requests\ValidateUpdateDataRequest;
 
 class UpdateUserData extends Controller
 {
@@ -36,13 +37,14 @@ class UpdateUserData extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ValidateUpdateDataRequest $request)
     {
         $data = $request->all();
         $data['user_id'] = $request->user()->id;
         $userData = new UserData($data);
         $userData->save();
-        return $userData;
+        return redirect('/')->with('status', 'Se han actualizado los datos correctamente');
+        return back()->with('status', 'Se han actualizado los datos correctamente');
     }
 
     /**
@@ -77,7 +79,7 @@ class UpdateUserData extends Controller
     public function update(Request $request, $id)
     {
         $userData = UserData::find($id)->update($request->all());
-        return  UserData::find($id);
+        return back()->with('status', 'Se ha actializado los datos correctamente');
     }
 
     /**
