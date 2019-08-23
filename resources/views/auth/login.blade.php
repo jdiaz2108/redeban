@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid h-100">
-    <div class="row justify-content-center h-100 flex-row">
+    <div class="row justify-content h-100 flex-row">
         <div class="col-6 bg-danger d-flex align-items-center">
             <div class="container">
                 <div class="row justify-content-center">
@@ -15,12 +15,12 @@
                                     @csrf
             
                                     <div class="form-group row">
-                                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                        <label for="identification" class="col-md-4 col-form-label text-md-right">{{ __('Nit') }}</label>
             
                                         <div class="col-md-6">
-                                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                            <input id="identification" type="text" class="form-control @error('identification') is-invalid @enderror" name="identification" value="{{ old('identification') }}" required autocomplete="identification" autofocus>
             
-                                            @error('email')
+                                            @error('identification')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -29,7 +29,7 @@
                                     </div>
             
                                     <div class="form-group row">
-                                        <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                        <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
             
                                         <div class="col-md-6">
                                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -73,8 +73,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-6 bg-dark">
         </div>
     </div>
 </div>

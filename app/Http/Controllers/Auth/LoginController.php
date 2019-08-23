@@ -36,4 +36,10 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    /* username function is used for change the validation from email to identification */
+    public function username()
+    {
+        return 'identification';
+    }
 }

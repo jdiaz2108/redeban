@@ -30,7 +30,7 @@
     <div id="app" class="h-100">
         @auth
         @include('partials.header')
-            @include('partials.menu')
+           {{--  @include('partials.menu') --}}
         @endauth
         <main @guest class="h-100" @endguest >
             @yield('content')

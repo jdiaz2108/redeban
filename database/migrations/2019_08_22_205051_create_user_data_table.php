@@ -15,8 +15,12 @@ class CreateUserDataTable extends Migration
     {
         Schema::create('user_data', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('in_charge')->nullable();
+            $table->string('name')->nullable();
+            $table->string('email')->unique();
+            $table->string('phone')->unique()->nullable();
+            $table->string('address')->nullable();
+            $table->unsignedBigInteger('city_id')->nullable();
+            $table->foreign('city_id')->references('id')->on('cities');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

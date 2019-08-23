@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateActivitiesTable extends Migration
+class CreatePrizesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,15 @@ class CreateActivitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('activities', function (Blueprint $table) {
+        Schema::create('prizes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->integer('point');
+            $table->string('description')->nullable();
+            $table->string('code');
+            $table->string('image')->nullable();
+            $table->integer('stock')->default(1);
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }
@@ -27,6 +33,6 @@ class CreateActivitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('activities');
+        Schema::dropIfExists('prizes');
     }
 }

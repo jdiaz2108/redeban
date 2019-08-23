@@ -25,15 +25,21 @@ class ValidateUpdateDataRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'in_charge' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'city_id' => 'required',
         ];
     }
 
     public function attributes()
     {
         return [
-            'name' => 'nombre',
-            'in_charge' => 'encargado',
+            'name' => 'nombre encargado',
+            'email' => 'correo electronico',
+            'phone' => 'teléfono o celular',
+            'address' => 'dirección',
+            'city_id' => 'ciudad',
         ];
     }
 }
