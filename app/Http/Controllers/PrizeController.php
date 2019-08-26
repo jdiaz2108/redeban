@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Prize;
 use Illuminate\Http\Request;
 
 class PrizeController extends Controller
@@ -13,7 +14,8 @@ class PrizeController extends Controller
      */
     public function index()
     {
-        //
+        $prizes = Prize::all();
+        return view('pages.prize', compact('prizes'));
     }
 
     /**
@@ -43,9 +45,9 @@ class PrizeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Prize $prize)
     {
-        //
+        return view('pages.viewPrize', compact('prize'));
     }
 
     /**

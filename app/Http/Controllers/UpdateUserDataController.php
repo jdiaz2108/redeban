@@ -9,7 +9,7 @@ use App\Models\Point;
 use Illuminate\Http\Request;
 use App\Http\Requests\ValidateUpdateDataRequest;
 
-class UpdateUserData extends Controller
+class UpdateUserDataController extends Controller
 {
     /**
      * Display a listing of the resource.
