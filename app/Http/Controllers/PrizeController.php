@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use Carbon\Carbon;
 use App\Models\Prize;
 use Illuminate\Http\Request;
 
@@ -47,7 +49,18 @@ class PrizeController extends Controller
      */
     public function show(Prize $prize)
     {
-        return view('pages.home.prize.show', compact('prize'));
+        $user = Auth::user();
+   
+        $redeem = ($user->activeredeem->prize_id == $prize->id) ? true : false ;
+        if ($redeem) {
+
+            $carbon = Carbon::now('America/Bogota')->subMinutes(10);
+            $tenMinutesValidation = $carbon <= $user->activeredeem->created_at;
+            
+            $redeem = ($tenMinutesValidation) ? true : false ;
+        }
+
+        return view('pages.home.prize.show', compact('prize', 'redeem'));
     }
 
     /**

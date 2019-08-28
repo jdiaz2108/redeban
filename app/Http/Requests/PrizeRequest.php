@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ValidateUpdateDataRequest extends FormRequest
+class PrizeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,21 +25,21 @@ class ValidateUpdateDataRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'address' => 'required',
-            'city_id' => 'required',
+            'point' => 'required|integer|min:1',
+            'code' => 'required|unique:prizes',
+            // 'image' => 'required',
+            'stock'  => 'required|integer|min:1',
         ];
     }
 
     public function attributes()
     {
         return [
-            'name' => 'nombre encargado',
-            'email' => 'correo electronico',
-            'phone' => 'teléfono o celular',
-            'address' => 'dirección',
-            'city_id' => 'ciudad',
+            'name' => 'nombre',
+            'point' => 'puntos',
+            'code' => 'codigo',
+            // 'image' => 'required',
+            'stock'  => 'unidades',
         ];
     }
 }

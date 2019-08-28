@@ -7,6 +7,8 @@ use App\Models\redeemValidateMail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\SendEmailController;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
+use App\Http\Requests\RedeemCodeRequest;
 
 class RedeemValidateMailController extends Controller
 {
@@ -52,7 +54,7 @@ class RedeemValidateMailController extends Controller
             // use SendEmailController to send an email to the user with the code of redeem
             SendEmailController::redeem_prize($redeemValidateMail);
 
-            return $redeemValidateMail;
+            return back()->with('status', 'revisa el correo');
 
         } else {
 
@@ -91,9 +93,23 @@ class RedeemValidateMailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RedeemCodeRequest $request, Prize $prize)
     {
-        //
+        return $request;
+
+        $redeem = ($user->activeredeem->prize_id == $prize->id) ? true : false ;
+        if ($redeem) {
+            $carbon = Carbon::now('America/Bogota')->subMinutes(10);
+            $tenMinutesValidation = $carbon <= $user->activeredeem->created_at;
+            
+            $redeem = ($tenMinutesValidation) ? true : false ;
+
+            if(!$tenMinutesValidation) {
+                $errors->add('your_custom_error', 'Your custom error message!');
+            }
+        }
+        $errors = new MessageBag;
+        return view('pages.home.prize.show', compact('prize', 'redeem'))->withErrors($errors);
     }
 
     /**

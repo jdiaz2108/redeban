@@ -6,7 +6,7 @@ use App\Models\Prize;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\ValidatePrizeRequest;
+use App\Http\Requests\PrizeRequest;
 
 class PrizeController extends Controller
 {
@@ -37,7 +37,7 @@ class PrizeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ValidatePrizeRequest $request)
+    public function store(PrizeRequest $request)
     {
         $data = $request->all();
         // Validate if the request has an image and stogare that file

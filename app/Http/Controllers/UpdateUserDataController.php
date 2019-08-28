@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use App\Models\UserData;
 use App\Models\Point;
 use Illuminate\Http\Request;
-use App\Http\Requests\ValidateUpdateDataRequest;
+use App\Http\Requests\UpdateDataRequest;
 
 class UpdateUserDataController extends Controller
 {
@@ -39,7 +39,7 @@ class UpdateUserDataController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ValidateUpdateDataRequest $request)
+    public function store(UpdateDataRequest $request)
     {
         $data = $request->all();
         $data['user_id'] = $request->user()->id;
