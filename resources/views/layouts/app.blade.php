@@ -16,10 +16,16 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="http://redeban-old.local/css/app.css">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
+    <link rel="icon" type="image/vnd.microsoft.icon" href="img/favicon.ico">
+    {{-- <link rel="stylesheet" href="http://redeban-old.local/css/app.css"> --}}
     <style>
             html,body {
   height: 100%;
@@ -30,9 +36,12 @@
     <div id="app" class="h-100">
         @auth
         @include('partials.header')
+        @include('partials.leftPanel')
            {{--  @include('partials.menu') --}}
         @endauth
-        <main @guest class="h-100" @endguest >
+        <main @guest class="h-100" @endguest @auth
+            class="main-content"
+        @endauth >
             @yield('content')
         </main>
     </div>

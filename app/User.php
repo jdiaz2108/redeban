@@ -46,7 +46,7 @@ class User extends Authenticatable
     /* return an atribute in boolean variable if the user has updated data accessing with $user->updated */
     public function getUpdatedAttribute()
     {
-        return $retVal = ($this->userData) ? true : false ;
+        return ($this->userData) ? true : false ;
     }
 
     public function points()
@@ -58,6 +58,16 @@ class User extends Authenticatable
     public function getSumPointsAttribute()
     {
         return $this->points()->sum('value');
+    }
+
+    public function redeemValidate()
+    {
+        return $this->hasMany('App\Models\redeemValidateMail');
+    }
+
+    public function getActiveRedeemAttribute()
+    {
+        return $this->redeemValidate()->latest()->first();
     }
 
 }

@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use Auth;
-use Carbon\Carbon;
-use App\Models\UserData;
-use App\Models\Point;
+use App\Models\Prize;
 use Illuminate\Http\Request;
-use App\Http\Requests\ValidateUpdateDataRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\ValidatePrizeRequest;
 
-class UpdateUserDataController extends Controller
+class PrizeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +17,10 @@ class UpdateUserDataController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $updatedData = ($user->updated) ? $user->userData : $user ;
-        return view('pages.updateData', compact('updatedData', 'user'));
+        $prizes = Prize::whereActive(true)->get();
+        return view('pages.admin.prizes.index', compact('prizes'));
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -30,32 +28,28 @@ class UpdateUserDataController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.prizes.create');
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ValidateUpdateDataRequest $request)
+    public function store(ValidatePrizeRequest $request)
     {
         $data = $request->all();
-        $data['user_id'] = $request->user()->id;
-        $userData = new UserData($data);
-        $userData->save();
-        $date = Carbon::now();
-        $points = new Point([
-            'event' => 'Actualización de datos',
-            'value' => 100,
-            'user_id' => $request->user()->id,
-            'month' => $date->month,
-            'year' => $date->year
-        ]);
-        $points->save();
-        
-        return redirect('/')->with('status', 'Se han actualizado los datos correctamente');
+        // Validate if the request has an image and stogare that file
+        if ($request->file('image')) {
+            $path = Storage::putFile('public/prizes', $request->file('image'));
+            $fullpath = asset(Storage::url($path));
+            $data['image'] = $fullpath;
+        }
+        $prize = new Prize($data);
+        $prize->save();
+        $prizes = Prize::all();
+        return redirect('/dashboard/prizes')->with('status', 'Se han creado un nuevo item correctamente');
     }
 
     /**
@@ -89,9 +83,7 @@ class UpdateUserDataController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $userData = UserData::find($id)->update($request->all());
-
-        return back()->with('status', 'Se ha actializado los datos correctamente');
+        //
     }
 
     /**
@@ -100,8 +92,9 @@ class UpdateUserDataController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Prize $prize)
     {
-        //
+        $prize->update(['active' => false]);
+        return redirect('/dashboard/prizes')->with('status', 'Se han actualizado los datos correctamente');
     }
 }

@@ -25,39 +25,20 @@
                         </ul>
                         <div class="card shadow my-3">
                                 <div class="card-body mx-auto">
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalRedeem">
-                                            Redimir
-                                        </button>
+                                  @if (Auth::user()->sumpoints >= $prize['point'])
+                                    <form action="/redeem-validate-mail" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="code" value="{{$prize['code']}}">
+                                        <button class="btn btn-primary">Redimir</button>
+                                    </form>
+                                  @else
+                                    <button class="btn btn-primary disabled">Redimir</button>                                   
+                                  @endif
                                 </div>
                             </div>
                     </div>
                 </div>
         </div>
     </div>
-
-
-          
-          <!-- Modal -->
-          <div class="modal fade" id="ModalRedeem" tabindex="-1" role="dialog" aria-labelledby="ModalRedeemTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="ModalRedeemTitle">Modal title</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  ...
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
 </div>
 @endsection

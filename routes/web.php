@@ -14,7 +14,11 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/update-data', 'UpdateUserDataController')->only(['index', 'store', 'update']);
     Route::resource('/prizes', 'PrizeController')->only(['index', 'show']);
+    Route::resource('/redeem-validate-mail', 'RedeemValidateMailController')->only(['store']);
 
+    Route::group(['prefix' => 'dashboard'], function() {
+        Route::resource('/prizes', 'Admin\PrizeController')->only(['index', 'create' ,'store', 'destroy']);
+    });
     Route::middleware('update.data')->group(function () {
 
 

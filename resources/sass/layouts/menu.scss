@@ -1,0 +1,116 @@
+.menu-main{
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6f7275+0,59595b+50,515154+51,515154+100 */
+    background: #6f7275; /* Old browsers */
+    background: -moz-linear-gradient(left, #6f7275 0%, #59595b 50%, #515154 51%, #515154 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #6f7275 0%,#59595b 50%,#515154 51%,#515154 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #6f7275 0%,#59595b 50%,#515154 51%,#515154 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6f7275', endColorstr='#515154',GradientType=1 ); /* IE6-9 */
+    height: 0;
+    overflow: hidden;
+    transition: height .6s ease-in;
+    position: absolute;
+    width: 0;
+    z-index: 5;
+  
+    .top-deco{
+      margin-bottom: 20px;
+      margin-top: 10px;
+      min-height: 40px;
+      hr{
+        border-color: $creme;
+      }
+      .arrows{
+        img{
+          position: relative;
+          top: 3px;
+        }
+      }
+      .line, .arrows{
+        display: block;
+        float: left;
+        text-align: center;
+        width: 33.3%;
+      }
+    }
+    .horse{
+      background-image: url(~/images/diamond-black-deco.png);
+      background-position-y: top;
+      background-repeat: repeat-x;
+      padding-top: 45px;
+      margin-top: 20px;
+    }
+    .logo{
+      border-top: 3px solid $creme;
+      margin-top: 20px;
+      padding: 20px 0;
+      padding-top: 0;
+      &:before{
+        display: block;
+        content: url(~/images/diamond-deco.png);
+        text-align: center;
+        position: relative;
+        top: -15px;
+      }
+    }
+    .nav{
+      text-align: center;
+      max-height: 500px;
+      min-height: 300px;
+  
+      li .item-menu {
+        color: #fff;
+        font-family: 'LouisBold';
+        text-transform: uppercase;
+        font-size: 18px;
+        margin: 10px 0px;
+        &:hover{
+          color: $yellow;
+          background-color: transparent;
+          font-size: 21px;
+        }
+      }
+  
+      li .button-item {
+          border-width: 0px;
+          background-color: transparent;
+      }
+    }
+  }
+  
+  .menu-main.open{
+    border: 5px solid $yellow;
+    width: 92%;
+  
+    &.admin{
+      height: 790px;
+    }
+    &.user{
+      height: 750px;
+    }
+  }
+  
+  @media screen and (min-width: 992px) {
+    .menu-main.open{
+      width: 25%;
+    }
+  }
+  
+  @media screen and (max-width: 992px) {
+    .fixed-xs {
+      top: 0;
+      z-index: 2;
+      position: fixed;
+    }
+  
+    .menu-main {
+      position: fixed;
+      width: 92%;
+      top: 20;
+    }
+  
+    .menu-main .nav {
+      overflow-y: auto;
+      max-height: 200px;
+      min-height: auto;
+    }
+  }

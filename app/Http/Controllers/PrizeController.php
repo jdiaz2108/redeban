@@ -14,8 +14,8 @@ class PrizeController extends Controller
      */
     public function index()
     {
-        $prizes = Prize::all();
-        return view('pages.prize', compact('prizes'));
+        $prizes = Prize::whereActive(true)->get();
+        return view('pages.home.prize.catalog', compact('prizes'));
     }
 
     /**
@@ -47,7 +47,7 @@ class PrizeController extends Controller
      */
     public function show(Prize $prize)
     {
-        return view('pages.viewPrize', compact('prize'));
+        return view('pages.home.prize.show', compact('prize'));
     }
 
     /**

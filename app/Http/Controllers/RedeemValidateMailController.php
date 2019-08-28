@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-use Carbon\Carbon;
-use App\Models\UserData;
-use App\Models\Point;
+use App\Models\Prize;
+use App\Models\redeemValidateMail;
 use Illuminate\Http\Request;
-use App\Http\Requests\ValidateUpdateDataRequest;
+use App\Http\Controllers\SendEmailController;
+use Illuminate\Support\Str;
 
-class UpdateUserDataController extends Controller
+class RedeemValidateMailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +17,9 @@ class UpdateUserDataController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $updatedData = ($user->updated) ? $user->userData : $user ;
-        return view('pages.updateData', compact('updatedData', 'user'));
+        //
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -32,30 +29,37 @@ class UpdateUserDataController extends Controller
     {
         //
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ValidateUpdateDataRequest $request)
+    public function store(Request $request)
     {
         $data = $request->all();
-        $data['user_id'] = $request->user()->id;
-        $userData = new UserData($data);
-        $userData->save();
-        $date = Carbon::now();
-        $points = new Point([
-            'event' => 'Actualización de datos',
-            'value' => 100,
-            'user_id' => $request->user()->id,
-            'month' => $date->month,
-            'year' => $date->year
-        ]);
-        $points->save();
+        $prize = Prize::whereCode($data['code'])->firstOrFail();
+        $user = $request->user();
+        // Validate if User has more points that the cost of the prize
+        if ($user->sumpoints >= $prize['point']) {
+
+            $data['user_id'] = $user->id;
+            $data['prize_id'] = $prize['id'];
+            $data['code'] = strtoupper(Str::random(10));
+            $redeemValidateMail = new redeemValidateMail($data);
+            $redeemValidateMail->save();
+            // use SendEmailController to send an email to the user with the code of redeem
+            SendEmailController::redeem_prize($redeemValidateMail);
+
+            return $redeemValidateMail;
+
+        } else {
+
+            return back()->with('status', 'no alcanza');
+
+        }
         
-        return redirect('/')->with('status', 'Se han actualizado los datos correctamente');
     }
 
     /**
@@ -89,9 +93,7 @@ class UpdateUserDataController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $userData = UserData::find($id)->update($request->all());
-
-        return back()->with('status', 'Se ha actializado los datos correctamente');
+        //
     }
 
     /**

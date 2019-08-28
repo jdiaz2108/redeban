@@ -6,8 +6,12 @@
         <div class="col-12 py-3 row justify-content-center">
             @foreach ($prizes as $prize)
             <div class="col-3">
-                <div class="card shadow">
+                <div class="card shadow my-2">
+                  @if ($prize['image'])
+                  <img src="{{$prize['image']}}" class="card-img-top rounded" alt="...">
+                  @else
                   <img src="https://schneidereit-berlin.de/wp-content/uploads/2019/01/platzhalter.png" class="card-img-top bg-secondary rounded" alt="...">
+                  @endif
                   <div class="card-body">
                     <h5 class="card-title">{{$prize['name']}}</h5>
                     <p class="card-text">{{$prize['description']}}</p>
