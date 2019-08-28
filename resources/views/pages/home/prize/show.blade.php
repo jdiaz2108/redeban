@@ -23,7 +23,7 @@
                         {{ session('status') }}
                     </div>
                     @endif
-                    @if ($redeem)
+                    @if ($redeem && !session('redeemed'))
                         <h2 class="text-center">{{$prize['name']}}</h2>
                         <div class="card shadow">
                             <div class="card-body">
@@ -38,6 +38,9 @@
                             </div>
                         </div>
                     @else
+                        @if (session('redeemed'))
+                        {{session('redeemed')}}
+                        @endif
                         <h2 class="text-center">{{$prize['name']}}</h2>
                         <div class="card shadow my-3">
                             <div class="card-body">
@@ -61,12 +64,13 @@
                                         <button class="btn btn-primary">Redimir</button>
                                     </form>
                                   @else
-                                    <button class="btn btn-primary disabled">Redimir</button>                                   
+                                <button type="submit" class="btn btn-primary disabled">Redimir</button>                                   
                                   @endif
                                 </div>
                             </div>
                             @endif
                         </div>
+                        
                 </div>
         </div>
     </div>

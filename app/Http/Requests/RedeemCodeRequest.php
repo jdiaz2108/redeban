@@ -24,7 +24,7 @@ class RedeemCodeRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string|min:10',
+            'code' => 'required|string|min:10|max:10',
         ];
     }
 

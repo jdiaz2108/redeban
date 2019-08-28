@@ -21,6 +21,6 @@ class UsersTableSeeder extends Seeder
             'active' => 1
         ]);
 
-        $user->assignRole('Admin', 'SuperAdmin');
+        $user->assignRole('admin');
     }
 }

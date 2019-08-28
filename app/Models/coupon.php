@@ -4,7 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class coupon extends Model
+class Coupon extends Model
 {
-    //
+    protected $fillable = [
+        'code', 'user_id', 'prize_id'
+    ];
 }

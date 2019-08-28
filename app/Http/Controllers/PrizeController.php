@@ -50,12 +50,13 @@ class PrizeController extends Controller
     public function show(Prize $prize)
     {
         $user = Auth::user();
+        $activeredeem = $user->activeredeem;
    
-        $redeem = ($user->activeredeem->prize_id == $prize->id) ? true : false ;
+        $redeem = (($activeredeem->prize_id ?? '') == $prize->id && ($activeredeem->active ?? '')) ? true : false ;
         if ($redeem) {
 
             $carbon = Carbon::now('America/Bogota')->subMinutes(10);
-            $tenMinutesValidation = $carbon <= $user->activeredeem->created_at;
+            $tenMinutesValidation = $carbon <= $activeredeem->created_at;
             
             $redeem = ($tenMinutesValidation) ? true : false ;
         }

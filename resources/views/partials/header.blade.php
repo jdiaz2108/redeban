@@ -14,7 +14,7 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 @auth
-                @hasrole('Admin')
+                @hasrole('admin')
                     <ul class="nav navbar-nav">
                         <li><a href="/prizes">/prizes</a><a href="/update-data">/update-data</a></li>
                         <li><a href="/dashboard/prizes">/dashboard/prizes</a></li>
@@ -35,7 +35,7 @@
                 <li>
                     <label class="user-info">
                             @hasrole('admin')
-                        {{ 'Admin' }}
+                        {{ 'admin' }}
                         @endhasrole
                     </label>
                 </li>

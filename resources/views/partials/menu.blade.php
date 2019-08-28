@@ -22,7 +22,7 @@
                     </li>
                 @else
                     @if (Route::has('register'))
-                        @hasrole('SuperAdmin')
+                        @hasrole('admin')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>

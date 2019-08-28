@@ -83,12 +83,14 @@
                       </li>
                       @else
                       @foreach($menu as $item)
+                      @hasanyrole($item['roles'])
                       <li class="nav-item {{(strpos(Route::currentRouteName(), $item['current']) !== false) ? 'active' : ''}}">
                         <a class="nav-link" href="{{$item['url']}}">
                           <i class="material-icons">{{$item['icon']}}</i>
                           <p>{{$item['name']}}</p>
                         </a>
                       </li>
+                      @endhasanyrole
                       @endforeach
           @endguest
         </ul>
