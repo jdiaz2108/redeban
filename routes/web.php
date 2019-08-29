@@ -18,6 +18,9 @@ Route::middleware('auth')->group(function () {
 
     Route::group(['prefix' => 'dashboard'], function() {
         Route::resource('/prizes', 'Admin\PrizeController')->only(['index', 'create' ,'store', 'destroy']);
+        
+        Route::get('/data/history','DataController@showHistory')->name('data.history');
+        Route::resource('/data', 'DataController')->only(['index', 'create' ,'store', 'destroy']);
     });
     Route::middleware('update.data')->group(function () {
 

@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Fulfillment extends Model
+class LoadHistory extends Model
 {
     protected $fillable = [
-        'goal', 'value', 'user_id',
+        'original_file_name', 'records_count',
     ];
 }

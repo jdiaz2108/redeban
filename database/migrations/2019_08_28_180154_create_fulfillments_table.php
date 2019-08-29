@@ -17,8 +17,9 @@ class CreateFulfillmentsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('goal');
             $table->integer('value')->nullable();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            // $table->unsignedBigInteger('user_id');
+            // $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('user_id');
             $table->integer('period')->nullable();
             $table->timestamps();
         });

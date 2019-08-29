@@ -37,7 +37,7 @@ return [
     'dimensions'           => 'Las dimensiones de la imagen :attribute no son válidas.',
     'distinct'             => 'El campo :attribute contiene un valor duplicado.',
     'email'                => ':attribute no es un correo válido',
-    'ends_with'            => 'The :attribute must end with one of the following: :values',
+    'ends_with'            => 'El :attribute debe terminar con la extensión: :values',
     'exists'               => ':attribute es inválido.',
     'file'                 => 'El campo :attribute debe ser un archivo.',
     'filled'               => 'El campo :attribute es obligatorio.',
