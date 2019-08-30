@@ -11,7 +11,6 @@ use Excel;
 use Response;
 use App\Models\Register;
 use App\Models\InvalidRegister;
-use Carbon\Carbon;
 
 class DataController extends Controller
 {
@@ -94,14 +93,10 @@ class DataController extends Controller
     {
         $file = $request->file('data');
 
-        // Call a Controller and use the processCVSFile method
+        // Call the CsvFileImporter Controller and use the processCVSFile method
         $importer = new CsvFileImporter;
         $loadHistory = $importer->processCSVFile($file);
 
-        // if is necessary add the date of every row in fulfillment model
-        /* $now = date('Y-m-d H:i:s');
-            $date = Carbon::now();
-            Fulfillment::whereCreated_at(null)->update(['created_at' => $date, 'updated_at' => $now]); */
         return redirect()->route('data.history')->with('status', 'Se han cargado los registros correctamente');
     }
 

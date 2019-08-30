@@ -13,6 +13,8 @@ class GlobalApp
           ['name' => 'data', 'url' => '/dashboard/data', 'current' => 'campana.create' , 'icon' => 'add_box', 'roles' => ['admin']],
           ['name' => 'data crear', 'url' => '/dashboard/data/create', 'current' => 'campana.create' , 'icon' => 'add_box', 'roles' => ['admin']],
           ['name' => 'data historial', 'url' => '/dashboard/data/history', 'current' => 'campana.create' , 'icon' => 'add_box', 'roles' => ['admin']],
+          ['name' => 'metas crear', 'url' => '/dashboard/metas/create', 'current' => 'campana.create' , 'icon' => 'add_box', 'roles' => ['admin']],
+          ['name' => 'metas historial', 'url' => '/dashboard/metas', 'current' => 'campana.create' , 'icon' => 'add_box', 'roles' => ['admin']],
       ];
 
       return $menu;

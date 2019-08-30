@@ -21,6 +21,8 @@ Route::middleware('auth')->group(function () {
         
         Route::get('/data/history','DataController@showHistory')->name('data.history');
         Route::resource('/data', 'DataController')->only(['index', 'create' ,'store', 'destroy']);
+
+        Route::resource('/metas', 'FulfillmentController')->only(['index', 'create' ,'store', 'destroy']);
     });
     Route::middleware('update.data')->group(function () {
 
