@@ -16,30 +16,27 @@ class DataController extends Controller
 {
     public function home()
     {
-        return view('admin.home');
+        //
     }
 
     public function index()
     {
-        $registers = Register::orderBy('id', 'desc')->paginate(15);
-        return view('admin.data.index')->with('registers',$registers);
+        //
     }
 
     public function showUpdate()
     {
-        return view('admin.data.update');
+        //
     }
 
     public function create()
     {
-        return view('pages.admin.data.index');
+        //
     }
 
     public function showHistory()
     {
-        $history = LoadHistory::orderBy('id','desc')->paginate(100);
-
-        return view('pages.admin.data.history', compact('history'));
+        //
     }
 
     public function downloadCSV($history)

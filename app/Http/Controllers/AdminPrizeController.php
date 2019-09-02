@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LoadHistory;
+use App\Models\Prize;
 use Illuminate\Http\Request;
+use App\Http\Requests\PrizeRequest;
+use Illuminate\Support\Facades\Storage;
 
-class FulfillmentController extends Controller
+class AdminPrizeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +16,8 @@ class FulfillmentController extends Controller
      */
     public function index()
     {
-        $history = LoadHistory::orderBy('id','desc')->paginate(100);
-
-        return view('pages.admin.fulfillments.history', compact('history'));
+        $prizes = Prize::whereActive(true)->get();
+        return view('pages.admin.prizes.index', compact('prizes'));
     }
 
     /**
@@ -26,7 +27,7 @@ class FulfillmentController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.fulfillments.index');
+        return view('pages.admin.prizes.create');
     }
 
     /**
@@ -35,20 +36,19 @@ class FulfillmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PrizeRequest $request)
     {
-        $file = $request->file('data');
-
-        // Call a Controller and use the processCVSFile method
-        $importer = new CsvFileImporter;
-        $loadHistory = $importer->processCSVFile($file);
-
-        // if is necessary add the date of every row in fulfillment model
-        /* $now = date('Y-m-d H:i:s');
-            $date = Carbon::now();
-            Fulfillment::whereCreated_at(null)->update(['created_at' => $date, 'updated_at' => $now]); */
-            
-        return redirect()->route('fulfillments.index')->with('status', 'Se han cargado los registros correctamente');
+        $data = $request->all();
+        // Validate if the request has an image and stogare that file
+        if ($request->file('image')) {
+            $path = Storage::putFile('public/prizes', $request->file('image'));
+            $fullpath = asset(Storage::url($path));
+            $data['image'] = $fullpath;
+        }
+        $prize = new Prize($data);
+        $prize->save();
+        $prizes = Prize::all();
+        return redirect('/dashboard/prizes')->with('status', 'Se han creado un nuevo item correctamente');
     }
 
     /**
@@ -91,8 +91,9 @@ class FulfillmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Prize $prize)
     {
-        //
+        $prize->update(['active' => false]);
+        return redirect('/dashboard/prizes')->with('status', 'Se han actualizado los datos correctamente');
     }
 }

@@ -134,7 +134,7 @@ class RedeemValidateMailController extends Controller
                        redeemValidateMail::whereCode($request['code'])->update(['active' => false]);
                        
                        $points = new Point([
-                            'event' => 'Actualización de datos',
+                            'event' => 'Compra cupon '.$prize['name'],
                             'value' => -$prize['point'],
                             'user_id' => $request->user()->id,
                             'month' => $date->month,

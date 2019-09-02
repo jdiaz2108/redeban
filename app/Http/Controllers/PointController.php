@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LoadHistory;
+use Auth;
+use App\Models\Point;
 use Illuminate\Http\Request;
 
-class FulfillmentController extends Controller
+class PointController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,8 @@ class FulfillmentController extends Controller
      */
     public function index()
     {
-        $history = LoadHistory::orderBy('id','desc')->paginate(100);
-
-        return view('pages.admin.fulfillments.history', compact('history'));
+        $historyPoints = Auth::user()->points()->get()->sortByDesc('created_at');
+        return view('pages.home.point.history', compact('historyPoints'));
     }
 
     /**
@@ -26,7 +26,7 @@ class FulfillmentController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.fulfillments.index');
+        //
     }
 
     /**
@@ -37,18 +37,7 @@ class FulfillmentController extends Controller
      */
     public function store(Request $request)
     {
-        $file = $request->file('data');
-
-        // Call a Controller and use the processCVSFile method
-        $importer = new CsvFileImporter;
-        $loadHistory = $importer->processCSVFile($file);
-
-        // if is necessary add the date of every row in fulfillment model
-        /* $now = date('Y-m-d H:i:s');
-            $date = Carbon::now();
-            Fulfillment::whereCreated_at(null)->update(['created_at' => $date, 'updated_at' => $now]); */
-            
-        return redirect()->route('fulfillments.index')->with('status', 'Se han cargado los registros correctamente');
+        //
     }
 
     /**

@@ -6,10 +6,7 @@
                 <div class="card shadow">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-md-2">Historial de metas</div>
-                            <div class="col-md-10 text-right">
-                              <a class="btn btn-primary btn-sm" href="/dashboard/fulfillments/create" role="button">Cargar <i class="fa fa-plus" aria-hidden="true"></i></a>
-                            </div>
+                            <div class="col-md-2">Historial de puntos</div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -29,42 +26,38 @@
                                     <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>Archivo cargado</th>
-                                            <th>Total registros</th>
-                                            <th>Registros inválidos</th>
-                                            <th>CSV inválidos</th>
+                                            <th>Concepto</th>
+                                            <th>Puntos</th>
+                                            <th>Mes</th>
+                                            <th>Año</th>
                                             <th>Fecha</th>
                                         </tr>
                                     </thead>
                                     <tbody class="content-directory">
-                                        @forelse($history as $item)
+                                        @forelse($historyPoints as $point)
                                         <tr>
                                           <td>
-                                            {{$item->id}}
+                                            {{$point->id}}
                                           </td>
                                           <td>
-                                            {{$item->original_file_name}}
+                                            {{$point->event}}
                                           </td>
                                           <td>
-                                            {{$item->records_count}}
+                                            {{$point->value}}
                                           </td>
                                           <td>
-                                            {{$item->invalid_records}}
+                                            {{$point->month}}
                                           </td>
                                           <td>
-                                            @if (!is_null($item->invalid_records))
-                                            <a href="{{url('data/csv/'.$item->id)}}">Descargar</a>
-                                            @else
-                                            -
-                                            @endif
+                                            {{$point->year}}
                                           </td>
                                           <td>
-                                            {{$item->created_at}}
+                                            {{$point->created_at}}
                                           </td>
                                         </tr>
                                       @empty
                                         <tr>
-                                          <td colspan="6" align="center">No hay registros de carga de datos</td>
+                                          <td colspan="6" align="center">No existen registros</td>
                                         </tr>
                                       @endforelse
                                     </tbody>

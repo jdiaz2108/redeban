@@ -22,5 +22,16 @@ class UsersTableSeeder extends Seeder
         ]);
 
         $user->assignRole('admin');
+
+        $user = User::create([
+            'active' => true,
+            'identification' => '123456',
+            'name_company' => 'User Corp',
+            'email' => 'jdiaz2108@hotmail.com',
+            'password' => bcrypt('123456'),
+            'active' => 1
+        ]);
+
+        $user->assignRole('user');
     }
 }

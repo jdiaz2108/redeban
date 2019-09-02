@@ -24,7 +24,7 @@
                             {{ session('status') }}
                         </div>
                         @endif
-                    <form action="/dashboard/data" method="POST" enctype="multipart/form-data">
+                    <form action="/dashboard/fulfillments" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <input type="file" name="data" class="form-control" required>
