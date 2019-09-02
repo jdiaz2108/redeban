@@ -11,7 +11,7 @@ use Illuminate\Support\Arr;
 
 class CsvFileImporter
 {
-    public function processCSVFile($file)
+    public function processCSVFile($file, $type)
     {
         $date = Carbon::now();
 
@@ -40,7 +40,7 @@ class CsvFileImporter
        
         // for with array chunk to ejecute 10000 petitions at time with the $collectionMix variable to push directrly to database
         foreach (array_chunk($collectionMix,10000) as $t) {
-            DB::table('fulfillments')->insert($t);
+            DB::table($type)->insert($t);
         }
 
         

@@ -16,7 +16,8 @@ class AdminPrizeController extends Controller
      */
     public function index()
     {
-        $prizes = Prize::whereActive(true)->get();
+        // $prizes = Prize::whereActive(true)->get();
+        $prizes = Prize::all();
         return view('pages.admin.prizes.index', compact('prizes'));
     }
 
@@ -94,6 +95,7 @@ class AdminPrizeController extends Controller
     public function destroy(Prize $prize)
     {
         $prize->update(['active' => false]);
+        $prize->delete();
         return redirect('/dashboard/prizes')->with('status', 'Se han actualizado los datos correctamente');
     }
 }

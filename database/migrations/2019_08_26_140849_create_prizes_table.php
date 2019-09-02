@@ -22,6 +22,7 @@ class CreatePrizesTable extends Migration
             $table->string('image')->nullable();
             $table->integer('stock')->default(1);
             $table->boolean('active')->default(true);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

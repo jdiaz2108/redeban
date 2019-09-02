@@ -88,6 +88,8 @@ class DataController extends Controller
 
     public function store(DataFileRequest $request)
     {
+        dd($request->type);
+
         $file = $request->file('data');
 
         // Call the CsvFileImporter Controller and use the processCVSFile method
