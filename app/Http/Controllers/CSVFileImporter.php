@@ -11,8 +11,10 @@ use Illuminate\Support\Arr;
 
 class CsvFileImporter
 {
-    public function processCSVFile($file, $type)
+    public function processCSVFile($file, $type, $chunk)
     {
+        $getChunk = ($chunk) ? $chunk : 10000 ;
+
         $date = Carbon::now();
 
         $filename = $date->format('Y-m-d_H-i-s').'_data.csv';
@@ -39,7 +41,7 @@ class CsvFileImporter
 
        
         // for with array chunk to ejecute 10000 petitions at time with the $collectionMix variable to push directrly to database
-        foreach (array_chunk($collectionMix,10000) as $t) {
+        foreach (array_chunk($collectionMix, $getChunk) as $t) {
             DB::table($type)->insert($t);
         }
 
@@ -51,32 +53,36 @@ class CsvFileImporter
         ]);
         $history->save();
 
-        $collectHeader = $collection->push(['load_historie_id'])->flatten()->all();
+        if ($type == 'fulfillments') {
+            
+            $collectHeader = $collection->push(['load_historie_id'])->flatten()->all();
 
-        $collectionError = $collectBody->map(function ($item, $key) use ($collectHeader, $date, $history) {
-            array_push($item, $date, $date, $history->id);
-            if (count($item) == ($collectHeader) or in_array("",$item)) {
-                return collect($collectHeader)->combine($item)->all();
-            } elseif (count($item) != count($collectHeader) or in_array("",$item)) {
-                array_pop($item);
-                array_pop($item);
-                array_pop($item);
-                $a = count($item) +3;
-                $f = count($collectHeader);
-                for ($i=$a; $i < $f; $i++) {
-                    array_push($item, 0);
-                }
+            $collectionError = $collectBody->map(function ($item, $key) use ($collectHeader, $date, $history) {
                 array_push($item, $date, $date, $history->id);
-                return collect($collectHeader)->combine($item)->all();
+                if (count($item) == ($collectHeader) or in_array("",$item)) {
+                    return collect($collectHeader)->combine($item)->all();
+                } elseif (count($item) != count($collectHeader) or in_array("",$item)) {
+                    array_pop($item);
+                    array_pop($item);
+                    array_pop($item);
+                    $a = count($item) +3;
+                    $f = count($collectHeader);
+                    for ($i=$a; $i < $f; $i++) {
+                        array_push($item, 0);
+                    }
+                    array_push($item, $date, $date, $history->id);
+                    return collect($collectHeader)->combine($item)->all();
+                }
+            })->filter()->values()->all();
+            
+            foreach (array_chunk($collectionError,10000) as $t) {
+                InvalidFulfillment::insert($t);
             }
-        })->filter()->values()->all();
-        
-        foreach (array_chunk($collectionError,10000) as $t) {
-            InvalidFulfillment::insert($t);
-        }
 
-        $history->invalid_records = count($collectionError);
-        $history->save();
+            $history->invalid_records = count($collectionError);
+            $history->save();
+
+        }
 
         // Returning the $history of file loaded
         return $history;

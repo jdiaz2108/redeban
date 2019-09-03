@@ -14,7 +14,7 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate()->all();
         return view('pages.admin.users.list', compact('users'));
     }
 
@@ -38,16 +38,10 @@ class AdminUserController extends Controller
     {
         $file = $request->file('data');
 
-        $type = 'users';
         // Call a Controller and use the processCVSFile method
         $importer = new CsvFileImporter;
-        $loadHistory = $importer->processCSVFile($file, $type);
+        $loadHistory = $importer->processCSVFile($file, 'users', 1000);
 
-        // if is necessary add the date of every row in fulfillment model
-        /* $now = date('Y-m-d H:i:s');
-            $date = Carbon::now();
-            Fulfillment::whereCreated_at(null)->update(['created_at' => $date, 'updated_at' => $now]); */
-            
         return redirect()->route('fulfillments.index')->with('status', 'Se han cargado los registros correctamente');
     }
 

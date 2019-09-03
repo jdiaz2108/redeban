@@ -41,7 +41,7 @@ class FulfillmentController extends Controller
 
         // Call a Controller and use the processCVSFile method
         $importer = new CsvFileImporter;
-        $loadHistory = $importer->processCSVFile($file);
+        $loadHistory = $importer->processCSVFile($file, 'fulfillments', 10000);
 
         // if is necessary add the date of every row in fulfillment model
         /* $now = date('Y-m-d H:i:s');

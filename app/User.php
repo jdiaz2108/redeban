@@ -43,10 +43,9 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\UserData');
     }
 
-    /* return an atribute in boolean variable if the user has updated data accessing with $user->updated */
-    public function getUpdatedAttribute()
+    public function category()
     {
-        return ($this->userData) ? true : false ;
+        return $this->belongsTo('App\Models\Category')->withDefault();
     }
 
     public function points()
@@ -54,15 +53,25 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Point');
     }
 
+    public function redeemValidate()
+    {
+        return $this->hasMany('App\Models\redeemValidateMail');
+    }
+
+    public function fulfillment()
+    {
+        return $this->hasMany('App\Models\Fulfillment')->latest()->first();
+    }
+
+    /* return an atribute in boolean variable if the user has updated data accessing with $user->updated */
+    public function getUpdatedAttribute()
+    {
+        return ($this->userData) ? true : false ;
+    }
     /* return the sum of points in value column 'value' accessing with $user->sumpoints */
     public function getSumPointsAttribute()
     {
         return $this->points()->sum('value');
-    }
-
-    public function redeemValidate()
-    {
-        return $this->hasMany('App\Models\redeemValidateMail');
     }
 
     public function getActiveRedeemAttribute()
@@ -70,4 +79,8 @@ class User extends Authenticatable
         return $this->redeemValidate()->latest()->first();
     }
 
+    public function getFulfillmentGoalAttribute()
+    {
+        return ($this->fulfillment()['goal']) ? $this->fulfillment()['goal'] : 0 ;
+    }
 }

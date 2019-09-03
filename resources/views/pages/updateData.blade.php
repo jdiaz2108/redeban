@@ -13,17 +13,31 @@
         <div class="col-6 py-3">
             <div class="card shadow">
                 <div class="card-body mx-auto">
-                    {{$user->sumpoints}}
+                    Puntos: {{$user->sumpoints}}
                 </div>
             </div>
         </div>
         <div class="col-6 py-3">
                 <div class="card shadow">
                     <div class="card-body mx-auto">
-                        categoría
+                    Categoría: {{$user->category->name ?? 'sin categoría'}}
                     </div>
                 </div>
             </div>
+            <div class="col-6 py-3">
+                    <div class="card shadow">
+                        <div class="card-body mx-auto">
+                            Meta: {{$user->fulfillmentGoal}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 py-3">
+                        <div class="card shadow">
+                            <div class="card-body mx-auto">
+                                categoría
+                            </div>
+                        </div>
+                    </div>
         <div class="col-12 py-3">
             <div class="card shadow">
                 <div class="card-header">Actualización de datos</div>
@@ -37,7 +51,7 @@
                     <form @if ($user->updated)
                         action="/update-data/{{$updatedData['id']}}" {{ route('login') }}
                         @else
-                        action="/update-data" 
+                        action="/update-data"
                         @endif method="POST">
                         @if ($user->updated)
                         @method('PUT')

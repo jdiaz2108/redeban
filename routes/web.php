@@ -15,16 +15,14 @@
 Route::middleware('auth')->group(function () {
 
     // Redirect user if has any role
-    // Route::get('/', function () {
-    //     if (Auth::check()) {
-    //         if (Auth::user()->hasAnyRole('admin')) {
-    //             return redirect('dashboard');
-    //         }
-    //         elseif(Auth::user()->hasAnyRole('user')) {
-    //             return redirect('home');
-    //         }
-    //     }
-    // });
+    Route::get('/', function () {
+        if (Auth::user()->hasAnyRole('admin')) {
+            return redirect('dashboard');
+        }
+        elseif(Auth::user()->hasAnyRole('user')) {
+            return redirect('home');
+        }
+    });
     
     // Only users with user role
     Route::group(['middleware' => ['role:user']], function () {
@@ -48,9 +46,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/dashboard', 'HomeController@index')->name('dash');
         
         // Prefix dashboard to use admin role
-        Route::group(['prefix' => 'dashboard'], function() {
+        Route::group(['prefix' => 'dashboard', 'as' => 'admin::'], function() {
             
-            Route::resource('/prizes', 'AdminPrizeController', ['as' => 'admin'])->only(['index', 'create' ,'store', 'destroy']);
+            Route::resource('/prizes', 'AdminPrizeController')->only(['index', 'create' ,'store', 'destroy']);
             Route::resource('/fulfillments', 'FulfillmentController')->only(['index', 'create' ,'store', 'destroy']);
             Route::resource('/users', 'AdminUserController')->only(['index', 'create', 'store']);
             

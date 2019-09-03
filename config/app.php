@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Redeban'),
 
     /*
     |--------------------------------------------------------------------------
@@ -227,7 +227,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        
+
         //Custom packages
         'Excel' => Maatwebsite\Excel\Facades\Excel::class, //maatwebsite/excel package
 

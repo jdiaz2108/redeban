@@ -8,7 +8,7 @@
                         <div class="row">
                             <div class="col-md-2">Lista Usuarios</div>
                             <div class="col-md-10 text-right">
-                              <a class="btn btn-primary btn-sm" href="/dashboard/prizes/create" role="button">Crear <i class="fa fa-plus" aria-hidden="true"></i></a>
+                              <a class="btn btn-primary btn-sm" href="{{ route('admin::users.create') }}" role="button">Cargar <i class="fa fa-plus" aria-hidden="true"></i></a>
                             </div>
                         </div>
                     </div>
