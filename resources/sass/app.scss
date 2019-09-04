@@ -6,10 +6,18 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.scss";
 
-/* @import 'layouts/globals'; */
+@import 'layouts/globals';
 
 @import 'partials/header';
+@import 'partials/footer';
+@import 'partials/custom-sidemenu';
+@import 'partials/table';
 
-// @import "layouts/menu";
-
+@import "pages/login";
+@import "pages/update-data";
+@import "pages/catalog";
+@import "pages/history-points";
+@import "pages/admin";

@@ -1,0 +1,26 @@
+.page.history-points {
+
+	.title {
+		color: #fff;
+	}
+
+	.line {
+		color: #d669ff;
+	}
+
+	.points {
+		font-weight: bold;
+		color: #00ffff;
+		font-size: 20px;
+		text-transform: uppercase;
+
+	}
+
+}
+
+@media screen and (max-width: 1000px) {
+	.page.history-points {
+
+
+	}
+}

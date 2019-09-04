@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 
-class AdminUserController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,9 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate()->all();
-        return view('pages.admin.users.list', compact('users'));
+        $users = User::paginate();
+
+        return view('pages.admin.users.index', compact('users'));
     }
 
     /**
@@ -25,7 +26,7 @@ class AdminUserController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.users.load');
+      //
     }
 
     /**

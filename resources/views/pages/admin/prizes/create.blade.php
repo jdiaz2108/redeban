@@ -1,87 +1,96 @@
 @extends('layouts.app')
 @section('content')
-<div class="page dashboard create-prizes">
-    <div class="container">
+<div class="page admin">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10 content-page">
         <div class="row">
-            <div class="col-md-12">
-                <div class="card shadow">
-                    <div class="card-header">
-                        Crear Item <br>
-                        <small><a href="{{ URL::previous() }}">Volver</a></small>
+          <div class="col-8">
+            <h2 class="title">Crear Premios</h2>
+            <hr class="line">
+          </div>
+          <div class="col-4 text-right">
+            <small><a class="btn btn-custom-green btn-sm" href="{{ URL::previous() }}">Volver <i class="fa fa-arrow-right"></i> </a></small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+            @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+            @endif
+          </div>
+          <div class="col-12">
+            <form action="/dashboard/prizes" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Nombre *</label>
+                            <input type="text" class="form-control" name="name" value="{{old('name')}}"
+                                required placeholder="Nombre">
+                        </div>
                     </div>
-                    <div class="card-body">
-                        @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Puntos *</label>
+                            <input type="number" class="form-control" name="point" value="{{old('point')}}"
+                                required placeholder="Puntos">
                         </div>
-                        @endif
-                        @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Unidades *</label>
+                            <input type="number" class="form-control" name="stock" value="{{old('stock')}}"
+                                required placeholder="Unidades">
                         </div>
-                        @endif
-                        <form action="/dashboard/prizes" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Nombre *</label>
-                                        <input type="text" class="form-control" name="name" value="{{old('name')}}"
-                                            required placeholder="Nombre">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Puntos *</label>
-                                        <input type="number" class="form-control" name="point" value="{{old('point')}}"
-                                            required placeholder="Puntos">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Unidades *</label>
-                                        <input type="number" class="form-control" name="stock" value="{{old('stock')}}"
-                                            required placeholder="Unidades">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Codigo *</label>
-                                        <input type="text" class="form-control" name="code"
-                                            value="{{old('code')}}" required placeholder="Codigo">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>
-                                            Imagen *
-                                        </label>
-                                        <input type="file" class="form-control" name="image" value="{{old('image')}}"
-                                            multiple="false">
-                                    </div>
-                                </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Codigo *</label>
+                            <input type="text" class="form-control" name="code"
+                                value="{{old('code')}}" required placeholder="Codigo">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>
+                                Imagen *
+                            </label>
+                            <input type="file" class="form-control" name="image" value="{{old('image')}}"
+                                multiple="false">
+                        </div>
+                    </div>
 
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Descripción</label>
-                                        <textarea name="description" rows="10" value="{{old('description')}}"
-                                            class="wysiwyg form-control"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="btn btn-primary" type="submit">
-                                Crear Item
-                            </button>
-                        </form>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <textarea name="description" rows="10" value="{{old('description')}}"
+                                class="wysiwyg form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-center">
+                      <button class="btn btn-primary btn-custom" type="submit">
+                          Crear Item
+                      </button>
                     </div>
                 </div>
-            </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 </div>
 @endsection

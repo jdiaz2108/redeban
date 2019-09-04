@@ -1,0 +1,20 @@
+.page.admin {
+
+	.title {
+		color: #fff;
+	}
+
+	.line {
+		margin: 10px 0px;
+		width: 200px;
+		border: 1px solid #3bd1ff;
+	}
+
+}
+
+@media screen and (max-width: 1000px) {
+	.page.admin {
+
+
+	}
+}

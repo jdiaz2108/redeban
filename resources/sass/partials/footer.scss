@@ -1,0 +1,18 @@
+.footer-custom {
+  padding: 30px 0px;
+  color: #fff;
+  font-weight: bold;
+
+  .text-legal {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .footer-custom {
+    .text-responsive-center {
+      text-align: center !important;
+
+    }
+  }
+}

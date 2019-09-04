@@ -1,32 +1,47 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-12 py-3 row justify-content-center">
-            @foreach ($prizes as $prize)
-            <div class="col-3">
-                <div class="card shadow my-2">
-                  @if ($prize['image'])
-                  <img src="{{$prize['image']}}" class="card-img-top rounded" alt="...">
-                  @else
-                  <img src="https://schneidereit-berlin.de/wp-content/uploads/2019/01/platzhalter.png" class="card-img-top bg-secondary rounded" alt="...">
-                  @endif
-                  <div class="card-body">
-                    <h5 class="card-title">{{$prize['name']}}</h5>
-                    <p class="card-text">{{$prize['description']}}</p>
-                  </div>
-                  <ul class="list-group list-group-flush mb-0">
-                        <li class="list-group-item">Valor: {{$prize['point']}} Puntos</li>
-                        <li class="list-group-item">Quedan: {{$prize['stock']}} unidades</li>
-                      </ul>
-                      <div class="card-body">
-                        <a class="btn btn-primary" href="prizes/{{$prize['code']}}" role="button">Ver más</a>
-                      </div>
-                </div>
-            </div>
-            @endforeach
+<div class="page catalog">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10 content-page">
+        <div class="row">
+          <div class="col-9">
+            <h2 class="title">Catálogo</h2>
+            <hr class="line">
+            <p class="points">Puntos {{$user->sumpoints}}</p>
+          </div>
+          <div class="col-3">
+            Categoría: {{$user->category->name ?? 'sin categoría'}}
+          </div>
         </div>
+        <div class="row">
+          <div class="col-12">
+            <div id="slider" class="cards-slider">
+                @foreach ($prizes as $key => $prize)
+                <div class="prize-item">
+                  <div class="content-image">
+                    <a href="{{url('prize',$prize['id'])}}">
+                    @if ($prize['image'])
+                    <img src="{{$prize['image']}}" class="img-fluid" alt="...">
+                    @else
+                    <img src="{{asset('images/image.png')}}" class="img-fluid" alt="...">
+                    @endif
+                    <span class="stock" title="Unidades">{{$prize['stock']}}</span>
+                    </a>
+                  </div>
+                  <div class="box-text {{$colors[$key]}} text-left">
+                    <p class="name" title="{{$prize['description']}}">{{$prize['name']}}</p>
+                    <p class="num">{{$prize['point']}} Puntos</p>
+                  </div>
+                </div>
+                @endforeach
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 @endsection

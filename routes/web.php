@@ -23,38 +23,38 @@ Route::middleware('auth')->group(function () {
             return redirect('home');
         }
     });
-    
+
     // Only users with user role
     Route::group(['middleware' => ['role:user']], function () {
-        
+
         Route::resource('/update-data', 'UpdateUserDataController')->only(['index', 'store', 'update']);
-        
+
         // Update data is required
         Route::middleware('update.data')->group(function () {
 
             Route::get('/home', 'HomeController@index')->name('home');
-            Route::resource('/prizes', 'PrizeController')->only(['index', 'show']);
+            Route::get('/catalog', 'HomeController@catalog');
+            Route::get('/prize/{id}', 'HomeController@showPrize');
             Route::resource('/redeem-validate-mail', 'RedeemValidateMailController')->only(['store', 'update']);
-            Route::resource('/points', 'PointController')->only(['index']);
-            
+            Route::get('/points', 'HomeController@points');
+
         });
     });
-        
+
     // Only users with admin role included prefix dashboard
     Route::group(['middleware' => ['role:admin']], function () {
-        
+
         Route::get('/dashboard', 'HomeController@index')->name('dash');
-        
+
         // Prefix dashboard to use admin role
         Route::group(['prefix' => 'dashboard', 'as' => 'admin::'], function() {
-            
-            Route::resource('/prizes', 'AdminPrizeController')->only(['index', 'create' ,'store', 'destroy']);
+
+            Route::resource('/prizes', 'PrizeController')->only(['index', 'create' ,'store', 'destroy']);
             Route::resource('/fulfillments', 'FulfillmentController')->only(['index', 'create' ,'store', 'destroy']);
-            Route::resource('/users', 'AdminUserController')->only(['index', 'create', 'store']);
-            
+            Route::resource('/users', 'UserController')->only(['index', 'create', 'store']);
+
         });
     });
 });
 
 Auth::routes();
-

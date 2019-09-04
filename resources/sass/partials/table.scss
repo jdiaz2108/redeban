@@ -1,0 +1,18 @@
+.table-custom {
+	color: #fff;
+	font-weight: bold;
+
+	th {
+		border: 0px;
+	}
+	td {
+		border: 0px;
+	}
+	thead th {
+		border-bottom: 3px solid #f9bf9b;
+	}
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #ffffff40;
+}

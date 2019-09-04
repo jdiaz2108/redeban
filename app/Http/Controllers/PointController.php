@@ -15,8 +15,7 @@ class PointController extends Controller
      */
     public function index()
     {
-        $historyPoints = Auth::user()->points()->get()->sortByDesc('created_at');
-        return view('pages.home.point.history', compact('historyPoints'));
+      //
     }
 
     /**

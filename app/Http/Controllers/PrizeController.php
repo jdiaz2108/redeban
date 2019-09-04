@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-use Carbon\Carbon;
 use App\Models\Prize;
 use Illuminate\Http\Request;
+use App\Http\Requests\PrizeRequest;
+use Illuminate\Support\Facades\Storage;
 
 class PrizeController extends Controller
 {
@@ -16,8 +16,9 @@ class PrizeController extends Controller
      */
     public function index()
     {
-        $prizes = Prize::whereActive(true)->get();
-        return view('pages.home.prize.catalog', compact('prizes'));
+        // $prizes = Prize::whereActive(true)->get();
+        $prizes = Prize::all();
+        return view('pages.admin.prizes.index', compact('prizes'));
     }
 
     /**
@@ -27,7 +28,7 @@ class PrizeController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.prizes.create');
     }
 
     /**
@@ -36,9 +37,19 @@ class PrizeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PrizeRequest $request)
     {
-        //
+        $data = $request->all();
+        // Validate if the request has an image and stogare that file
+        if ($request->file('image')) {
+            $path = Storage::putFile('public/prizes', $request->file('image'));
+            $fullpath = asset(Storage::url($path));
+            $data['image'] = $fullpath;
+        }
+        $prize = new Prize($data);
+        $prize->save();
+        $prizes = Prize::all();
+        return redirect('/dashboard/prizes')->with('status', 'Se han creado un nuevo item correctamente');
     }
 
     /**
@@ -47,21 +58,9 @@ class PrizeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Prize $prize)
+    public function show($id)
     {
-        $user = Auth::user();
-        $activeredeem = $user->activeredeem;
-   
-        $redeem = (($activeredeem->prize_id ?? '') == $prize->id && ($activeredeem->active ?? '')) ? true : false ;
-        if ($redeem) {
-
-            $carbon = Carbon::now('America/Bogota')->subMinutes(10);
-            $tenMinutesValidation = $carbon <= $activeredeem->created_at;
-            
-            $redeem = ($tenMinutesValidation) ? true : false ;
-        }
-
-        return view('pages.home.prize.show', compact('prize', 'redeem'));
+        //
     }
 
     /**
@@ -93,8 +92,10 @@ class PrizeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Prize $prize)
     {
-        //
+        $prize->update(['active' => false]);
+        $prize->delete();
+        return redirect('/dashboard/prizes')->with('status', 'Se han actualizado los datos correctamente');
     }
 }

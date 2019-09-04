@@ -20,9 +20,11 @@ class UpdateUserDataController extends Controller
     {
         $user = Auth::user();
         $updatedData = ($user->updated) ? $user->userData : $user ;
-        return view('pages.updateData', compact('updatedData', 'user'));
+        $action = $user->updated ? '/update-data/'.$updatedData['id'] : '/update-data';
+
+        return view('pages.home.update-data', compact('updatedData', 'user','action'));
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -32,7 +34,7 @@ class UpdateUserDataController extends Controller
     {
         //
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -54,7 +56,7 @@ class UpdateUserDataController extends Controller
             'year' => $date->year
         ]);
         $points->save();
-        
+
         return redirect('/')->with('status', 'Se han actualizado los datos correctamente');
     }
 
