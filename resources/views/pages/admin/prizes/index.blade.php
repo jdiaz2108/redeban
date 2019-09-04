@@ -38,8 +38,7 @@
                     </tr>
                 </thead>
                 <tbody class="content-directory">
-                    @if(count($prizes))
-                    @foreach ($prizes as $prize)
+                    @forelse($prizes as $prize)
                     <tr>
                         <td>{{$prize['name']}}</td>
                         <td>@if ($prize['image'])
@@ -64,21 +63,21 @@
                               <form action="/dashboard/prizes/{{$prize['code']}}" method="POST">
                                 @method('DELETE') @csrf
                                 <button class="dropdown-item">Eliminar</button>
-                           </form>
+                              </form>
                             </div>
                           </div>
                         </td>
                     </tr>
-                    @endforeach
-                    @else
+                    @empty
                     <tr>
                         <td colspan="9" class="alert aler-warning">
                             <center>No existen registros.</center>
                         </td>
                     </tr>
-                    @endif
+                    @endforelse
                 </tbody>
             </table>
+            {{$prizes->links()}}
             </div>
         </div>
     </div>

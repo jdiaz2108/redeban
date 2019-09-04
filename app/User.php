@@ -83,4 +83,23 @@ class User extends Authenticatable
     {
         return ($this->fulfillment()['goal']) ? $this->fulfillment()['goal'] : 0 ;
     }
-}
+
+    public function categoryImage($category_id)
+    {
+        switch ($category_id) {
+          case '1':
+            $image = "images/oro.png";
+            break;
+          case '2':
+            $image = "images/plata.png";
+            break;
+
+          default:
+            $image = "images/bronce.png";
+            break;
+        }
+
+        return $image;
+    }
+
+  }

@@ -20,8 +20,8 @@
 
 <div class="custom-sidemenu d-none" id="custom-sidemenu">
   <div class="list-group list-group-root well menuright">
-    <a id="btn-custom-sidemenu-close" class="list-group-item">
-      MENÚ <i class="fa fa-bars"></i>
+    <a id="btn-custom-sidemenu-close" class="list-group-item item-menu">
+      <i class="fa fa-times-circle"></i> &nbsp; MENÚ 
     </a>
 
     @foreach($menu as $item)

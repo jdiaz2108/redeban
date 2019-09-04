@@ -13,7 +13,9 @@
             <p class="points">Puntos {{$user->sumpoints}}</p>
           </div>
           <div class="col-3">
-            Categoría: {{$user->category->name ?? 'sin categoría'}}
+            @if(!is_null($user->category_id))
+              <img src="{{asset($user->categoryImage($user->category_id))}}" alt="">
+            @endif
           </div>
         </div>
         <div class="row">

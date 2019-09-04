@@ -59,4 +59,24 @@ class HomeController extends Controller
         return view('pages.home.history-points', compact('historyPoints','user'));
     }
 
+    public function transactions()
+    {
+        $user = Auth::user();
+        $historyPoints = Auth::user()->points()->get()->sortByDesc('created_at');
+
+        return view('pages.home.history-points', compact('historyPoints','user'));
+    }
+
+    public function about()
+    {
+
+        return view('pages.home.about');
+    }
+
+    public function terms()
+    {
+
+        return view('pages.home.terms');
+    }
+
 }

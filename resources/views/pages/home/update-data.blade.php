@@ -13,7 +13,9 @@
             <p class="points">Puntos {{$user->sumpoints}}</p>
           </div>
           <div class="col-3">
-            Categoría: {{$user->category->name ?? 'sin categoría'}}
+            @if(!is_null($user->category_id))
+              <img src="{{asset($user->categoryImage($user->category_id))}}" alt="">
+            @endif
           </div>
         </div>
           <div class="row">
@@ -46,7 +48,7 @@
                     </div>
                     <div class="form-group row row-input">
                       <div class="col-md-1 icon-col">
-                        <img src="{{asset('images/icons/user.png')}}" alt="">
+                        <img src="{{asset('images/icons/email.png')}}" alt="">
                       </div>
                       <div class="col-md-11">
                         <input name="email" type="text" class="input-custom @error('email') is-invalid @enderror" value="{{$updatedData->email}}" placeholder="Correo electrónico">
@@ -85,7 +87,7 @@
                     </div>
                     <div class="form-group  row row-input">
                       <div class="col-md-1 icon-col">
-                        <img src="{{asset('images/icons/user.png')}}" alt="">
+                        <img src="{{asset('images/icons/city.png')}}" alt="">
                       </div>
                       <div class="col-md-11">
                         <input name="city_id" type="text" class="input-custom @error('city_id') is-invalid @enderror" value="{{$updatedData->city_id}}" placeholder="Ciudad">

@@ -7,7 +7,13 @@
     <div class="col-md-8"></div>
     @else
     <div class="col-md-4">
-      <img src="{{asset('images/logo.png')}}" class="img-fluid" width="140" alt="La Transacción Ganadora">
+      @role('admin')
+      <a href="{{url('dashboard')}}">
+      @else
+      <a href="{{url('home')}}">
+      @endrole
+        <img src="{{asset('images/logo.png')}}" class="img-fluid" width="140" alt="La Transacción Ganadora">
+      </a>
     </div>
     <div class="col-md-4">
       <img src="{{asset('images/logo-redeban.png')}}" class="img-fluid  mx-auto d-block" width="180" alt="Redeban">

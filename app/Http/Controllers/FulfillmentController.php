@@ -16,7 +16,7 @@ class FulfillmentController extends Controller
     {
         $history = LoadHistory::orderBy('id','desc')->paginate(100);
 
-        return view('pages.admin.fulfillments.history', compact('history'));
+        return view('pages.admin.fulfillments.index', compact('history'));
     }
 
     /**
@@ -26,7 +26,7 @@ class FulfillmentController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.fulfillments.index');
+      //
     }
 
     /**
@@ -47,7 +47,7 @@ class FulfillmentController extends Controller
         /* $now = date('Y-m-d H:i:s');
             $date = Carbon::now();
             Fulfillment::whereCreated_at(null)->update(['created_at' => $date, 'updated_at' => $now]); */
-            
+
         return redirect()->route('fulfillments.index')->with('status', 'Se han cargado los registros correctamente');
     }
 

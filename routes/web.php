@@ -27,18 +27,21 @@ Route::middleware('auth')->group(function () {
     // Only users with user role
     Route::group(['middleware' => ['role:user']], function () {
 
-        Route::resource('/update-data', 'UpdateUserDataController')->only(['index', 'store', 'update']);
+        Route::resource('/home', 'UpdateUserDataController')->only(['index', 'store', 'update']);
 
         // Update data is required
         Route::middleware('update.data')->group(function () {
-
-            Route::get('/home', 'HomeController@index')->name('home');
+          
             Route::get('/catalog', 'HomeController@catalog');
             Route::get('/prize/{id}', 'HomeController@showPrize');
             Route::resource('/redeem-validate-mail', 'RedeemValidateMailController')->only(['store', 'update']);
             Route::get('/points', 'HomeController@points');
+            Route::get('/transactions', 'HomeController@transactions');
 
         });
+
+        Route::get('/about', 'HomeController@about');
+        Route::get('/terms', 'HomeController@terms');
     });
 
     // Only users with admin role included prefix dashboard

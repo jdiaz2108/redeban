@@ -11070,7 +11070,7 @@ input:-webkit-autofill {
 }
 
 .custom-sidemenu .menuright {
-  margin-top: 40px;
+  margin-top: 35px;
   font-size: 15px;
   font-family: "DunkinSans-Book-v1.001", sans-serif;
 }
@@ -11103,10 +11103,9 @@ input:-webkit-autofill {
   font-weight: bold;
 }
 
-.custom-sidemenu .menuright .close-btn {
-  color: #ffffff6b;
-  padding-left: 35%;
-  font-size: 55px;
+.custom-sidemenu .menuright .item-menu {
+  font-size: 17px;
+  margin-bottom: 30px;
 }
 
 .table-custom {
@@ -11288,6 +11287,22 @@ input:-webkit-autofill {
 
 .page.catalog .info .points {
   color: #85fffd;
+}
+
+.page.catalog .alert-custom-red {
+  background-color: #424242c9;
+  border: 2px solid #ff2c2c;
+  box-shadow: 0 0 2em #ff2c2c;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.page.catalog .alert-custom-green {
+  background-color: #424242c9;
+  border: 2px solid #8be523;
+  box-shadow: 0 0 2em #8be523;
+  text-transform: uppercase;
+  color: #fff;
 }
 
 .page.history-points .title {
