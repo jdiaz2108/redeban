@@ -56,6 +56,7 @@ Route::middleware('auth')->group(function () {
             Route::resource('/fulfillments', 'FulfillmentController')->only(['index', 'create' , 'edit', 'update', 'store', 'destroy']);
             Route::resource('/users', 'UserController')->only(['index', 'create', 'store']);
 
+            Route::get('/csv', 'CSVFileimporter@download');
         });
     });
 });

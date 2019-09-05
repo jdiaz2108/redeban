@@ -30,19 +30,17 @@
                 <table class="table table-custom table-striped">
                     <thead>
                         <tr>
+                            <th>Evento</th>
                             <th>Meta</th>
                             <th>Transacciones</th>
-                            <th>Mes</th>
-                            <th>Año</th>
                         </tr>
                     </thead>
                     <tbody class="content-directory">
                         @forelse($historyFulfillment as $fulfillment)
                         <tr>
-                          <td>{{$fulfillment->goal}}</td>
-                          <td>{{$fulfillment->value}}</td>
-                          <td>{{$fulfillment->created_at ? $fulfillment->created_at->format('M') : 'error fecha'}}</td>
-                          <td>{{$fulfillment->created_at ? $fulfillment->created_at->format('Y') : 'error fecha'}}</td>
+                            <td>{{$fulfillment['event']}}</td>
+                          <td>{{$fulfillment['goal']}}</td>
+                          <td>{{$fulfillment['value']}}</td>
                         </tr>
                       @empty
                         <tr>

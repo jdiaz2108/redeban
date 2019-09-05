@@ -15,6 +15,7 @@ class CreateInvalidFulfillmentsTable extends Migration
     {
         Schema::create('invalid_fulfillments', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('event')->nullable();
             $table->string('goal')->nullable();
             $table->string('value')->nullable();
             $table->string('user_id')->nullable();

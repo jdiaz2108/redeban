@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\DataFileRequest;
 
 class UserController extends Controller
 {
@@ -40,8 +41,7 @@ class UserController extends Controller
         $file = $request->file('data');
 
         // Call a Controller and use the processCVSFile method
-        $importer = new CsvFileImporter;
-        $loadHistory = $importer->processCSVFile($file, 'users', 1000);
+        CsvFileImporter::processCSVFile($file, 'users');
 
         return redirect()->route('admin::fulfillments.index')->with('status', 'Se han cargado los registros correctamente');
     }
