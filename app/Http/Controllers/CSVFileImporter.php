@@ -11,16 +11,10 @@ use Illuminate\Support\Arr;
 
 class CsvFileImporter
 {
-    protected $date;
-
-    public function __construct()
-    {
-        $this->date = Carbon::now();
-    }
 
     public static function processCSVFile($file, $type, $update = false, $chunk = 1000, $event = null)
     {
-        $date = $this->date;
+        $date = Carbon::now();
 
         $filename = $date->format('Y-m-d_H-i-s').'_data.csv';
         $originalFilename = $file->getClientOriginalName();
@@ -113,30 +107,36 @@ class CsvFileImporter
 
     public function download()
     {
+        $date = Carbon::now();
+
         // Get all fulfillments where value hasn't loaded yet
        $fulfillments = Fulfillment::whereValue(null)->get();
 
-        // Define download file name
-       $fileDir = '../storage/app/download/'.$this->date->format('Y-m-d_H-i-s').'download.csv';
 
-        // Open file to insert the csv file
+       // Define download file name
+       $fileDir = '../storage/app/download/'.$date->format('Y-m-d_H-i-s').'download.csv';
+
+       // Open file to insert the csv file
        $fp = fopen($fileDir, 'w');
 
-        // Define the headers and insert into the csv file
+       // Define the headers and insert into the csv file
        $headers = array('id', 'event' ,'goal', 'value', 'user_id', 'created_at');
        fputcsv($fp, $headers);
 
-        // Mapping the array and inserting data inside the csv file
-       $fulfillments->map(function ($item, $key) use ($fp) {
+       foreach ($fulfillments->chunk(50000) as $t) {
 
-            // Eliminate period and updated_at column from the object
-            $collection = collect($item)->forget('period')->forget('updated_at');
-            $flattened = Arr::flatten($collection);
-            fputcsv($fp, $flattened);
+           // Mapping the array and inserting data inside the csv file
+           $t->map(function ($item, $key) use ($fp) {
 
-            return $flattened;
+                 // Eliminate period and updated_at column from the object
+                 $collection = collect($item)->forget('period')->forget('updated_at');
+                 $flattened = Arr::flatten($collection);
+                 fputcsv($fp, $flattened);
 
-        })->filter()->values()->all();
+                 return $flattened;
+
+             })->filter()->values()->all();
+        }
 
         // Closing the csv file
         fclose($fp);
