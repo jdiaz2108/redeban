@@ -90,4 +90,12 @@ class UserController extends Controller
     {
         //
     }
+
+    public function searchUser(Request $request)
+    {
+        $users = User::FindUser($request['query'])->paginate();
+
+        return view('pages.admin.users.index', compact('users'));
+    }
+
 }

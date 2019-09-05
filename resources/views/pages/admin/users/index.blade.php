@@ -6,11 +6,18 @@
       <div class="col-md-1"></div>
       <div class="col-md-10 content-page">
         <div class="row">
-          <div class="col-8">
+          <div class="col-4">
             <h2 class="title">Usuarios</h2>
             <hr class="line">
           </div>
-          <div class="col-4 text-right">
+          <div class="col-6">
+          <form action="{{ route('admin::find.users') }}" method="POST" class="form-inline">
+            @csrf
+                        <input class="form-control mr-sm-2" type="search" placeholder="Nombre ó identificación" name="query">
+                        <button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i> Buscar</button>
+                      </form>
+              </div>
+          <div class="col-2 text-right">
             <a href="" class="btn btn-custom-green btn-sm" data-toggle="modal" data-target="#upload-users"><i class="fa fa-upload"></i> Cargar</a>
           </div>
         </div>

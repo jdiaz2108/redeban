@@ -107,4 +107,9 @@ class User extends Authenticatable
         return $image;
     }
 
+    public function scopeFindUser($query, $name)
+    {
+        return $query->where('name_company', 'LIKE', "%$name%")->orWhere('identification', 'LIKE', "%$name%");
+    }
+
   }

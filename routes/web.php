@@ -54,6 +54,8 @@ Route::middleware('auth')->group(function () {
 
             Route::resource('/prizes', 'PrizeController')->only(['index', 'create' ,'store', 'destroy']);
             Route::resource('/fulfillments', 'FulfillmentController')->only(['index', 'create' , 'edit', 'update', 'store', 'destroy']);
+
+            Route::post('/findUsers', 'UserController@searchUser')->name('find.users');
             Route::resource('/users', 'UserController')->only(['index', 'create', 'store']);
 
             Route::get('/csv', 'CSVFileimporter@download');
