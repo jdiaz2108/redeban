@@ -15,6 +15,7 @@ class CreateFulfillmentsTable extends Migration
     {
         Schema::create('fulfillments', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('event');
             $table->integer('goal');
             $table->integer('value')->nullable();
             $table->unsignedBigInteger('user_id');

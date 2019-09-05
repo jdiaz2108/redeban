@@ -20,7 +20,7 @@ class UpdateUserDataController extends Controller
     {
         $user = Auth::user();
         $updatedData = ($user->updated) ? $user->userData : $user ;
-        $action = $user->updated ? '/update-data/'.$updatedData['id'] : '/update-data';
+        $action = $user->updated ? '/home/'.$updatedData['id'] : '/home';
 
         return view('pages.home.update-data', compact('updatedData', 'user','action'));
     }
@@ -57,7 +57,7 @@ class UpdateUserDataController extends Controller
         ]);
         $points->save();
 
-        return redirect('/')->with('status', 'Se han actualizado los datos correctamente');
+        return back()->with('status', 'SE HAN ACTUALIZADO LOS DATOS CORRECTAMENTE');
     }
 
     /**
@@ -93,7 +93,7 @@ class UpdateUserDataController extends Controller
     {
         $userData = UserData::find($id)->update($request->all());
 
-        return back()->with('status', 'Se ha actializado los datos correctamente');
+        return back()->with('status', 'SE HAN ACTUALIZADO LOS DATOS CORRECTAMENTE');
     }
 
     /**

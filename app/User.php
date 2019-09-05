@@ -63,6 +63,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Fulfillment')->latest()->first();
     }
 
+    public function fulfillmentAll()
+    {
+        return $this->hasMany('App\Models\Fulfillment')->latest()->get();
+    }
+
     /* return an atribute in boolean variable if the user has updated data accessing with $user->updated */
     public function getUpdatedAttribute()
     {

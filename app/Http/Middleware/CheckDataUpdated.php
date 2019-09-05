@@ -17,7 +17,7 @@ class CheckDataUpdated
     public function handle($request, Closure $next)
     {
         if (!Auth::user()->userData()->first()) {
-            return redirect('/update-data');
+            return redirect('/home')->with('status', 'ACTUALIZA TUS DATOS PARA CONTINUAR.');
         }
 
         return $next($request);

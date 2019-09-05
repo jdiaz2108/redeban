@@ -62,9 +62,9 @@ class HomeController extends Controller
     public function transactions()
     {
         $user = Auth::user();
-        $historyPoints = Auth::user()->points()->get()->sortByDesc('created_at');
+        $historyFulfillment = Auth::user()->fulfillmentAll();
 
-        return view('pages.home.history-points', compact('historyPoints','user'));
+        return view('pages.home.history-transactions', compact('historyFulfillment','user'));
     }
 
     public function about()

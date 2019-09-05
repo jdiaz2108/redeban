@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
 
         // Update data is required
         Route::middleware('update.data')->group(function () {
-          
+
             Route::get('/catalog', 'HomeController@catalog');
             Route::get('/prize/{id}', 'HomeController@showPrize');
             Route::resource('/redeem-validate-mail', 'RedeemValidateMailController')->only(['store', 'update']);
@@ -53,7 +53,7 @@ Route::middleware('auth')->group(function () {
         Route::group(['prefix' => 'dashboard', 'as' => 'admin::'], function() {
 
             Route::resource('/prizes', 'PrizeController')->only(['index', 'create' ,'store', 'destroy']);
-            Route::resource('/fulfillments', 'FulfillmentController')->only(['index', 'create' ,'store', 'destroy']);
+            Route::resource('/fulfillments', 'FulfillmentController')->only(['index', 'create' , 'edit', 'update', 'store', 'destroy']);
             Route::resource('/users', 'UserController')->only(['index', 'create', 'store']);
 
         });

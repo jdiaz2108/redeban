@@ -5,15 +5,12 @@ namespace App\Http\Controllers;
 use DB;
 use Carbon\Carbon;
 use App\Models\LoadHistory;
-use App\Models\Fulfillment;
 use App\Models\InvalidFulfillment;
-use Illuminate\Support\Arr;
 
 class CsvFileImporter
 {
-    public function processCSVFile($file, $type, $chunk)
+    public function processCSVFile($file, $type, $chunk = 1000)
     {
-        $getChunk = ($chunk) ? $chunk : 10000 ;
 
         $date = Carbon::now();
 
@@ -39,13 +36,13 @@ class CsvFileImporter
             }
         })->filter()->values()->all();
 
-       
+
         // for with array chunk to ejecute 10000 petitions at time with the $collectionMix variable to push directrly to database
-        foreach (array_chunk($collectionMix, $getChunk) as $t) {
+        foreach (array_chunk($collectionMix, $chunk) as $t) {
             DB::table($type)->insert($t);
         }
 
-        
+
         // Register a history of the file loads
         $history = new LoadHistory([
             'original_file_name' => $originalFilename,
@@ -54,7 +51,7 @@ class CsvFileImporter
         $history->save();
 
         if ($type == 'fulfillments') {
-            
+
             $collectHeader = $collection->push(['load_historie_id'])->flatten()->all();
 
             $collectionError = $collectBody->map(function ($item, $key) use ($collectHeader, $date, $history) {
@@ -74,7 +71,7 @@ class CsvFileImporter
                     return collect($collectHeader)->combine($item)->all();
                 }
             })->filter()->values()->all();
-            
+
             foreach (array_chunk($collectionError,10000) as $t) {
                 InvalidFulfillment::insert($t);
             }
