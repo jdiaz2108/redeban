@@ -7,12 +7,8 @@
       <div class="col-md-10 content-page">
         <div class="row">
           <div class="col-6">
-            <h2 class="title">Metas y cumplimientos</h2>
+            <h2 class="title">Historial carga de archivos</h2>
             <hr class="line">
-          </div>
-          <div class="col-6 text-right">
-            <a data-toggle="modal" data-target="#upload-fullfilments" class="btn btn-custom-green btn-sm"><i class="fa fa-upload"></i> Cargar Metas</a>
-            <a data-toggle="modal" data-target="#upload-fullfilments2" class="btn btn-custom-green btn-sm"><i class="fa fa-upload"></i> Cargar Cumplimientos</a>
           </div>
         </div>
         <div class="row">
@@ -40,33 +36,37 @@
                   <thead>
                       <tr>
                           <th>Id</th>
-                          <th>Evento</th>
-                          <th>Meta</th>
-                          <th>Valor</th>
-                          <th>Nombre Usuario</th>
-                          <th>Identificación Usuario</th>
+                          <th>Archivo cargado</th>
+                          <th>Total registros</th>
+                          <th>Registros inválidos</th>
+                          <th>CSV inválidos</th>
+                          <th>Fecha</th>
                       </tr>
                   </thead>
                   <tbody class="content-directory">
-                      @forelse($fulfillments as $item)
+                      @forelse($history as $item)
                       <tr>
                         <td>
                           {{$item->id}}
                         </td>
                         <td>
-                          {{$item->event}}
+                          {{$item->original_file_name}}
                         </td>
                         <td>
-                          {{$item->goal}}
+                          {{$item->records_count}}
                         </td>
                         <td>
-                          {{$item->value ?? 0}}
+                          {{$item->invalid_records ?? 0}}
                         </td>
                         <td>
-                          {{$item->user['name_company']}}
+                          @if (!is_null($item->invalid_records))
+                          <a href="{{url('data/csv/'.$item->id)}}">Descargar</a>
+                          @else
+                          -
+                          @endif
                         </td>
                         <td>
-                            {{$item->user['identification']}}
+                          {{$item->created_at}}
                         </td>
                       </tr>
                     @empty
@@ -76,7 +76,6 @@
                     @endforelse
                   </tbody>
               </table>
-              {{$fulfillments->links()}}
           </div>
         </div>
       </div>

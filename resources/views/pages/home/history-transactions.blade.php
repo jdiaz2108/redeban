@@ -39,8 +39,8 @@
                         @forelse($historyFulfillment as $fulfillment)
                         <tr>
                             <td>{{$fulfillment['event']}}</td>
-                          <td>{{$fulfillment['goal']}}</td>
-                          <td>{{$fulfillment['value']}}</td>
+                            <td>{{$fulfillment['goal']}}</td>
+                            <td>{{$fulfillment['value'] ?? 0}}</td>
                         </tr>
                       @empty
                         <tr>

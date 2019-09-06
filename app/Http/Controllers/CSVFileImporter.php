@@ -12,6 +12,13 @@ use Illuminate\Support\Arr;
 class CsvFileImporter
 {
 
+    public function index()
+    {
+        $history = LoadHistory::orderBy('id','desc')->paginate();
+
+        return view('pages.admin.history', compact('history'));
+    }
+
     public static function processCSVFile($file, $type, $update = false, $chunk = 1000, $event = null)
     {
         $date = Carbon::now();

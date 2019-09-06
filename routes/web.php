@@ -57,6 +57,8 @@ Route::middleware('auth')->group(function () {
 
             Route::resource('/points', 'PointController')->only(['index']);
 
+            Route::resource('/histories', 'CsvFileImporter')->only(['index']);
+
             Route::post('/findUsers', 'UserController@searchUser')->name('find.users');
             Route::resource('/users', 'UserController')->only(['index', 'create', 'store']);
 

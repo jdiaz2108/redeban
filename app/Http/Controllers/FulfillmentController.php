@@ -18,9 +18,10 @@ class FulfillmentController extends Controller
      */
     public function index()
     {
-        $history = LoadHistory::orderBy('id','desc')->paginate(100);
+        $fulfillments = Fulfillment::with('user')->paginate();
+        $history = LoadHistory::orderBy('id','desc')->paginate();
 
-        return view('pages.admin.fulfillments.index', compact('history'));
+        return view('pages.admin.fulfillments.index', compact('fulfillments'));
     }
 
     /**
