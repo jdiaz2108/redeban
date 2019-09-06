@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             $table->foreign('category_id')->references('id')->on('categories');
             $table->rememberToken();
             $table->dateTime('afiliation_at')->nullable();
+            $table->timestamp('last_logged_at')->nullable();
             $table->timestamps();
         });
     }

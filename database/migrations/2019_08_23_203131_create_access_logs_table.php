@@ -18,6 +18,7 @@ class CreateAccessLogsTable extends Migration
             $table->string('ip_address');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->string('event');
             $table->timestamps();
         });
     }
