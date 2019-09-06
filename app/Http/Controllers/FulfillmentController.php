@@ -44,11 +44,12 @@ class FulfillmentController extends Controller
     {
         $file = $request->file('data');
         $event = $request['event'];
-// Modificación pendiente
 
+        // Call csvfileimporter controller and use the processCsvFile function
+        // receive 3 parameters (1. file, 2. which table is, 3. if is first load or updated, 4. chunk, 5. Event string)
         CsvFileImporter::processCSVFile($file, 'fulfillments', false, 10000, $event);
 
-        return redirect()->route('admin::fulfillments.index')->with('status', 'Se han cargado las metas correctamente');
+        return redirect()->route('admin::histories.index')->with('status', 'Se han cargado las metas correctamente');
     }
 
     /**
@@ -86,7 +87,7 @@ class FulfillmentController extends Controller
 
         CsvFileImporter::processCSVFile($file, 'fulfillments', true, 1000, null);
 
-        return redirect()->route('admin::fulfillments.index')->with('status', 'Se han actualizado las metas correctamente');
+        return redirect()->route('admin::histories.index')->with('status', 'Se han actualizado las metas correctamente');
     }
 
     /**
@@ -98,5 +99,15 @@ class FulfillmentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function searchUser(Request $request)
+    {
+        $name = $request['query'];
+        $fulfillments = Fulfillment::whereHas('user', function ($query) use ($name) {
+            $query->where('name_company', 'LIKE', "%$name%")->orWhere('identification', 'LIKE', "%$name%");
+        })->paginate();
+
+        return view('pages.admin.fulfillments.index', compact('fulfillments'));
     }
 }

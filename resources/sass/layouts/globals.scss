@@ -54,12 +54,17 @@ input:-webkit-autofill {
 	background-color: transparent !important;
 	border-radius: 20px;
 	padding: 1px 15px;
-	color: #fff;
+	color: #fff  !important;
 	font-weight: bold;
 	border: 2px solid #8be523;
 	box-shadow: 0 0 1em #8be523;
 	font-size: 18px;
+}
 
+.btn-custom-green:hover {
+    color: rgb(212, 212, 212)  !important;
+    border-color:  #8be523;
+    cursor: pointer;
 }
 
 .page {

@@ -43,7 +43,7 @@ class UserController extends Controller
         // Call a Controller and use the processCVSFile method
         CsvFileImporter::processCSVFile($file, 'users');
 
-        return redirect()->route('admin::fulfillments.index')->with('status', 'Se han cargado los registros correctamente');
+        return redirect()->route('admin::histories.index')->with('status', 'Se han cargado los usuarios correctamente');
     }
 
     /**

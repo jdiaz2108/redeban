@@ -29,18 +29,7 @@
             </div>
           </div>
           <div class="col-6 info">
-          @if ($errors->any())
-          <div class="alert alert-danger text-center alert-custom-red">
-            @foreach ($errors->all() as $error)
-            <span>{{ $error }}</span> <br>
-            @endforeach
-          </div>
-          @endif
-          @if (session('status'))
-          <div class="alert alert-success  text-center alert-custom-green">
-              {{ session('status') }}
-          </div>
-          @endif
+          @include('layouts.messages')
           @if ($redeem && !session('redeemed'))
             <h2 class="name">{{$prize['name']}}</h2>
             <h5 class="card-title text-center">Código de seguridad</h5>

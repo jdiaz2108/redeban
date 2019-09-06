@@ -19,32 +19,7 @@ class PointController extends Controller
      */
     public function index()
     {
-        $collection = Fulfillment::where('value', '!=' , null)->get();
-
-        $date = Carbon::now();
-
-
-
-        $collectBody = $collection->splice(1);
-
-        $collectHeader = ['event', 'value', 'user_id', 'month', 'year', 'created_at','updated_at'];
-            $add = [intval($date->format('m')), intval($date->format('Y')), $date, $date];
-
-            $collectionMix = $collectBody->map(function ($item, $key) use ($collectHeader, $add, $date) {
-                $value = ($item['value'] - $item['goal']);
-                $array = ['Puntos '.$item['event'],$value, $item['user_id']];
-                $arrayUp = Arr::collapse([$array, $add]);
-                // if (count($item) == count($collectHeader) and !in_array("",$item)) {
-
-                    return collect($collectHeader)->combine($arrayUp)->all();
-                // }
-            })->filter()->values()->all();
-
-
-            foreach (array_chunk($collectionMix, 5000) as $t) {
-                DB::table('points')->insert($t);
-            }
-
+        //
     }
 
     /**
@@ -112,4 +87,41 @@ class PointController extends Controller
     {
         //
     }
+
+    public function liquidation()
+    {
+        $collection = Fulfillment::doesntHave('point')->where('value', '!=' , null)->get();
+
+        $validation = $collection->isNotEmpty();
+
+        if ($validation) {
+
+            $date = Carbon::now();
+
+            $collectHeader = ['event', 'value', 'user_id', 'fulfillment_id', 'month', 'year', 'created_at','updated_at'];
+            $add = [intval($date->format('m')), intval($date->format('Y')), $date, $date];
+
+            $collectionMix = $collection->map(function ($item, $key) use ($collectHeader, $add, $date) {
+
+                $value = ($item['value'] >= $item['goal']) ? $item['points'] : 0 ;
+                $array = ['Cumplimiento meta: '.$item['event'],$value, $item['user_id'], $item['id']];
+                $arrayUp = Arr::collapse([$array, $add]);
+
+                return collect($collectHeader)->combine($arrayUp)->all();
+
+            })->filter()->values()->all();
+
+            foreach (array_chunk($collectionMix, 5000) as $t) {
+                DB::table('points')->insert($t);
+            }
+
+            return back()->with('status', 'Se ha realizado la liquidación de '.count($collectionMix).' usuarios.');
+
+        } else {
+
+            return back()->with('status', 'No hay liquidaciones pendientes');
+
+        }
+    }
+
 }

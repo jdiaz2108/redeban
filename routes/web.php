@@ -53,8 +53,11 @@ Route::middleware('auth')->group(function () {
         Route::group(['prefix' => 'dashboard', 'as' => 'admin::'], function() {
 
             Route::resource('/prizes', 'PrizeController')->only(['index', 'create' ,'store', 'destroy']);
+
+            Route::post('/fulfillmentsfindUsers', 'FulfillmentController@searchUser')->name('fulfillments.users');
             Route::resource('/fulfillments', 'FulfillmentController')->only(['index', 'create' , 'edit', 'update', 'store', 'destroy']);
 
+            Route::get('/liquidation', 'PointController@liquidation')->name('liquidation');
             Route::resource('/points', 'PointController')->only(['index']);
 
             Route::resource('/histories', 'CsvFileImporter')->only(['index']);

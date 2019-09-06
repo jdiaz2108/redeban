@@ -22,11 +22,7 @@
               <div class="col-md-2"></div>
               <div class="col-md-8 text-center content-update">
                 <h3>Actualización de datos</h3>
-                @if (session('status'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
-                </div>
-                @endif
+                @include('layouts.messages')
                 <form action="{{$action}}" class="form-update" method="POST">
                     @if ($user->updated)
                       @method('PUT')
