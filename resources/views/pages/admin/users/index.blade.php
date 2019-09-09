@@ -6,19 +6,21 @@
       <div class="col-md-1"></div>
       <div class="col-md-10 content-page">
         <div class="row">
-          <div class="col-4">
+          <div class="col-md-5">
             <h2 class="title">Usuarios</h2>
             <hr class="line">
           </div>
-          <div class="col-6">
-          <form action="{{ route('admin::find.users') }}" method="POST" class="form-inline">
-            @csrf
-                        <input class="form-control mr-sm-2" type="search" placeholder="Nombre ó identificación" name="query">
-                        <button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i> Buscar</button>
-                      </form>
+          <div class="col-md-7">
+            <form action="{{ route('admin::users.index') }}" method="GET">
+              <div class="form-group row">
+                <div class="col-md-7">
+                  <input class="form-control input-custom2" type="search" placeholder="Nombre ó identificación" name="query">
+                </div>
+                <div class="col-md-5 text-center">
+                  <button class="btn btn-custom fontSize18" type="submit"><i class="fa fa-search" aria-hidden="true"></i> Buscar</button>
+                </div>
               </div>
-          <div class="col-2 text-right">
-            <a href="" class="btn btn-custom-green btn-sm" data-toggle="modal" data-target="#upload-users"><i class="fa fa-upload"></i> Cargar</a>
+            </form>
           </div>
         </div>
         <div class="row">
@@ -84,12 +86,15 @@
               </table>
               {{$users->links()}}
           </div>
+          <div class="col-md-12 text-right">
+            <a href="" class="btn btn-custom-green" data-toggle="modal" data-target="#upload-users"><i class="fa fa-upload"></i> Cargar</a>
+          </div>
         </div>
     </div>
 </div>
 
 <!-- Small modal -->
-<div class="modal fade" id="upload-users" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade modal-custom" id="upload-users" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
@@ -98,13 +103,15 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body text-center">
         <form action="/dashboard/users" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-                <input type="file" name="data" class="form-control" required>
+              <label for="">Archivo <span>*</span>  </label>
+              <input type="file" name="data" class="form-control input-custom2" required>
+              <a href="#">Descargar archivo base</a>
             </div>
-            <button type="submit" class="btn btn-primary">SUBIR</button>
+            <button type="submit" class="btn btn-custom fontSize18">SUBIR</button>
         </form>
       </div>
     </div>

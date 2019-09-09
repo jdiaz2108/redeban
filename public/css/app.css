@@ -10987,6 +10987,37 @@ input:-webkit-autofill {
   color: #cbcbcb;
 }
 
+.input-custom2 {
+  background-color: transparent !important;
+  border: 0px;
+  width: 100%;
+  padding: 5px;
+  color: #fff;
+  font-size: 18px;
+  border-bottom: 1px solid #fff;
+  border-radius: 0px;
+}
+
+.input-custom2::-webkit-input-placeholder {
+  color: #fff;
+}
+
+.input-custom2::-moz-placeholder {
+  color: #fff;
+}
+
+.input-custom2:-ms-input-placeholder {
+  color: #fff;
+}
+
+.input-custom2::-ms-input-placeholder {
+  color: #fff;
+}
+
+.input-custom2::placeholder {
+  color: #fff;
+}
+
 .btn-custom {
   background-color: transparent !important;
   border-radius: 20px;
@@ -11015,6 +11046,24 @@ input:-webkit-autofill {
   cursor: pointer;
 }
 
+.fontSize18 {
+  font-size: 18px;
+}
+
+.modal-custom .modal-content {
+  background-color: #424242;
+  border: 2px solid #8be523;
+  box-shadow: 0 0 2em #8be523;
+}
+
+.modal-custom .modal-content .modal-header h5 {
+  color: #fff;
+}
+
+.modal-custom .modal-content .modal-body {
+  color: #fff;
+}
+
 .page {
   min-height: 500px;
 }
@@ -11024,6 +11073,45 @@ input:-webkit-autofill {
   padding: 40px 50px;
   border-radius: 0px 0px 50px 50px;
   margin-bottom: 20px;
+}
+
+.card-info {
+  border: 2px solid #8be523;
+  box-shadow: 0 0 2em #8be523;
+  padding: 10px;
+  margin-top: 15px;
+  color: #fff;
+  font-size: 22px;
+}
+
+.card-info p {
+  margin-bottom: 0px;
+}
+
+.card-info .num {
+  font-size: 24px;
+}
+
+.card2 {
+  border: 2px solid #3bd1ff;
+  box-shadow: 0 0 2em #3bd1ff;
+}
+
+.card3 {
+  border: 2px solid #ff2c2c;
+  box-shadow: 0 0 2em #ff2c2c;
+}
+
+.card4 {
+  border: 2px solid #fff558;
+  box-shadow: 0 0 2em #ffc01d;
+}
+
+.content-text {
+  background-color: #00000054;
+  border-radius: 50px;
+  padding: 30px 50px;
+  color: #fff;
 }
 
 .alert-custom-red {
@@ -11333,6 +11421,12 @@ input:-webkit-autofill {
 
 .page.history-points .line {
   color: #d669ff;
+}
+
+.page.history-points .line-text {
+  margin: 10px 0px 30px 0px;
+  width: 200px;
+  border: 1px solid #d669ff;
 }
 
 .page.history-points .points {

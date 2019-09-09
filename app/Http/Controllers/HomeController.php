@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\User;
 use Carbon\Carbon;
 use App\Models\Prize;
+use App\Models\Coupon;
+use App\Models\Fulfillment;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,7 +24,12 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('home');
+        $users = User::count();
+        $fulfillments = Fulfillment::count();
+        $prizes = Prize::count();
+        $coupons = Coupon::count();
+
+        return view('home',compact('users','fulfillments','prizes','coupons'));
     }
 
     public function catalog()

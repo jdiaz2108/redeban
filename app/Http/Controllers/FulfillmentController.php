@@ -16,12 +16,19 @@ class FulfillmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+      $name = $request['query'];
+      if(is_null($name))
+      {
         $fulfillments = Fulfillment::with('user')->paginate();
-        $history = LoadHistory::orderBy('id','desc')->paginate();
+      } else {
+        $fulfillments = Fulfillment::whereHas('user', function ($query) use ($name) {
+            $query->where('name_company', 'LIKE', "%$name%")->orWhere('identification', 'LIKE', "%$name%");
+        })->paginate();
+      }
 
-        return view('pages.admin.fulfillments.index', compact('fulfillments'));
+      return view('pages.admin.fulfillments.index', compact('fulfillments'));
     }
 
     /**
@@ -101,13 +108,4 @@ class FulfillmentController extends Controller
         //
     }
 
-    public function searchUser(Request $request)
-    {
-        $name = $request['query'];
-        $fulfillments = Fulfillment::whereHas('user', function ($query) use ($name) {
-            $query->where('name_company', 'LIKE', "%$name%")->orWhere('identification', 'LIKE', "%$name%");
-        })->paginate();
-
-        return view('pages.admin.fulfillments.index', compact('fulfillments'));
-    }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\User;
+use App\Models\AccessLog;
 use Illuminate\Http\Request;
 use App\Http\Requests\DataFileRequest;
 
@@ -13,11 +15,16 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+      if(!is_null($request['query']))
+      {
+        $users = User::FindUser($request['query'])->paginate();
+      } else {
         $users = User::paginate();
+      }
 
-        return view('pages.admin.users.index', compact('users'));
+      return view('pages.admin.users.index', compact('users'));
     }
 
     /**
@@ -91,11 +98,23 @@ class UserController extends Controller
         //
     }
 
-    public function searchUser(Request $request)
+    public function reportAccess()
     {
-        $users = User::FindUser($request['query'])->paginate();
+      $access = AccessLog::select(DB::raw('count(id) as data'),DB::raw('DATE(created_at) date'))
+                ->where('event','Inicio de sesión')->groupby('date')->get();
+     $users_all = AccessLog::where('event','Inicio de sesión')->count();
+     $rows = [];
+     $days = [];
+     foreach ($access as $value) {
+       array_push($rows,$value->data);
+       array_push($days,$value->date);
+     }
 
-        return view('pages.admin.users.index', compact('users'));
+     $access_logs = ["rows"=>$rows,"days"=>$days,"total"=>$users_all];
+
+  		return response()->json([
+  			"access_logs" => $access_logs
+  		]);
     }
 
 }
