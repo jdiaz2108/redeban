@@ -11157,8 +11157,12 @@ input:-webkit-autofill {
   font-weight: bold;
 }
 
+.footer-custom .col-not-padding {
+  padding: 0px;
+}
+
 .footer-custom .text-legal {
-  font-size: 14px;
+  font-size: 11px;
 }
 
 @media screen and (max-width: 1000px) {

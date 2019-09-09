@@ -2,7 +2,7 @@
   <div class="row header-custom @auth auth-header @endauth">
     @guest
     <div class="col-md-4">
-      <img src="{{asset('images/logo-redeban.png')}}" class="img-fluid" alt="Redeban">
+      <img src="{{asset('images/logo-redeban-white.png')}}" class="img-fluid" alt="Redeban">
     </div>
     <div class="col-md-8"></div>
     @else
@@ -16,7 +16,7 @@
       </a>
     </div>
     <div class="col-md-4">
-      <img src="{{asset('images/logo-redeban.png')}}" class="img-fluid  mx-auto d-block" width="180" alt="Redeban">
+      
     </div>
     <div class="col-md-4">
       <p class="pull-right text-menu">
