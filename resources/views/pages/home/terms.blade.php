@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-8">
               <div class="content-text">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -23,8 +23,8 @@
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
               </div>
             </div>
-            <div class="col-md-3">
-              <img src="{{asset('images/datafono.png')}}" class="img-fluid" alt="">
+            <div class="col-md-4">
+              <img src="{{asset('images/terms.png')}}" class="img-fluid" alt="">
             </div>
         </div>
       </div>
