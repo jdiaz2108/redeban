@@ -17,9 +17,19 @@ class PointController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+      $name = $request['query'];
+      if(is_null($name))
+      {
+        $points = Point::with('user')->paginate();
+      } else {
+        $points = Point::whereHas('user', function ($query) use ($name) {
+            $query->where('name_company', 'LIKE', "%$name%")->orWhere('identification', 'LIKE', "%$name%");
+        })->paginate();
+      }
+
+      return view('pages.admin.points.index',compact('points'));
     }
 
     /**

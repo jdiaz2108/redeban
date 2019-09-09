@@ -54,7 +54,6 @@ Route::middleware('auth')->group(function () {
 
             Route::resource('/prizes', 'PrizeController')->only(['index', 'create' ,'store', 'destroy']);
 
-            Route::post('/fulfillmentsfindUsers', 'FulfillmentController@searchUser')->name('fulfillments.users');
             Route::resource('/fulfillments', 'FulfillmentController')->only(['index', 'create' , 'edit', 'update', 'store', 'destroy']);
 
             Route::get('/liquidation', 'PointController@liquidation')->name('liquidation');
@@ -62,10 +61,10 @@ Route::middleware('auth')->group(function () {
 
             Route::resource('/histories', 'CsvFileImporter')->only(['index']);
 
-            Route::post('/findUsers', 'UserController@searchUser')->name('find.users');
             Route::resource('/users', 'UserController')->only(['index', 'create', 'store']);
 
             Route::get('/csv', 'CSVFileimporter@download');
+            Route::get('/reports-access', 'UserController@reportAccess');
         });
     });
 });
