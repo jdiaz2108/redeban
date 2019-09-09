@@ -20,6 +20,9 @@
 
         @include('partials.footer')
 
+        @auth
+            @include('partials.contact')
+        @endauth
 
         <!-- SIDEMENU  -->
         @include('partials.custom-sidemenu')
