@@ -102,6 +102,7 @@
             <div class="form-group">
               <label for="">Archivo <span>*</span> </label>
               <input type="file" name="data" class="form-control" required>
+              <a href="{{ route('admin::fulfillment.base') }}">Descargar archivo base</a>
             </div>
             <button type="submit" class="btn btn-custom fontSize18">Cargar</button>
         </form>

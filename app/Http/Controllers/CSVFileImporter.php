@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Models\Fulfillment;
 use App\Models\LoadHistory;
 use App\Models\InvalidFulfillment;
+use App\User;
 use Illuminate\Support\Arr;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -155,6 +156,69 @@ class CsvFileImporter
             return back()->with('status', 'No hay metas pendientes por actualizar con el evento '.$request['event']);
        }
 
+
+    }
+
+    public function fulfillmentsBase()
+    {
+        $date = Carbon::now();
+
+        $user = User::all();
+
+       if ($user->isNotEmpty()) {
+           // Define download file name
+           $fileDir = '../storage/app/download/'.$date->format('Y-m-d_H-i-s').'fulfillment-base.csv';
+
+           // Open file to insert the csv file
+           $fp = fopen($fileDir, 'w');
+
+           // Define the headers and insert into the csv file
+           $headers = array('goal', 'user_id' ,'identification');
+           fputcsv($fp, $headers);
+
+           foreach ($user->chunk(50000) as $t) {
+
+               // Mapping the array and inserting data inside the csv file
+               $t->map(function ($item, $key) use ($fp) {
+                     // Eliminate period and updated_at column from the object
+                     $array = array('', $item['id'], $item['identification']);
+                     fputcsv($fp, $array);
+
+                     return $array;
+
+                 })->filter()->values()->all();
+            }
+
+            // Closing the csv file
+            fclose($fp);
+
+            // Downloading the csv generated
+            return response()->download($fileDir)->deleteFileAfterSend();
+       } else {
+            return back()->with('status', 'No hay registros base para descargar');
+       }
+
+    }
+
+    public function userBase()
+    {
+        $date = Carbon::now();
+
+        // Define download file name
+        $fileDir = '../storage/app/download/'.$date->format('Y-m-d_H-i-s').'users-base.csv';
+
+        // Open file to insert the csv file
+        $fp = fopen($fileDir, 'w');
+
+        // Define the headers and insert into the csv file
+        $headers = array('identification', 'name_company', 'email', 'password');
+        fputcsv($fp, $headers);
+
+        // Closing the csv file
+        fclose($fp);
+
+        // Downloading the csv generated
+        return response()->download($fileDir)->deleteFileAfterSend();
 
     }
 

@@ -64,6 +64,8 @@ Route::middleware('auth')->group(function () {
             Route::resource('/users', 'UserController')->only(['index', 'create', 'store']);
 
             Route::get('/csv', 'CSVFileimporter@download');
+            Route::get('/csv-fulfillments-base', 'CSVFileimporter@fulfillmentsBase')->name('fulfillment.base');
+            Route::get('/csv-user-base', 'CSVFileimporter@userBase')->name('user.base');
             Route::get('/reports-access', 'UserController@reportAccess');
         });
     });
