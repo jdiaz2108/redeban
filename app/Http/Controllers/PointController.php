@@ -136,15 +136,23 @@ class PointController extends Controller
 
             })->filter()->values()->all();
 
-            foreach (array_chunk($collectionMix, 5000) as $t) {
-                DB::table('points')->insert($t);
-            }
 
-            foreach (array_chunk($collectionInvalidPoints, 5000) as $t) {
-                DB::table('invalid_points')->insert($t);
-            }
+            if ( empty($collectionMix) && empty($collectionInvalidPoints) ) {
 
-            return back()->with('status', 'Se ha realizado la liquidación de '.count($collectionMix).' usuarios.');
+                return back()->with('status', 'Algunos usuarios no cuentan con su categoria');
+
+            } else {
+
+                foreach (array_chunk($collectionMix, 5000) as $t) {
+                    DB::table('points')->insert($t);
+                }
+
+                foreach (array_chunk($collectionInvalidPoints, 5000) as $t) {
+                    DB::table('invalid_points')->insert($t);
+                }
+
+                return back()->with('status', 'Se ha realizado la liquidación de '.count($collectionMix).' usuarios.');
+            }
 
         } else {
 
@@ -154,3 +162,5 @@ class PointController extends Controller
     }
 
 }
+
+

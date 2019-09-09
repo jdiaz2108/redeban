@@ -8,6 +8,7 @@ use App\Models\Fulfillment;
 use App\Models\LoadHistory;
 use App\Models\InvalidFulfillment;
 use Illuminate\Support\Arr;
+use Symfony\Component\HttpFoundation\Request;
 
 class CsvFileImporter
 {
@@ -112,44 +113,48 @@ class CsvFileImporter
         $history->update(['invalid_records' => count($collectionError)]);
     }
 
-    public function download()
+    public function download(Request $request)
     {
+
         $date = Carbon::now();
 
         // Get all fulfillments where value hasn't loaded yet
-       $fulfillments = Fulfillment::whereValue(null)->get();
+       $fulfillments = Fulfillment::whereValue(null)->whereEvent($request['event'])->get();
 
+       if ($fulfillments->isNotEmpty()) {
+           // Define download file name
+           $fileDir = '../storage/app/download/'.$date->format('Y-m-d_H-i-s').'download.csv';
 
-       // Define download file name
-       $fileDir = '../storage/app/download/'.$date->format('Y-m-d_H-i-s').'download.csv';
+           // Open file to insert the csv file
+           $fp = fopen($fileDir, 'w');
 
-       // Open file to insert the csv file
-       $fp = fopen($fileDir, 'w');
+           // Define the headers and insert into the csv file
+           $headers = array('id', 'event' ,'goal', 'value', 'user_id', 'created_at', 'identification');
+           fputcsv($fp, $headers);
 
-       // Define the headers and insert into the csv file
-       $headers = array('id', 'event' ,'goal', 'value', 'user_id', 'created_at');
-       fputcsv($fp, $headers);
+           foreach ($fulfillments->chunk(50000) as $t) {
 
-       foreach ($fulfillments->chunk(50000) as $t) {
+               // Mapping the array and inserting data inside the csv file
+               $t->map(function ($item, $key) use ($fp) {
+                     // Eliminate period and updated_at column from the object
+                     $collection = collect($item)->forget('period')->forget('updated_at')->push($item['useridentification']);
+                     $flattened = Arr::flatten($collection);
+                     fputcsv($fp, $flattened);
 
-           // Mapping the array and inserting data inside the csv file
-           $t->map(function ($item, $key) use ($fp) {
+                     return $flattened;
 
-                 // Eliminate period and updated_at column from the object
-                 $collection = collect($item)->forget('period')->forget('updated_at');
-                 $flattened = Arr::flatten($collection);
-                 fputcsv($fp, $flattened);
+                 })->filter()->values()->all();
+            }
 
-                 return $flattened;
+            // Closing the csv file
+            fclose($fp);
 
-             })->filter()->values()->all();
-        }
+            // Downloading the csv generated
+            return response()->download($fileDir)->deleteFileAfterSend();
+       } else {
+            return back()->with('status', 'No hay metas pendientes por actualizar con el evento '.$request['event']);
+       }
 
-        // Closing the csv file
-        fclose($fp);
-
-        // Downloading the csv generated
-        return response()->download($fileDir);
 
     }
 

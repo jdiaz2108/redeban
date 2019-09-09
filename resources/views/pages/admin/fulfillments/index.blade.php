@@ -139,7 +139,7 @@
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Descargar Cumplimientos 3</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Descargar Metas</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -149,8 +149,14 @@
             @csrf
               {{-- @method('PUT') --}}
               <div class="form-group">
-                  <label for="">Archivo <span>*</span> </label>
-                  <input type="file" name="data" class="form-control" required>
+                <label for="event">Seleccione el evento:</label>
+                <select class="form-control" id="event" name="event" required>
+                    @forelse ($grouped as $item)
+                        <option>{{$item}}</option>
+                    @empty
+                        <option>2</option>
+                    @endforelse
+                </select>
               </div>
               <button type="submit" class="btn btn-custom fontSize18">Descargar</button>
           </form>

@@ -18,6 +18,10 @@ class FulfillmentController extends Controller
      */
     public function index(Request $request)
     {
+
+        $collection = Fulfillment::all();
+        $grouped = $collection->groupBy('event')->keys()->all();
+
       $name = $request['query'];
       if(is_null($name))
       {
@@ -28,7 +32,7 @@ class FulfillmentController extends Controller
         })->paginate();
       }
 
-      return view('pages.admin.fulfillments.index', compact('fulfillments'));
+      return view('pages.admin.fulfillments.index', compact('fulfillments', 'grouped'));
     }
 
     /**

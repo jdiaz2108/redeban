@@ -40,4 +40,9 @@ class Fulfillment extends Model
         return $this->userCategory()->first()['category']['points_redeem'];
     }
 
+    public function getUserIdentificationAttribute()
+    {
+        return $this->user()->first()['identification'];
+    }
+
 }
