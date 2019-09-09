@@ -90,7 +90,7 @@ class PointController extends Controller
 
     public function liquidation()
     {
-        $collection = Fulfillment::doesntHave('point')->where('value', '!=' , null)->get();
+        $collection = Fulfillment::doesntHave('point')->doesntHave('invalidpoint')->where('value', '!=' , null)->get();
 
         $validation = $collection->isNotEmpty();
 
@@ -103,16 +103,35 @@ class PointController extends Controller
 
             $collectionMix = $collection->map(function ($item, $key) use ($collectHeader, $add, $date) {
 
-                $value = ($item['value'] >= $item['goal']) ? $item['points'] : 0 ;
-                $array = ['Cumplimiento meta: '.$item['event'],$value, $item['user_id'], $item['id']];
-                $arrayUp = Arr::collapse([$array, $add]);
+                if ($item['value'] >= $item['goal'] && $item['points']) {
+                    $value = $item['points'];
+                    $array = ['Cumplimiento meta: '.$item['event'],$value, $item['user_id'], $item['id']];
+                    $arrayUp = Arr::collapse([$array, $add]);
 
-                return collect($collectHeader)->combine($arrayUp)->all();
+                    return collect($collectHeader)->combine($arrayUp)->all();
+                }
+
+            })->filter()->values()->all();
+
+            $collectionInvalidPoints = $collection->map(function ($item, $key) use ($collectHeader, $add, $date) {
+
+                if ($item['value'] < $item['goal']) {
+
+                    $value = 0;
+                    $array = ['Incumplimiento meta: '.$item['event'],$value, $item['user_id'], $item['id']];
+                    $arrayUp = Arr::collapse([$array, $add]);
+
+                    return collect($collectHeader)->combine($arrayUp)->all();
+                }
 
             })->filter()->values()->all();
 
             foreach (array_chunk($collectionMix, 5000) as $t) {
                 DB::table('points')->insert($t);
+            }
+
+            foreach (array_chunk($collectionInvalidPoints, 5000) as $t) {
+                DB::table('invalid_points')->insert($t);
             }
 
             return back()->with('status', 'Se ha realizado la liquidación de '.count($collectionMix).' usuarios.');

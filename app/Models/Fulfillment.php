@@ -25,6 +25,11 @@ class Fulfillment extends Model
         return $this->hasMany('App\Models\Point');
     }
 
+    public function invalidpoint()
+    {
+        return $this->hasMany('App\Models\InvalidPoint');
+    }
+
     public function getHasPointAttribute()
     {
         return $this->point()->isNotEmpty();
@@ -34,4 +39,5 @@ class Fulfillment extends Model
     {
         return $this->userCategory()->first()['category']['points_redeem'];
     }
+
 }
