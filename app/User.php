@@ -58,6 +58,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\redeemValidateMail');
     }
 
+    public function accessLogs()
+    {
+        return $this->hasMany('App\Models\AccessLog');
+    }
+
     public function fulfillment()
     {
         return $this->hasMany('App\Models\Fulfillment')->latest()->first();
@@ -77,6 +82,11 @@ class User extends Authenticatable
     public function getSumPointsAttribute()
     {
         return $this->points()->sum('value');
+    }
+
+    public function getChangedPasswordAttribute()
+    {
+        return ($this->accessLogs()->whereEvent('Cambio contraseña')->first()) ? true : false;
     }
 
     public function getActiveRedeemAttribute()

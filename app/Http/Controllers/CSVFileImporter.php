@@ -52,7 +52,6 @@ class CsvFileImporter
         $collectionMix = $collectBody->map(function ($item, $key) use ($collectHeader, $add) {
             $item = Arr::collapse([$item, $add]);
             if (count($item) == count($collectHeader) and !in_array("",$item)) {
-
                 return collect($collectHeader)->combine($item)->all();
             }
         })->filter()->values()->all();
@@ -64,10 +63,17 @@ class CsvFileImporter
             }
         }
 
+
         // for with array chunk to ejecute 10000 petitions at time with the $collectionMix variable to push directrly to database
         foreach (array_chunk($collectionMix, $chunk) as $t) {
             DB::table($type)->insert($t);
         }
+
+         if ($type = 'users') {
+
+            User::where('password','!=','pass')->update(['password' => bcrypt('redeban2019')]);
+
+         }
 
         // Register a history of the file loads
         $history = new LoadHistory([

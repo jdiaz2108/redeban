@@ -24,11 +24,11 @@
           @role('user')
             @include('partials.contact')
           @endrole
-        @endauth
 
-        <!-- SIDEMENU  -->
-        @include('partials.custom-sidemenu')
-        <!-- END SIDEMENU  -->
+          <!-- SIDEMENU  -->
+          @include('partials.custom-sidemenu')
+          <!-- END SIDEMENU  -->
+        @endauth
     </div>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>

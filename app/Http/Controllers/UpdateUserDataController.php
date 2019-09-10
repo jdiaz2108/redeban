@@ -21,12 +21,22 @@ class UpdateUserDataController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $departments = Department::orderBy('name')->get();
-        $updatedData = ($user->updated) ? $user->userData : $user ;
-        $city = ($user->userData) ? City::find($user->userData->city_id)->name : null ;
-        $action = $user->updated ? '/home/'.$updatedData['id'] : '/home';
 
-        return view('pages.home.update-data', compact('updatedData', 'user','action','departments','city'));
+        if ($user->changedPassword) {
+
+            $departments = Department::orderBy('name')->get();
+            $updatedData = ($user->updated) ? $user->userData : $user ;
+            $city = ($user->userData) ? City::find($user->userData->city_id)->name : null ;
+            $action = $user->updated ? '/home/'.$updatedData['id'] : '/home';
+
+            return view('pages.home.update-data', compact('updatedData', 'user','action','departments','city'));
+
+        } else {
+
+            return view('auth.change-password');
+
+        }
+
     }
 
     /**

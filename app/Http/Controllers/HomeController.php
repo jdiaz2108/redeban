@@ -25,12 +25,23 @@ class HomeController extends Controller
 
     public function index()
     {
-        $users = User::count();
-        $fulfillments = Fulfillment::count();
-        $prizes = Prize::count();
-        $coupons = Coupon::count();
+        $user = Auth::user();
 
-        return view('home',compact('users','fulfillments','prizes','coupons'));
+        if ($user->changedPassword) {
+
+            $users = User::count();
+            $fulfillments = Fulfillment::count();
+            $prizes = Prize::count();
+            $coupons = Coupon::count();
+
+            return view('home',compact('users','fulfillments','prizes','coupons'));
+
+        } else {
+
+            return view('auth.change-password');
+
+        }
+
     }
 
     public function catalog()

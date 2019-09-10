@@ -12,6 +12,7 @@
 */
 
 // Auth is required
+
 Route::middleware('auth')->group(function () {
 
     // Redirect user if has any role
@@ -23,6 +24,8 @@ Route::middleware('auth')->group(function () {
             return redirect('home');
         }
     });
+
+    Route::post('/change-password', 'Auth\ChangePassword')->name('change.password');
 
     // Only users with user role
     Route::group(['middleware' => ['role:user']], function () {
