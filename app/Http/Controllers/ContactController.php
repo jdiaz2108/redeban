@@ -14,7 +14,9 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+      $contacts = Contact::orderBy('id','desc')->paginate();
+
+      return view('pages.admin.contact.index',compact('contacts'));
     }
 
     /**
@@ -35,7 +37,9 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $contact = Contact::create($request->all());
+
+      return redirect('home')->with('status','Correo enviado correctamente.');
     }
 
     /**
@@ -44,9 +48,13 @@ class ContactController extends Controller
      * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function show(Contact $contact)
+    public function show($id)
     {
-        //
+      $contact = Contact::find($id);
+      $contact->state = 1;
+      $contact->save();
+
+      return back()->with('status','Contacto actualizado correctamente');
     }
 
     /**

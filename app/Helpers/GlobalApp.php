@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use App\Models\Department;
+
 class GlobalApp
 {
     public static function menu()
@@ -22,8 +24,16 @@ class GlobalApp
           ['name' => 'metas', 'url' => '/dashboard/fulfillments', 'icon' => 'add_box', 'roles' => ['admin']],
           ['name' => 'historial carga', 'url' => '/dashboard/histories', 'icon' => 'add_box', 'roles' => ['admin']],
           ['name' => 'puntos', 'url' => '/dashboard/points', 'icon' => 'add_box', 'roles' => ['admin']],
+          ['name' => 'pqrs', 'url' => '/dashboard/contacts', 'icon' => 'add_box', 'roles' => ['admin']],
       ];
 
       return $menu;
+    }
+
+    public static function departments()
+    {
+      $departments = Department::orderBy('name')->get();
+
+      return $departments;
     }
 }

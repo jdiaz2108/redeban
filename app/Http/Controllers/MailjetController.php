@@ -17,7 +17,7 @@ class MailjetController extends Controller
                 [
                     'From' => [
                         'Email' => 'info@soycentral.com.co',
-                        'Name' => 'Plaza Central Centro Comercial'
+                        'Name' => 'LaTransaccionGanadora Redeban'
                     ],
                     'To' => [
                         [
@@ -33,7 +33,7 @@ class MailjetController extends Controller
         ];
 
         $response = $mj->post(Resources::$Email, ['body' => $body]);
-
+        //dd($response);
         if ($response->success()) {
             return true;
         }

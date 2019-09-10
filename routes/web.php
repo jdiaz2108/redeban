@@ -40,6 +40,8 @@ Route::middleware('auth')->group(function () {
 
         });
 
+        Route::post('/contact', 'ContactController@store');
+        Route::get('/json/department/{id}', 'HomeController@JsonCities');
         Route::get('/about', 'HomeController@about');
         Route::get('/terms', 'HomeController@terms');
     });
@@ -63,6 +65,8 @@ Route::middleware('auth')->group(function () {
 
             Route::resource('/users', 'UserController')->only(['index', 'create', 'store']);
 
+            Route::resource('/contacts', 'ContactController')->only(['index', 'show']);
+
             Route::get('/csv', 'CSVFileimporter@download');
             Route::get('/csv-fulfillments-base', 'CSVFileimporter@fulfillmentsBase')->name('fulfillment.base');
             Route::get('/csv-user-base', 'CSVFileimporter@userBase')->name('user.base');
@@ -72,3 +76,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Auth::routes();
+
+Route::get('/test/welcome', 'TestController@welcome');
+Route::get('/test/send-code', 'TestController@sendCode');
+Route::get('/test/redeem-prize', 'TestController@redeemPrize');

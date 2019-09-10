@@ -21,6 +21,7 @@ class CreateContactsTable extends Migration
             $table->unsignedBigInteger('city_id')->nullable();
             $table->foreign('city_id')->references('id')->on('cities');
             $table->longText('description');
+            $table->integer('state')->default(0);
             $table->timestamps();
         });
     }

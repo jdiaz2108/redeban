@@ -57,3 +57,45 @@ $('#slider').slick({
     }
   ]
 });
+
+// cities of department
+$("#department_id").change(function(){
+  $("#city_id").addClass('disabled')
+  var id = $("#department_id").val()
+   $.ajax({
+      url : "/json/department/"+id,
+      cache: false,
+      type: 'GET',
+      dataType : 'json',
+      success : function(data) {
+        var cities = data.cities;
+        var text = "";
+        cities.forEach(function(city) {
+          text += "<option value="+city.id+">"+city.name+"</option>";
+        });
+        $('#city_id').html(text);
+      },
+      error: function() { console.log("Error") }
+   });
+});
+
+// cities of department CONTACT
+$("#department_contact").change(function(){
+  $("#city_contact").addClass('disabled')
+  var id = $("#department_contact").val()
+   $.ajax({
+      url : "/json/department/"+id,
+      cache: false,
+      type: 'GET',
+      dataType : 'json',
+      success : function(data) {
+        var cities = data.cities;
+        var text = "";
+        cities.forEach(function(city) {
+          text += "<option value="+city.id+">"+city.name+"</option>";
+        });
+        $('#city_contact').html(text);
+      },
+      error: function() { console.log("Error") }
+   });
+});

@@ -26,7 +26,7 @@
                   <div class="content-image">
                     <a href="{{url('prize',$prize['id'])}}">
                     @if ($prize['image'])
-                    <img src="{{$prize['image']}}" class="img-fluid" alt="...">
+                    <img src="{{$prize['image']}}" class="img-fluid" width="170" alt="...">
                     @else
                     <img src="{{asset('images/image.png')}}" class="img-fluid" alt="...">
                     @endif

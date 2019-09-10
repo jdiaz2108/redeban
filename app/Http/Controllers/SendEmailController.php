@@ -9,102 +9,66 @@ class SendEmailController extends Controller
 {
 	public static function register_user($user,$password)
 	{
-		$name = $user->first_name;
+		$name = $user->name_company;
 		$identification = $user->identification;
+		$pass = 'redeban'.$identification;
+
 		//Pinta variables en template.
-		$template = view('emails.register-user', compact('name','identification','password'))->render();
+		$template = view('emails.welcome', compact('name','identification','pass'))->render();
 		//Carga variables pára envio de email.
 		$data['user_email'] = $user->email;
 		$data['user_name'] = $name;
-		$data['email_subject'] = 'Bienvenido a una nueva experiencia.';
+		$data['email_subject'] = 'Bienvenido a la transacción ganadora.';
 		$data['email_description'] = 'Test.';
 		$data['email_template'] = $template;
 
 		//Ejecuta el envío.
 		$res = MailjetController::sendEmail($data);
+
+		return $res;
 	}
 
-    // public static function redeem_prize($user,$prize,$code_num)
-	public static function redeem_prize($redeemValidateMail)
+  public static function send_code($user,$prize,$code_row)
 	{
-	/* 	$name =  $user->first_name;
-		$prize_name = $prize->name;
-		$code = $code_num;
-		$place = $prize->place_receive; */
+	  $name = $user->name_company;
+		$image = $prize->image;
+		$prize = $prize->name;
+		$code = $code_row->code;
 
-        //Pinta variables en template.
-        // $template = view('emails.redeem-prize', compact('name','prize_name','code','place'))->render();
-		$template = view('emails.redeem-prize', compact('redeemValidateMail'))->render();
-        //Carga variables pára envio de email.
-        
-
-		/* $data['user_email'] = $user->email;
+    //Pinta variables en template.
+		$template = view('emails.send-code', compact('name','image','prize','code'))->render();
+    //Carga variables pára envio de email.
+		$data['user_email'] = $user->email;
 		$data['user_name'] = $name;
-		$data['email_subject'] = 'Redención de CentralCoins.';
-        $data['email_description'] = 'Test.';
- */
-        $data['user_email'] = 'john.diaz@inxaitcorp.com';
-		$data['user_name'] = 'john';
-		$data['email_subject'] = 'Redención de CentralCoins.';
-        $data['email_description'] = 'Test.';
-        
-
+		$data['email_subject'] = 'Codigo de verificación.';
+    $data['email_description'] = 'Test.';
 		$data['email_template'] = $template;
 
 		//Ejecuta el envío.
 		$res = MailjetController::sendEmail($data);
+
+		return $res;
 	}
 
-	public static function refer_user($full_name,$email)
+	public static function redeem_prize($user,$prize)
 	{
-		$name = $full_name;
+		$name = $user->name_company;
+		$prize = $prize->name;
+		$points = $prize->points;
 
 		//Pinta variables en template.
-		$template = view('emails.refer-user')->render();
-		//Carga variables pára envio de email.
-		$data['user_email'] = $email;
-		$data['user_name'] = 'Test';
-		$data['email_subject'] = 'Te invitaron a conocer nuevas experiencias.';
-		$data['email_description'] = 'Test.';
-		$data['email_template'] = $template;
-
-		//Ejecuta el envío.
-		$res = MailjetController::sendEmail($data);
-	}
-
-	public static function points_refer($user)
-	{
-		$name = $user->first_name;
-
-		//Pinta variables en template.
-		$template = view('emails.points-refer', compact('name'))->render();
+		$template = view('emails.redeem-prize',compact('name','prize','points'))->render();
 		//Carga variables pára envio de email.
 		$data['user_email'] = $user->email;
-		$data['user_name'] = 'Test';
-		$data['email_subject'] = 'Ganaste CentralCoins por referir a un amigo.';
+		$data['user_name'] = $name;
+		$data['email_subject'] = 'Redención exitosa.';
 		$data['email_description'] = 'Test.';
 		$data['email_template'] = $template;
 
 		//Ejecuta el envío.
 		$res = MailjetController::sendEmail($data);
-	}
 
-	public static function aprove_bill($user)
-	{
-		$name = $user->first_name;
-
-		//Pinta variables en template.
-		$template = view('emails.aprove-bill', compact('name'))->render();
-
-		//Carga variables pára envio de email.
-		$data['user_email'] = $user->email;
-		$data['user_name'] = 'Test';
-		$data['email_subject'] = 'Ganaste CentralCoins por el registro de factura.';
-		$data['email_description'] = 'Test.';
-		$data['email_template'] = $template;
-
-		//Ejecuta el envío.
-		$res = MailjetController::sendEmail($data);
+		return $res;
 	}
 
 

@@ -58,7 +58,7 @@
                                 <td style="padding-top: 0px" align="center">
                                     <p
                                         style="font-family:Arial, Helvetica, sans-serif;font-size:20px;color:#FFFFFF;margin: 0px; padding: 0px; font-weight: bold;font-style: normal; line-height: 1.2em; text-transform: uppercase;">
-                                        {{$user['name_company']}},
+                                        {{$name}},
                                     </p>
                                 </td>
                             </tr>
@@ -115,8 +115,8 @@
                 <td style="padding-top: 8px" align="center">
                     <p
                         style="font-family:Arial, Helvetica, sans-serif;font-size:18px;color:#FFFFFF;margin: 0px; padding: 0px; font-weight: normal;font-style: normal; line-height: 1.2em">
-                        Usuario: {{$user['identification']}}<br>
-                        Contraseña: redeban{{$user['identification']}}
+                        Usuario: {{$identification}}<br>
+                        Contraseña: {{$pass}}
                     </p>
                 </td>
                 <td style="padding-top: 0px;" align="right" width="136">
@@ -143,10 +143,12 @@
         <tbody>
             <tr>
                 <td style="padding-top: 0px" align="center">
+                  <a href="https://latransaccionganadora.com" target="_blank">
                     <img style="display:block"
                         src="https://storage.googleapis.com/general_inxait/Redeban/Septiembre/09-09-2019/respuesta-automatica-1/inicio-btn.png"
                         width="600" height="auto"
-                        alt="Este será tu usuario y contraseña para registrarte en la plataforma" border="0">
+                        alt="INGRESA AQUÍ" border="0">
+                  </a>
                 </td>
             </tr>
         </tbody>

@@ -132,7 +132,7 @@
                                 <td width="300" valign="top" align="center">
                                     <span style="font-family: Arial, Helvetica, sans-serif;font-size:32px;font-weight:900;color:#00568F;text-transform:uppercase; ">$prize_name</span>
                                     <p style="font-family:Arial;font-size:21px;color:#00568F; margin: 0px; 0px;">
-                                        CÓDIGO: {{$redeemValidateMail['code']}}
+                                        CÓDIGO: $code
                                     </p>
                                 </td>
                             </tbody>

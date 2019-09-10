@@ -21,7 +21,9 @@
         @include('partials.footer')
 
         @auth
+          @role('user')
             @include('partials.contact')
+          @endrole
         @endauth
 
         <!-- SIDEMENU  -->

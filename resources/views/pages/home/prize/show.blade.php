@@ -22,9 +22,9 @@
           <div class="col-6">
             <div class="image-show">
               @if ($prize['image'])
-              <img src="{{$prize['image']}}" class="img-fluid" alt="...">
+              <img src="{{$prize['image']}}" class="img-fluid mx-auto d-block" alt="...">
               @else
-              <img src="{{asset('images/image.png')}}" class="img-fluid" alt="...">
+              <img src="{{asset('images/image.png')}}" class="img-fluid mx-auto d-block" alt="...">
               @endif
             </div>
           </div>

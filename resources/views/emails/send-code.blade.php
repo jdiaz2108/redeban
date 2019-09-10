@@ -58,7 +58,7 @@
                                 <td style="padding-top: 0px" align="center">
                                     <p
                                         style="font-family:Arial, Helvetica, sans-serif;font-size:20px;color:#FFFFFF;margin: 0px; padding: 0px; font-weight: bold;font-style: normal; line-height: 1.2em; text-transform: uppercase;">
-                                        {{$user['name_company']}},
+                                        {{$name}},
                                     </p>
                                 </td>
                             </tr>
@@ -117,15 +117,14 @@
                                 <tr>
                                     <td style="padding-top: 0px; padding-left: 13px" align="left">
                                         <img style="display:block; max-width: 130px; max-height: 130px"
-                                            src="https://storage.googleapis.com/general_inxait/Redeban/Septiembre/09-09-2019/respuesta-automatica-3/izq-code.png"
+                                            src="{{$image}}"
                                             width="auto" height="auto" alt="Linea" border="0">
                                     </td>
                                     <td style="padding-top: 8px; padding-left: 18px" align="left">
-                                        <p
-                                            style="font-family:Arial, Helvetica, sans-serif;font-size:18px;color:#FFFFFF;margin: 0px; padding: 0px; font-weight: normal;font-style: normal; line-height: 1.2em">
-                                            {{$user['code']}}<br><br>
+                                        <p style="font-family:Arial, Helvetica, sans-serif;font-size:18px;color:#FFFFFF;margin: 0px; padding: 0px; font-weight: normal;font-style: normal; line-height: 1.2em">
+                                            {{$prize}}<br><br>
                                             Código:<br>
-                                           <span style="color: #85FFFD">{{$user['code']}}</span>
+                                           <span style="color: #85FFFD">{{$code}}</span>
                                         </p>
                                     </td>
                                 </tr>
@@ -147,7 +146,7 @@
                     <img style="display:block"
                         src="https://storage.googleapis.com/general_inxait/Redeban/Septiembre/09-09-2019/respuesta-automatica-3/code-bottom.png"
                         width="600" height="auto"
-                        alt="Este será tu usuario y contraseña para registrarte en la plataforma" border="0">
+                        alt="Linea" border="0">
                 </td>
             </tr>
         </tbody>
@@ -156,10 +155,12 @@
         <tbody>
             <tr>
                 <td style="padding-top: 0px" align="center">
+                  <a href="https://latransaccionganadora.com" target="_blank">
                     <img style="display:block"
                         src="https://storage.googleapis.com/general_inxait/Redeban/Septiembre/09-09-2019/respuesta-automatica-3/code-btn.png"
                         width="600" height="auto"
                         alt="Este será tu usuario y contraseña para registrarte en la plataforma" border="0">
+                  </a>
                 </td>
             </tr>
         </tbody>

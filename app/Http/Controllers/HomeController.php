@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\User;
 use Carbon\Carbon;
+use App\Models\City;
 use App\Models\Prize;
 use App\Models\Coupon;
 use App\Models\Fulfillment;
@@ -85,6 +86,13 @@ class HomeController extends Controller
     {
 
         return view('pages.home.terms');
+    }
+
+    public function JsonCities($id)
+    {
+      $cities = City::where('department_id',$id)->orderBy('name')->get();
+
+      return response()->json(['cities' => $cities]);
     }
 
 }

@@ -39844,6 +39844,50 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()('#slider').slick({
       slidesToScroll: 1
     }
   }]
+}); // cities of department
+
+jquery__WEBPACK_IMPORTED_MODULE_0___default()("#department_id").change(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#city_id").addClass('disabled');
+  var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#department_id").val();
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    url: "/json/department/" + id,
+    cache: false,
+    type: 'GET',
+    dataType: 'json',
+    success: function success(data) {
+      var cities = data.cities;
+      var text = "";
+      cities.forEach(function (city) {
+        text += "<option value=" + city.id + ">" + city.name + "</option>";
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#city_id').html(text);
+    },
+    error: function error() {
+      console.log("Error");
+    }
+  });
+}); // cities of department CONTACT
+
+jquery__WEBPACK_IMPORTED_MODULE_0___default()("#department_contact").change(function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#city_contact").addClass('disabled');
+  var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#department_contact").val();
+  jquery__WEBPACK_IMPORTED_MODULE_0___default.a.ajax({
+    url: "/json/department/" + id,
+    cache: false,
+    type: 'GET',
+    dataType: 'json',
+    success: function success(data) {
+      var cities = data.cities;
+      var text = "";
+      cities.forEach(function (city) {
+        text += "<option value=" + city.id + ">" + city.name + "</option>";
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#city_contact').html(text);
+    },
+    error: function error() {
+      console.log("Error");
+    }
+  });
 });
 
 /***/ }),

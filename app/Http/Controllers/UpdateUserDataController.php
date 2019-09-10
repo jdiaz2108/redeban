@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Carbon\Carbon;
-use App\Models\UserData;
+use App\Models\City;
 use App\Models\Point;
+use App\Models\UserData;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateDataRequest;
 
@@ -19,10 +21,12 @@ class UpdateUserDataController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $departments = Department::orderBy('name')->get();
         $updatedData = ($user->updated) ? $user->userData : $user ;
+        $city = ($user->userData) ? City::find($user->userData->city_id)->name : null ;
         $action = $user->updated ? '/home/'.$updatedData['id'] : '/home';
 
-        return view('pages.home.update-data', compact('updatedData', 'user','action'));
+        return view('pages.home.update-data', compact('updatedData', 'user','action','departments','city'));
     }
 
     /**

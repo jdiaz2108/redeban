@@ -57,12 +57,18 @@ class RedeemValidateMailController extends Controller
             $data['user_id'] = $user->id;
             $data['prize_id'] = $prize['id'];
             $data['code'] = strtoupper(Str::random(10));
-            $redeemValidateMail = new redeemValidateMail($data);
-            $redeemValidateMail->save();
-            // use SendEmailController to send an email to the user with the code of redeem
-            SendEmailController::redeem_prize($redeemValidateMail);
+            $code = new redeemValidateMail($data);
+            $code->save();
 
-            return back()->with('status', 'PARA PODER HACER VÁLIDA LA REDENCIÓN TE ENVIAMOS UN CÓDIGO DE VERIFICACIÓN A TU CORREO '.$user->email);
+            // use SendEmailController to send an email to the user with the code of redeem
+            $res = SendEmailController::send_code($user,$prize,$code);
+            if($res)
+            {
+              return back()->with('status', 'PARA PODER HACER VÁLIDA LA REDENCIÓN TE ENVIAMOS UN CÓDIGO DE VERIFICACIÓN A TU CORREO '.$user->email);
+            } else {
+              return back()->with('status', 'HUBO UN ERROR AL ENVIAR EL CORREO');
+            }
+
 
         } else {
 
