@@ -31,7 +31,7 @@ class SendEmailController extends Controller
   public static function send_code($user,$prize,$code_row)
 	{
 	  $name = $user->name_company;
-		$image = $prize->image;
+		$image = ($prize->image) ? $prize->image : url('/images/image.png');
 		$prize = $prize->name;
 		$code = $code_row->code;
 
@@ -52,12 +52,13 @@ class SendEmailController extends Controller
 
 	public static function redeem_prize($user,$prize)
 	{
-		$name = $user->name_company;
-		$prize = $prize->name;
-		$points = $prize->points;
+        $name = $user->name_company;
+        $image = ($prize->image) ? $prize->image : url('/images/image.png');
+		$points = $prize->point;
+        $prize = $prize->name;
 
 		//Pinta variables en template.
-		$template = view('emails.redeem-prize',compact('name','prize','points'))->render();
+		$template = view('emails.redeem-prize',compact('name','image','prize','points'))->render();
 		//Carga variables pára envio de email.
 		$data['user_email'] = $user->email;
 		$data['user_name'] = $name;

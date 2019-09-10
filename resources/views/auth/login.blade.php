@@ -6,6 +6,7 @@
     <div class="row">
         <div class="col-md-5">
           <div class="login-form">
+              @include('layouts.messages')
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="form-group text-center">

@@ -62,13 +62,16 @@ class RedeemValidateMailController extends Controller
 
             // use SendEmailController to send an email to the user with the code of redeem
             $res = SendEmailController::send_code($user,$prize,$code);
+
             if($res)
             {
-              return back()->with('status', 'PARA PODER HACER VÁLIDA LA REDENCIÓN TE ENVIAMOS UN CÓDIGO DE VERIFICACIÓN A TU CORREO '.$user->email);
-            } else {
-              return back()->with('status', 'HUBO UN ERROR AL ENVIAR EL CORREO');
-            }
+                return back()->with('status', 'PARA PODER HACER VÁLIDA LA REDENCIÓN TE ENVIAMOS UN CÓDIGO DE VERIFICACIÓN A TU CORREO '.$user->email);
 
+            } else {
+                $code->delete();
+
+                return back()->with('status', 'HUBO UN ERROR AL ENVIAR EL CORREO');
+            }
 
         } else {
 
@@ -153,7 +156,21 @@ class RedeemValidateMailController extends Controller
 
                         $coupon->save();
 
-                        return back()->with('status', 'Haz redimido el premio correctamente, recibirás todos los datos de tu redención al correo '.$user->email);
+                        $data['user_id'] = $user->id;
+                        $data['prize_id'] = $prize['id'];
+
+                        // use SendEmailController to send an email to the user with the code of redeem
+                        $res = SendEmailController::redeem_prize($user,$prize);
+
+                        if($res)
+                        {
+                            return back()->with('status', 'Haz redimido el premio correctamente, recibirás todos los datos de tu redención al correo '.$user->email);
+
+                        } else {
+
+                            return back()->with('status', 'HUBO UN ERROR AL ENVIAR EL CORREO');
+                        }
+
 
                 } else {
                     // Redirect back with the error that explain the code is invalid

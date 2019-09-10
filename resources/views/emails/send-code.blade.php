@@ -5,7 +5,7 @@
 <head>
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Redeban</title>
+    <title>Redeban - Estás a un paso de recibir tu premio</title>
 </head>
 
 <body>
@@ -26,7 +26,7 @@
                 <td style="padding-top: 0px; padding-bottom: 0px" align="center">
                     <img style="display:block"
                         src="https://storage.googleapis.com/general_inxait/Redeban/Septiembre/09-09-2019/respuesta-automatica-3/Neon-CODIGO.gif"
-                        width="600" height="auto" alt="Bienvenido a la transacción ganadora" border="0">
+                        width="600" height="auto" alt="Estás a un paso de recibir tu premio" border="0">
                 </td>
             </tr>
         </tbody>
@@ -37,7 +37,7 @@
                 <td style="padding-top: 0px; padding-bottom: 0px" align="center">
                     <img style="display:block"
                         src="https://storage.googleapis.com/general_inxait/Redeban/Septiembre/09-09-2019/respuesta-automatica-3/top-main.png"
-                        width="600" height="auto" alt="Bienvenido a la transacción ganadora" border="0">
+                        width="600" height="auto" alt="Linea" border="0">
                 </td>
             </tr>
         </tbody>
@@ -67,7 +67,7 @@
                                     <img style="display:block"
                                         src="https://storage.googleapis.com/general_inxait/Redeban/Septiembre/09-09-2019/respuesta-automatica-3/code-line.png"
                                         width="auto" height="auto"
-                                        alt="Este será tu usuario y contraseña para registrarte en la plataforma"
+                                        alt="Linea Div"
                                         border="0">
                                 </td>
                             </tr>
@@ -98,7 +98,7 @@
                     <img style="display:block"
                         src="https://storage.googleapis.com/general_inxait/Redeban/Septiembre/09-09-2019/respuesta-automatica-3/code.png"
                         width="600" height="auto"
-                        alt="Este será tu usuario y contraseña para registrarte en la plataforma" border="0">
+                        alt="¡Este es el código para que tu redención sea exitosa!" border="0">
                 </td>
             </tr>
         </tbody>
@@ -118,9 +118,9 @@
                                     <td style="padding-top: 0px; padding-left: 13px" align="left">
                                         <img style="display:block; max-width: 130px; max-height: 130px"
                                             src="{{$image}}"
-                                            width="auto" height="auto" alt="Linea" border="0">
+                                            width="auto" height="auto" alt="{{$prize}}" border="0">
                                     </td>
-                                    <td style="padding-top: 8px; padding-left: 18px" align="left">
+                                    <td style="padding-top: 0px; padding-left: 18px" align="left">
                                         <p style="font-family:Arial, Helvetica, sans-serif;font-size:18px;color:#FFFFFF;margin: 0px; padding: 0px; font-weight: normal;font-style: normal; line-height: 1.2em">
                                             {{$prize}}<br><br>
                                             Código:<br>
@@ -146,7 +146,7 @@
                     <img style="display:block"
                         src="https://storage.googleapis.com/general_inxait/Redeban/Septiembre/09-09-2019/respuesta-automatica-3/code-bottom.png"
                         width="600" height="auto"
-                        alt="Linea" border="0">
+                        alt="Linea Down" border="0">
                 </td>
             </tr>
         </tbody>
@@ -159,7 +159,7 @@
                     <img style="display:block"
                         src="https://storage.googleapis.com/general_inxait/Redeban/Septiembre/09-09-2019/respuesta-automatica-3/code-btn.png"
                         width="600" height="auto"
-                        alt="Este será tu usuario y contraseña para registrarte en la plataforma" border="0">
+                        alt="Botón Ingresa Aquí" border="0">
                   </a>
                 </td>
             </tr>
@@ -172,7 +172,7 @@
                     <img style="display:block"
                         src="https://storage.googleapis.com/general_inxait/Redeban/Septiembre/09-09-2019/respuesta-automatica-3/code-footer.png"
                         width="600" height="auto"
-                        alt="Este será tu usuario y contraseña para registrarte en la plataforma" border="0">
+                        alt="Footer Redeban" border="0">
                 </td>
             </tr>
         </tbody>

@@ -5,7 +5,7 @@
 <head>
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Redeban</title>
+    <title>Redeban - Bienvenido a la transacción ganadora</title>
 </head>
 
 <body>
@@ -37,7 +37,7 @@
                 <td style="padding-top: 0px; padding-bottom: 0px" align="center">
                     <img style="display:block"
                         src="https://storage.googleapis.com/general_inxait/Redeban/Septiembre/09-09-2019/respuesta-automatica-1/top-main.png"
-                        width="600" height="auto" alt="Bienvenido a la transacción ganadora" border="0">
+                        width="600" height="auto" alt="Linea" border="0">
                 </td>
             </tr>
         </tbody>
@@ -67,7 +67,7 @@
                                     <img style="display:block"
                                         src="https://storage.googleapis.com/general_inxait/Redeban/Septiembre/09-09-2019/respuesta-automatica-1/inicio-line.png"
                                         width="auto" height="auto"
-                                        alt="Este será tu usuario y contraseña para registrarte en la plataforma"
+                                        alt="Linea Div"
                                         border="0">
                                 </td>
                             </tr>
@@ -112,7 +112,7 @@
                         src="https://storage.googleapis.com/general_inxait/Redeban/Septiembre/09-09-2019/respuesta-automatica-1/inicio-izq.png"
                         width="auto" height="auto" alt="Linea" border="0">
                 </td>
-                <td style="padding-top: 8px" align="center">
+                <td style="padding-top: 0px" align="center">
                     <p
                         style="font-family:Arial, Helvetica, sans-serif;font-size:18px;color:#FFFFFF;margin: 0px; padding: 0px; font-weight: normal;font-style: normal; line-height: 1.2em">
                         Usuario: {{$identification}}<br>
@@ -134,7 +134,7 @@
                     <img style="display:block"
                         src="https://storage.googleapis.com/general_inxait/Redeban/Septiembre/09-09-2019/respuesta-automatica-1/inicio-bottom.png"
                         width="600" height="auto"
-                        alt="Este será tu usuario y contraseña para registrarte en la plataforma" border="0">
+                        alt="Linea bottom" border="0">
                 </td>
             </tr>
         </tbody>
@@ -147,7 +147,7 @@
                     <img style="display:block"
                         src="https://storage.googleapis.com/general_inxait/Redeban/Septiembre/09-09-2019/respuesta-automatica-1/inicio-btn.png"
                         width="600" height="auto"
-                        alt="INGRESA AQUÍ" border="0">
+                        alt="Botón ingresa aquí" border="0">
                   </a>
                 </td>
             </tr>
@@ -160,7 +160,7 @@
                     <img style="display:block"
                         src="https://storage.googleapis.com/general_inxait/Redeban/Septiembre/09-09-2019/respuesta-automatica-1/inicio-footer.png"
                         width="600" height="auto"
-                        alt="Este será tu usuario y contraseña para registrarte en la plataforma" border="0">
+                        alt="Redeban footer" border="0">
                 </td>
             </tr>
         </tbody>

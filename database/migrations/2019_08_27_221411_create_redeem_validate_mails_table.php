@@ -21,6 +21,7 @@ class CreateRedeemValidateMailsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('prize_id');
             $table->foreign('prize_id')->references('id')->on('prizes');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
