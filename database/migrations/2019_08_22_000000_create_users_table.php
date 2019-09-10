@@ -24,7 +24,6 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('name')->nullable();
             $table->string('address')->nullable();
-            $table->boolean('updated_data')->default(false);
             $table->unsignedBigInteger('city_id')->nullable();
             $table->foreign('city_id')->references('id')->on('cities');
             $table->unsignedBigInteger('category_id')->nullable();

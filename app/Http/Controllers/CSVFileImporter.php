@@ -217,7 +217,7 @@ class CsvFileImporter
         $fp = fopen($fileDir, 'w');
 
         // Define the headers and insert into the csv file
-        $headers = array('identification', 'name_company', 'email', 'password');
+        $headers = array('identification', 'name_company', 'code', 'email', 'phone', 'password', 'name', 'address', 'email', 'category_id');
         fputcsv($fp, $headers);
 
         // Closing the csv file
