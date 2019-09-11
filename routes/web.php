@@ -69,9 +69,9 @@ Route::middleware('auth')->group(function () {
 
             Route::resource('/contacts', 'ContactController')->only(['index', 'show']);
 
-            Route::get('/csv', 'CSVFileimporter@download');
-            Route::get('/csv-fulfillments-base', 'CSVFileimporter@fulfillmentsBase')->name('fulfillment.base');
-            Route::get('/csv-user-base', 'CSVFileimporter@userBase')->name('user.base');
+            Route::get('/csv', 'CSVFileImporter@download');
+            Route::get('/csv-fulfillments-base', 'CSVFileImporter@fulfillmentsBase')->name('fulfillment.base');
+            Route::get('/csv-user-base', 'CSVFileImporter@userBase')->name('user.base');
             Route::get('/reports-access', 'UserController@reportAccess');
 
             Route::resource('/histories', 'CsvFileImporter')->only(['index']);
