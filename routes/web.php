@@ -64,7 +64,6 @@ Route::middleware('auth')->group(function () {
             Route::get('/liquidation', 'PointController@liquidation')->name('liquidation');
             Route::resource('/points', 'PointController')->only(['index']);
 
-            Route::resource('/histories', 'CsvFileImporter')->only(['index']);
 
             Route::resource('/users', 'UserController')->only(['index', 'create', 'store']);
 
@@ -74,6 +73,8 @@ Route::middleware('auth')->group(function () {
             Route::get('/csv-fulfillments-base', 'CSVFileimporter@fulfillmentsBase')->name('fulfillment.base');
             Route::get('/csv-user-base', 'CSVFileimporter@userBase')->name('user.base');
             Route::get('/reports-access', 'UserController@reportAccess');
+
+            Route::resource('/histories', 'CsvFileImporter')->only(['index']);
         });
     });
 });
