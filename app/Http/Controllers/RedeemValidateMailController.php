@@ -150,7 +150,7 @@ class RedeemValidateMailController extends Controller
                             'year' => $date->year
                         ]);
 
-                        $prize->update(['stock' => ($prize['stock'] - 1)]);
+                        $prize->decrement('stock');
 
                         $points->save();
 

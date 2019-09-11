@@ -126,7 +126,7 @@
                                             style="font-family:Arial, Helvetica, sans-serif;font-size:18px;color:#FFFFFF;margin: 0px; padding: 0px; font-weight: normal;font-style: normal; line-height: 1.2em">
                                             {{$prize}}<br><br>
                                             Por un valor de<br>
-                                           <span style="color: #85FFFD">{{$points}}</span>
+                                           <span style="color: #85FFFD">{{$points}} PUNTOS</span>
                                         </p>
                                     </td>
                                 </tr>

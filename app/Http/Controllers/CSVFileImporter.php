@@ -71,7 +71,7 @@ class CsvFileImporter
 
          if ($type = 'users') {
 
-            User::where('password','!=','pass')->update(['password' => bcrypt('redeban2019')]);
+            User::wherePassword('password')->update(['password' => bcrypt('redeban2019')]);
 
          }
 
