@@ -11,7 +11,7 @@ use App\User;
 use Illuminate\Support\Arr;
 use Symfony\Component\HttpFoundation\Request;
 
-class CsvFileImporter
+class CSVFileImporter
 {
 
     public function index()
