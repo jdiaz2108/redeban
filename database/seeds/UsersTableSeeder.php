@@ -14,10 +14,10 @@ class UsersTableSeeder extends Seeder
     {
         $user = User::create([
             'active' => true,
-            'identification' => '123456789',
+            'identification' => '24681',
             'name_company' => 'Admin Corp',
             'email' => 'john.diaz@inxaitcorp.com',
-            'password' => bcrypt('123456789'),
+            'password' => bcrypt('redeban19*'),
             'category_id' => 1
         ]);
 
@@ -25,10 +25,10 @@ class UsersTableSeeder extends Seeder
 
         $user = User::create([
             'active' => true,
-            'identification' => '123456',
+            'identification' => '24682',
             'name_company' => 'User Corp',
             'email' => 'jdiaz2108@hotmail.com',
-            'password' => bcrypt('123456'),
+            'password' => bcrypt('redeban19*'),
             'category_id' => 1
         ]);
 
