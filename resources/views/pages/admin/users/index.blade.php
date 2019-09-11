@@ -109,7 +109,7 @@
             <div class="form-group">
               <label for="">Archivo <span>*</span>  </label>
               <input type="file" name="data" class="form-control input-custom2" required>
-              <a href="#">Descargar archivo base</a>
+            <a href="{{ route('admin::user.base') }}">Descargar archivo base</a>
             </div>
             <button type="submit" class="btn btn-custom fontSize18">SUBIR</button>
         </form>
