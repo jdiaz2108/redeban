@@ -16,7 +16,7 @@ class MailjetController extends Controller
             'Messages' => [
                 [
                     'From' => [
-                        'Email' => 'info@soycentral.com.co',
+                        'Email' => 'info@latransaccionganadora.com',
                         'Name' => 'LaTransaccionGanadora Redeban'
                     ],
                     'To' => [
