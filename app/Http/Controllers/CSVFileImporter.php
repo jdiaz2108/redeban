@@ -9,6 +9,7 @@ use App\Models\LoadHistory;
 use App\Models\InvalidFulfillment;
 use App\User;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Schema;
 use Symfony\Component\HttpFoundation\Request;
 
 class CSVFileImporter extends Controller
@@ -217,7 +218,8 @@ class CSVFileImporter extends Controller
         $fp = fopen($fileDir, 'w');
 
         // Define the headers and insert into the csv file
-        $headers = array('identification', 'name_company', 'code', 'email', 'phone', 'password', 'name', 'address', 'email', 'category_id');
+        $columns = Schema::getColumnListing('users');
+        $headers = array_diff($columns, ['id', 'active', 'remember_token', 'last_logged_at', 'created_at', 'updated_at']);
         fputcsv($fp, $headers);
 
         // Closing the csv file
