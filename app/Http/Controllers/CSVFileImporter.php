@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use DB;
+use App\User;
 use Carbon\Carbon;
+use Illuminate\Support\Arr;
 use App\Models\Fulfillment;
 use App\Models\LoadHistory;
 use App\Models\InvalidFulfillment;
-use App\User;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Schema;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -39,8 +39,9 @@ class CSVFileImporter extends Controller
 
         // Get the header of the collection, that means the header is the columns of the table
         if ($event) {
-            $collectHeader = $collection->push(['event','created_at','updated_at'])->flatten()->all();
-            $add = [$event, $date, $date];
+            $collectHeader = $collection->push(['month', 'year', 'created_at','updated_at'])->flatten()->all();
+            $collectHeader = array_diff($collectHeader, ['identification']);
+            $add = [intval($date->format('m')), intval($date->format('Y')), $date, $date];
         } elseif ($update) {
             $collectHeader = $collection->push(['updated_at'])->flatten()->all();
             $add = [$date];
@@ -51,6 +52,7 @@ class CSVFileImporter extends Controller
 
         // Transform between the Body and Header to combinate and make the references columns and rows content
         $collectionMix = $collectBody->map(function ($item, $key) use ($collectHeader, $add) {
+            array_pop($item);
             $item = Arr::collapse([$item, $add]);
             if (count($item) == count($collectHeader) and !in_array("",$item)) {
                 return collect($collectHeader)->combine($item)->all();
@@ -63,7 +65,6 @@ class CSVFileImporter extends Controller
                 DB::table($type)->whereIn('id', $ids)->delete();
             }
         }
-
 
         // for with array chunk to ejecute 10000 petitions at time with the $collectionMix variable to push directrly to database
         foreach (array_chunk($collectionMix, $chunk) as $t) {
@@ -166,7 +167,7 @@ class CSVFileImporter extends Controller
 
     }
 
-    public function fulfillmentsBase()
+    public function fulfillmentsBase() //still alive
     {
         $date = Carbon::now();
 
@@ -228,6 +229,197 @@ class CSVFileImporter extends Controller
         // Downloading the csv generated
         return response()->download($fileDir)->deleteFileAfterSend();
 
+    }
+
+    public function downloadUserPoints(Request $request)
+    {
+        $date = Carbon::now();
+
+        $users = User::all();
+
+           // Define download file name
+           $fileDir = '../storage/app/download/'.$date->format('Y-m-d_H-i-s').'user-points.csv';
+
+           // Open file to insert the csv file
+           $fp = fopen($fileDir, 'w');
+
+           // Define the headers and insert into the csv file
+           $headers = array('id', 'event' ,'goal', 'value', 'user_id', 'created_at', 'identification');
+           fputcsv($fp, $headers);
+
+           foreach ($users->chunk(50000) as $t) {
+
+               // Mapping the array and inserting data inside the csv file
+               $t->map(function ($item, $key) use ($fp) {
+                   dd($item);
+                     // Eliminate period and updated_at column from the object
+                     $collection = collect($item)->forget('period')->forget('updated_at')->push($item['useridentification']);
+                     $flattened = Arr::flatten($collection);
+                     fputcsv($fp, $flattened);
+
+                     return $flattened;
+
+                 })->filter()->values()->all();
+            }
+
+            // Closing the csv file
+            fclose($fp);
+
+            // Downloading the csv generated
+            return response()->download($fileDir)->deleteFileAfterSend();
+
+    }
+
+    public static function storeFulfillmentCsv($file, $type, $update = false, $chunk = 1000, $event = null)
+    {
+        $date = Carbon::now();
+
+        $filename = $date->format('Y-m-d_H-i-s').'_data.csv';
+        $originalFilename = $file->getClientOriginalName();
+        $file->storeAs('uploads', $filename);
+
+        // Convert csv file in array variable called $array and convert that variable into a collection
+        $array = array_map("str_getcsv", file($file));
+        $collection = collect($array);
+
+        // Get the body of the collection, that means the body contain the rows of the table
+        $collectBody = $collection->splice(1);
+
+        // Get the header of the collection, that means the header is the columns of the table
+            $collectHeader = $collection->push(['month', 'year', 'created_at','updated_at'])->flatten()->all();
+            $collectHeader = array_diff($collectHeader, ['identification']);
+            $add = [intval($date->format('m')), intval($date->format('Y')), $date, $date];
+
+        // Transform between the Body and Header to combinate and make the references columns and rows content
+        $collectionMix = $collectBody->map(function ($item, $key) use ($collectHeader, $add) {
+            array_pop($item);
+            $item = Arr::collapse([$item, $add]);
+            if (count($item) == count($collectHeader) and !in_array("",$item)) {
+                return collect($collectHeader)->combine($item)->all();
+            }
+        })->filter()->values()->all();
+
+        // for with array chunk to ejecute 10000 petitions at time with the $collectionMix variable to push directrly to database
+        foreach (array_chunk($collectionMix, $chunk) as $t) {
+            DB::table($type)->insert($t);
+        }
+
+        // Register a history of the file loads
+        $history = new LoadHistory([
+            'original_file_name' => $originalFilename,
+            'records_count' => count($collectionMix),
+        ]);
+        $history->save();
+
+        // error for fulfillments
+        if ($type == 'fulfillmentss') {
+            $this->InvalidFulfillments($collection, $collectBody, $add, $history);
+        }
+
+        // Returning the $history of file loaded
+        return $history;
+    }
+
+    public function downloadFulfillmentsCsv(Request $request)
+    {
+
+        $date = Carbon::now();
+
+        // Get all fulfillments where the requested week
+       $fulfillments = Fulfillment::all();
+
+       if ($fulfillments->isNotEmpty()) {
+
+           // Define download file name
+           $fileDir = '../storage/app/download/'.$date->format('Y-m-d_H-i-s').'download.csv';
+
+           // Open file to insert the csv file
+           $fp = fopen($fileDir, 'w');
+
+           // Define the headers and insert into the csv file
+           $headers = array('fulfillment_id', 'month', 'year', 'goal', 'user_id', 'transactions', 'identification');
+
+           fputcsv($fp, $headers);
+
+           foreach ($fulfillments->chunk(50000) as $t) {
+
+               // Mapping the array and inserting data inside the csv file
+               $t->map(function ($item, $key) use ($fp) {
+                     // Eliminate period and updated_at column from the object
+                     $collection = collect($item)->except(['created_at', 'updated_at'])->push([null, $item['useridentification']]);
+                     $flattened = Arr::flatten($collection);
+                     fputcsv($fp, $flattened);
+
+                     return $flattened;
+
+                 })->filter()->values()->all();
+            }
+
+            // Closing the csv file
+            fclose($fp);
+
+            // Downloading the csv generated
+            return response()->download($fileDir)->deleteFileAfterSend();
+
+       } else {
+
+            return back()->with('status', 'No hay metas pendientes por actualizar');
+       }
+
+
+    }
+
+    public static function loadFulfillmentResults($file, $type, $update = false, $chunk = 1000, $event = null)
+    {
+        $date = Carbon::now();
+
+        $filename = $date->format('Y-m-d_H-i-s').'_data.csv';
+        $originalFilename = $file->getClientOriginalName();
+        $file->storeAs('uploads', $filename);
+
+        // Convert csv file in array variable called $array and convert that variable into a collection
+        $array = array_map("str_getcsv", file($file));
+        $collection = collect($array);
+/*
+        dd($collection); */
+
+        // Get the body of the collection, that means the body contain the rows of the table
+        $collectBody = $collection->splice(1);
+
+        // Get the header of the collection, that means the header is the columns of the table
+            $collectHeader = $collection->push(['created_at','updated_at'])->flatten()->all();
+            $add = [$date, $date];
+
+        // Transform between the Body and Header to combinate and make the references columns and rows content
+        $collectionMix = $collectBody->map(function ($item, $key) use ($collectHeader, $add) {
+
+            $item = Arr::collapse([$item, $add]);
+
+            if (count($item) == count($collectHeader) and !in_array("",$item)) {
+                $collect = collect($collectHeader)->combine($item);
+                return $collect->only(['transactions','fulfillment_id','created_at', 'updated_at'])->all();
+            }
+        })->filter()->values()->all();
+
+        // for with array chunk to ejecute 10000 petitions at time with the $collectionMix variable to push directrly to database
+        foreach (array_chunk($collectionMix, $chunk) as $t) {
+            DB::table('fulfillment_results')->insert($t);
+        }
+
+        // Register a history of the file loads
+        $history = new LoadHistory([
+            'original_file_name' => $originalFilename,
+            'records_count' => count($collectionMix),
+        ]);
+        $history->save();
+
+        // error for fulfillments
+        if ($type == 'fulfillmentss') {
+            $this->InvalidFulfillments($collection, $collectBody, $add, $history);
+        }
+
+        // Returning the $history of file loaded
+        return $history;
     }
 
 }

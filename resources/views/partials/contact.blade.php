@@ -24,16 +24,16 @@
 							</div>
 							<div class="row">
 								<div class="col-md-6">
-									<select class="input-custom" id="department_contact">
-										<option value="" disabled selected>Selecione una opción</option>
+									<select class="form-control select-custom" id="department_contact">
+										<option value="" disabled selected>Selecione Departamento</option>
 										@foreach($departments as $item)
 											<option value="{{$item->id}}">{{$item->name}}</option>
 										@endforeach
 									</select>
 								</div>
 								<div class="col-md-6">
-									<select name="city_id" id="city_contact" type="text" class="input-custom" placeholder="Ciudad">
-										<option value="" disabled selected>Selecione una opción</option>
+									<select name="city_id" id="city_contact" type="text" class="form-control select-custom" placeholder="Ciudad">
+										<option value="" disabled selected>Selecione Ciudad</option>
 									</select>
 								</div>
 							</div>

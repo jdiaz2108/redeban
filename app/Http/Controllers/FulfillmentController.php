@@ -11,6 +11,7 @@ use Illuminate\Support\Carbon;
 
 class FulfillmentController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -18,10 +19,6 @@ class FulfillmentController extends Controller
      */
     public function index(Request $request)
     {
-
-        $collection = Fulfillment::all();
-        $grouped = $collection->groupBy('event')->keys()->all();
-
       $name = $request['query'];
       if(is_null($name))
       {
@@ -32,7 +29,7 @@ class FulfillmentController extends Controller
         })->paginate();
       }
 
-      return view('pages.admin.fulfillments.index', compact('fulfillments', 'grouped'));
+      return view('pages.admin.fulfillments.index', compact('fulfillments'));
     }
 
     /**
@@ -54,11 +51,10 @@ class FulfillmentController extends Controller
     public function store(LoadFulfillmentRequest $request)
     {
         $file = $request->file('data');
-        $event = $request['event'];
 
         // Call csvfileimporter controller and use the processCsvFile function
         // receive 3 parameters (1. file, 2. which table is, 3. if is first load or updated, 4. chunk, 5. Event string)
-        CsvFileImporter::processCSVFile($file, 'fulfillments', false, 10000, $event);
+        CsvFileImporter::storeFulfillmentCsv($file, 'fulfillments', false, 10000, 'Initial load');
 
         return redirect()->route('admin::histories.index')->with('status', 'Se han cargado las metas correctamente');
     }
@@ -96,7 +92,7 @@ class FulfillmentController extends Controller
     {
         $file = $request->file('data');
 
-        CsvFileImporter::processCSVFile($file, 'fulfillments', true, 1000, null);
+        CsvFileImporter::loadFulfillmentResults($file, 'fulfillments', true, 1000, null);
 
         return redirect()->route('admin::histories.index')->with('status', 'Se han actualizado las metas correctamente');
     }

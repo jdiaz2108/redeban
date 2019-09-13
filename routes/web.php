@@ -69,7 +69,8 @@ Route::middleware('auth')->group(function () {
 
             Route::resource('/contacts', 'ContactController')->only(['index', 'show']);
 
-            Route::get('/csv', 'CSVFileImporter@download');
+            Route::get('/csv', 'CSVFileImporter@downloadFulfillmentsCsv');
+            Route::get('/csv-user-point', 'CSVFileImporter@downloadUserPoints')->name('user.point');
             Route::get('/csv-fulfillments-base', 'CSVFileImporter@fulfillmentsBase')->name('fulfillment.base');
             Route::get('/csv-user-base', 'CSVFileImporter@userBase')->name('user.base');
             Route::get('/reports-access', 'UserController@reportAccess');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FulfillmentResult;
 use App\Models\Fulfillment;
 use Auth;
 use App\Models\Point;
@@ -100,59 +101,61 @@ class PointController extends Controller
 
     public function liquidation()
     {
-        $collection = Fulfillment::doesntHave('point')->doesntHave('invalidpoint')->where('value', '!=' , null)->get();
+        $collection = Fulfillment::has('fulfillmentResults', '<', 4)->with('fulResSameMonth')->get();
 
-        $validation = $collection->isNotEmpty();
+       $collection = FulfillmentResult::whereLiquidated(false)->with('fulfillment')->get() ;
 
-        if ($validation) {
+        // dd($collection);
+
+        // Old code
+
+        if ($collection->isNotEmpty()) {
 
             $date = Carbon::now();
 
-            $collectHeader = ['event', 'value', 'user_id', 'fulfillment_id', 'month', 'year', 'created_at','updated_at'];
+            $collectHeader = ['event', 'value', 'user_id', 'fulfillment_results_id', 'month', 'year', 'created_at','updated_at'];
             $add = [intval($date->format('m')), intval($date->format('Y')), $date, $date];
 
-            $collectionMix = $collection->map(function ($item, $key) use ($collectHeader, $add, $date) {
+            $collectionIdRes = $collection->map(function ($item, $key) use ($collectHeader, $add) {
+                return collect(['id'])->combine([$item['id']])->all();
 
-                if ($item['value'] >= $item['goal'] && $item['points']) {
-                    $value = $item['points'];
-                    $array = ['Cumplimiento meta: '.$item['event'],$value, $item['user_id'], $item['id']];
+            })->filter()->values()->all();
+
+            dd($collectionIdRes);
+            $collectionMix = $collection->map(function ($item, $key) use ($collectHeader, $add) {
+
+                if ($item['goal'] < $item['MaxNoLiq']) {
+
+
+                    $value = ($item['MaxNoLiq'] - $item['MaxLiq']) * $item['points'];
+                    $array = ["Cumplimiento meta semanal: {$item['month']} - {$item['year']}", $value, $item['user_id'], $item['idfulres']->id,];
                     $arrayUp = Arr::collapse([$array, $add]);
 
                     return collect($collectHeader)->combine($arrayUp)->all();
                 }
+                // if ($item['value'] >= $item['goal'] && $item['points']) {
+                //     $value = $item['points'];
+                //     $array = ['Cumplimiento meta: '.$item['event'],$value, $item['user_id'], $item['id']];
+                //     $arrayUp = Arr::collapse([$array, $add]);
 
-            })->filter()->values()->all();
-
-            $collectionInvalidPoints = $collection->map(function ($item, $key) use ($collectHeader, $add, $date) {
-
-                if ($item['value'] < $item['goal']) {
-
-                    $value = 0;
-                    $array = ['Incumplimiento meta: '.$item['event'],$value, $item['user_id'], $item['id']];
-                    $arrayUp = Arr::collapse([$array, $add]);
-
-                    return collect($collectHeader)->combine($arrayUp)->all();
-                }
+                //     return collect($collectHeader)->combine($arrayUp)->all();
+                // }
 
             })->filter()->values()->all();
 
 
-            if ( empty($collectionMix) && empty($collectionInvalidPoints) ) {
-
-                return back()->with('status', 'Algunos usuarios no cuentan con su categoria');
-
-            } else {
+            foreach (array_chunk($collectionIdRes, 5000) as $t) {
+                $ids = collect($t)->pluck('id');
+                DB::table('fulfillment_results')->whereIn('id', $ids)->update(['liquidated' => true]);
+            }
 
                 foreach (array_chunk($collectionMix, 5000) as $t) {
                     DB::table('points')->insert($t);
                 }
 
-                foreach (array_chunk($collectionInvalidPoints, 5000) as $t) {
-                    DB::table('invalid_points')->insert($t);
-                }
 
-                return back()->with('status', 'Se ha realizado la liquidación de '.count($collectionMix).' usuarios.');
-            }
+                return back()->with('status', 'Se ha realizado la liquidación de '.count($collectionIdRes).' usuarios.');
+
 
         } else {
 

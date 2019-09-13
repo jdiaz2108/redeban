@@ -24,7 +24,6 @@ class LoadFulfillmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'event' => 'required',
             'data' => 'required|file|mimes:csv,txt',
         ];
     }
@@ -32,7 +31,6 @@ class LoadFulfillmentRequest extends FormRequest
     public function attributes()
     {
         return [
-            'event' => 'nombre evento',
             'data' => 'archivo csv',
         ];
     }

@@ -17,7 +17,7 @@ body {
 	border: 0px;
 	width: 100%;
 	padding: 5px;
-	color: #cbcbcb;
+	color: #ffffff;
 	font-size: 18px;
 
 }
@@ -28,19 +28,44 @@ input:focus {
   outline: 0 none;
 }
 
-input:-webkit-autofill {
-   -webkit-box-shadow: 0 0 0px 1000px #4a4b4c inset !important;
-	 //-webkit-box-shadow: 0 0 0px 1000px red inset !important;
-	 color: #fff !important;
+.select-custom {
+    background-color: transparent !important;
+    border: 0px;
+    width: 100%;
+    padding: 5px;
+    color: #ffffff;
+    font-size: 18px;
+
 }
+
+select {
+    color: rgb(252, 252, 252) !important;
+    background-color: #424242 !important;
+}
+
+select:focus {
+    background-color: #424242 !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff00 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 
 ::placeholder {
   color: #cbcbcb;
 }
 
-select {
-	color: #000 !important;
-}
 
 .input-custom2 {
 	background-color: transparent !important;

@@ -95,7 +95,7 @@
                         <img src="{{asset('images/icons/city.png')}}" alt="">
                       </div>
                       <div class="col-md-5">
-                        <select class="input-custom" id="department_id">
+                        <select class="select-custom" id="department_id">
                           <option value="" disabled selected>Selecione una opción</option>
                           @foreach($departments as $item)
                             <option value="{{$item->id}}">{{$item->name}}</option>
@@ -103,7 +103,7 @@
                         </select>
                       </div>
                       <div class="col-md-5">
-                        <select name="city_id" id="city_id" type="text" class="input-custom @error('city_id') is-invalid @enderror" placeholder="Ciudad">
+                        <select name="city_id" id="city_id" type="text" class="select-custom @error('city_id') is-invalid @enderror" placeholder="Ciudad">
                           <option value="" disabled selected>Selecione una opción</option>
                         </select>
                       </div>

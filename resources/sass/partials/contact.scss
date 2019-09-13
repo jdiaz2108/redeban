@@ -26,6 +26,21 @@
 
   }
 
+  .select-custom {
+    background-color: #ffffff4d !important;
+    border: 0px;
+    width: 100%;
+    padding: 5px 10px;
+    color: #fff;
+    font-size: 18px;
+  border-radius: 0px;
+
+}
+
+select:focus {
+    background-color: #424242 !important;
+}
+
   ::placeholder {
     color: #fff;
   }

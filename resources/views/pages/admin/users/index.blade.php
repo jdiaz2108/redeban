@@ -87,6 +87,7 @@
               {{$users->links()}}
           </div>
           <div class="col-md-12 text-right">
+            <a href="{{ route('admin::user.point') }}" class="btn btn-custom float-left"><i class="fa fa-cloud-download"></i> Descargar usuarios y puntos</a>
             <a href="" class="btn btn-custom-green" data-toggle="modal" data-target="#upload-users"><i class="fa fa-upload"></i> Cargar</a>
           </div>
         </div>

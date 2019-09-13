@@ -38,7 +38,9 @@
                   <thead>
                       <tr>
                           <th>Id</th>
-                          <th>Evento</th>
+                          <th>Mes</th>
+                          <th>Año</th>
+                          <th>Semanas cargadas</th>
                           <th>Meta</th>
                           <th>Valor</th>
                           <th>Nombre Usuario</th>
@@ -49,10 +51,16 @@
                       @forelse($fulfillments as $item)
                       <tr>
                         <td>
-                          {{$item->id}}
+                        {{$item->id}}
                         </td>
                         <td>
-                          {{$item->event}}
+                            {{$item->month}}
+                        </td>
+                        <td>
+                            {{$item->year}}
+                        </td>
+                        <td>
+                          {{$item->fulfillmentcount}}
                         </td>
                         <td>
                           {{$item->goal}}
@@ -69,7 +77,7 @@
                       </tr>
                     @empty
                       <tr>
-                        <td colspan="6" align="center">No hay registros de carga de datos</td>
+                        <td colspan="8" align="center">No hay registros de carga de datos</td>
                       </tr>
                     @endforelse
                   </tbody>
@@ -95,10 +103,6 @@
       <div class="modal-body text-center">
         <form action="/dashboard/fulfillments" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="form-group">
-              <label for="">Nombre <span>*</span> </label>
-              <input type="text" name="event" class="form-control" placeholder="Nombre del evento" required>
-            </div>
             <div class="form-group">
               <label for="">Archivo <span>*</span> </label>
               <input type="file" name="data" class="form-control" required>
@@ -150,14 +154,10 @@
             @csrf
               {{-- @method('PUT') --}}
               <div class="form-group">
-                <label for="event">Seleccione el evento:</label>
-                <select class="form-control" id="event" name="event" required>
-                    @forelse ($grouped as $item)
-                        <option>{{$item}}</option>
-                    @empty
+                {{-- <label for="week">Seleccione la semana que va a actualizar:</label>
+                <select class="form-control" id="week" name="week" required>
                         <option>2</option>
-                    @endforelse
-                </select>
+                </select> --}}
               </div>
               <button type="submit" class="btn btn-custom fontSize18">Descargar</button>
           </form>
