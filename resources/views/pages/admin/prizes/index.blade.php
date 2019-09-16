@@ -58,7 +58,7 @@
                                 <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="#">Editar</a>
+                              <a class="dropdown-item" href="/dashboard/prizes/{{$prize['code']}}/edit">Editar</a>
                               <div class="dropdown-divider"></div>
                               <form action="/dashboard/prizes/{{$prize['code']}}" method="POST">
                                 @method('DELETE') @csrf

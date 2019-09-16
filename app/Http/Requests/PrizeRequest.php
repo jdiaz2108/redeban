@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class PrizeRequest extends FormRequest
 {
@@ -26,7 +27,7 @@ class PrizeRequest extends FormRequest
         return [
             'name' => 'required',
             'point' => 'required|integer|min:1',
-            'code' => 'required|unique:prizes',
+            'code' => 'required|'.Rule::unique('prizes')->ignore($this->route('prize')),
             // 'image' => 'required',
             'stock'  => 'required|integer|min:1',
         ];

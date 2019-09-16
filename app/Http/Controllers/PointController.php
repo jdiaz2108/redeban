@@ -101,60 +101,50 @@ class PointController extends Controller
 
     public function liquidation()
     {
-        $collection = Fulfillment::has('fulfillmentResults', '<', 4)->with('fulResSameMonth')->get();
+        // Define the collection with fulfillment relationship, liquidation has to be false and get uniques fulfillments id
+        $collection = FulfillmentResult::whereLiquidated(false)->with('fulfillment')->get()->unique('fulfillment_id');
 
-       $collection = FulfillmentResult::whereLiquidated(false)->with('fulfillment')->get() ;
-
-        // dd($collection);
-
-        // Old code
-
+        // Validate if the collection is not empty and have data to liquidate
         if ($collection->isNotEmpty()) {
 
             $date = Carbon::now();
 
+            // Define the headers
             $collectHeader = ['event', 'value', 'user_id', 'fulfillment_results_id', 'month', 'year', 'created_at','updated_at'];
             $add = [intval($date->format('m')), intval($date->format('Y')), $date, $date];
 
-            $collectionIdRes = $collection->map(function ($item, $key) use ($collectHeader, $add) {
-                return collect(['id'])->combine([$item['id']])->all();
-
-            })->filter()->values()->all();
-
-            dd($collectionIdRes);
+            // Mixing the collection with headers and data to generate points collection
             $collectionMix = $collection->map(function ($item, $key) use ($collectHeader, $add) {
 
-                if ($item['goal'] < $item['MaxNoLiq']) {
+                // Validate if the user can get points
+                if ($item['fulfillment']['goal'] < $item['transactions']) {
 
-
-                    $value = ($item['MaxNoLiq'] - $item['MaxLiq']) * $item['points'];
-                    $array = ["Cumplimiento meta semanal: {$item['month']} - {$item['year']}", $value, $item['user_id'], $item['idfulres']->id,];
+                    $value = ($item['transactions'] - $item['fulfillment']['MaxLiq']) * $item['fulfillment']['points'];
+                    $array = ["Cumplimiento meta semanal: {$item['fulfillment']['month']} - {$item['fulfillment']['year']}", $value, $item['fulfillment']['user_id'], $item['id'],];
                     $arrayUp = Arr::collapse([$array, $add]);
 
                     return collect($collectHeader)->combine($arrayUp)->all();
                 }
-                // if ($item['value'] >= $item['goal'] && $item['points']) {
-                //     $value = $item['points'];
-                //     $array = ['Cumplimiento meta: '.$item['event'],$value, $item['user_id'], $item['id']];
-                //     $arrayUp = Arr::collapse([$array, $add]);
-
-                //     return collect($collectHeader)->combine($arrayUp)->all();
-                // }
 
             })->filter()->values()->all();
 
+            // Collection to get all the ids and update the state to liquidated true
+            $collectionIdRes = $collection->map(function ($item, $key) {
+
+                return collect(['id'])->combine([$item['id']])->all();
+
+            })->filter()->values()->all();
 
             foreach (array_chunk($collectionIdRes, 5000) as $t) {
                 $ids = collect($t)->pluck('id');
                 DB::table('fulfillment_results')->whereIn('id', $ids)->update(['liquidated' => true]);
             }
 
-                foreach (array_chunk($collectionMix, 5000) as $t) {
-                    DB::table('points')->insert($t);
-                }
+            foreach (array_chunk($collectionMix, 5000) as $t) {
+                DB::table('points')->insert($t);
+            }
 
-
-                return back()->with('status', 'Se ha realizado la liquidación de '.count($collectionIdRes).' usuarios.');
+            return back()->with('status', 'Se ha realizado la liquidación de '.count($collectionIdRes).' usuarios.');
 
 
         } else {

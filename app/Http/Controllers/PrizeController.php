@@ -18,7 +18,7 @@ class PrizeController extends Controller
     {
         // $prizes = Prize::whereActive(true)->get();
         $prizes = Prize::paginate();
-        
+
         return view('pages.admin.prizes.index', compact('prizes'));
     }
 
@@ -70,9 +70,9 @@ class PrizeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Prize $prize)
     {
-        //
+        return view('pages.admin.prizes.edit', compact('prize'));
     }
 
     /**
@@ -82,9 +82,11 @@ class PrizeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PrizeRequest $request, Prize $prize)
     {
-        //
+        $data = $request->all();
+        $prize->update($data);
+        return redirect('/dashboard/prizes')->with('status', 'Se han actualizado el item correctamente');
     }
 
     /**
@@ -97,6 +99,6 @@ class PrizeController extends Controller
     {
         $prize->update(['active' => false]);
         $prize->delete();
-        return redirect('/dashboard/prizes')->with('status', 'Se han actualizado los datos correctamente');
+        return redirect('/dashboard/prizes')->with('status', 'Se han eliminado el item correctamente');
     }
 }

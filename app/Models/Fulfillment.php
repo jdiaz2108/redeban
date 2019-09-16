@@ -81,9 +81,4 @@ class Fulfillment extends Model
         return $this->fulResSameMonth()->whereLiquidated(false)->max('transactions');
     }
 
-    public function getIdFulResAttribute()
-    {
-        return $this->fulResSameMonth()->whereLiquidated(false)->orderBy('transactions', 'desc')->first(); ;
-    }
-
 }
