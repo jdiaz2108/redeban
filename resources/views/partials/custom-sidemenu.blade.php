@@ -23,6 +23,7 @@
     <a id="btn-custom-sidemenu-close" class="list-group-item item-menu">
       <i class="fa fa-times-circle"></i> &nbsp; MENÚ
     </a>
+    {{session('current_shop')}}
     @if (Auth::user()->changedPassword)
     @foreach($menu as $item)
       @hasanyrole($item['roles'])

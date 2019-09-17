@@ -35,11 +35,17 @@ Route::middleware('auth')->group(function () {
         // Update data is required
         Route::middleware('update.data')->group(function () {
 
+            Route::resource('/shop', 'ShopController')->only(['index', 'show']);
+
             Route::get('/catalog', 'HomeController@catalog');
+
             Route::get('/prize/{id}', 'HomeController@showPrize');
-            Route::resource('/redeem-validate-mail', 'RedeemValidateMailController')->only(['store', 'update']);
-            Route::get('/points', 'HomeController@points');
-            Route::get('/transactions', 'HomeController@transactions');
+
+            Route::middleware('current.shop')->group(function () {
+                Route::resource('/redeem-validate-mail', 'RedeemValidateMailController')->only(['store', 'update']);
+                Route::get('/points', 'HomeController@points');
+                Route::get('/transactions', 'HomeController@transactions');
+            });
 
         });
 

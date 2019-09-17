@@ -10,6 +10,7 @@ use App\Models\Prize;
 use App\Models\Coupon;
 use App\Models\Fulfillment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -74,15 +75,16 @@ class HomeController extends Controller
     public function points()
     {
         $user = Auth::user();
+        // Session::put('current_shop', 3);
+        // return session('current_shop');
         $historyPoints = Auth::user()->points()->get()->sortByDesc('created_at');
-
         return view('pages.home.history-points', compact('historyPoints','user'));
     }
 
     public function transactions()
     {
         $user = Auth::user();
-        $historyFulfillment = Auth::user()->fulfillmentAll();
+        $historyFulfillment = Fulfillment::whereShopId(session('current_shop'));
 
         return view('pages.home.history-transactions', compact('historyFulfillment','user'));
     }

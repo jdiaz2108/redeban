@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Shop;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'identification', 'name', 'email', 'email', 'password',
+        'identification', 'name', 'email', 'password',
     ];
 
     /**
@@ -71,6 +72,11 @@ class User extends Authenticatable
     public function fulfillmentAll()
     {
         return $this->hasMany('App\Models\Fulfillment')->latest()->get();
+    }
+
+    public function shops()
+    {
+        return $this->hasMany(Shop::class);
     }
 
     /* return an atribute in boolean variable if the user has updated data accessing with $user->updated */

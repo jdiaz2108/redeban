@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFulfillmentsTable extends Migration
+class CreateShopsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateFulfillmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('fulfillments', function (Blueprint $table) {
+        Schema::create('shops', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('month');
-            $table->integer('year');
-            $table->integer('goal');
-            $table->unsignedBigInteger('shop_id');
-            $table->foreign('shop_id')->references('id')->on('shops');
-            // $table->integer('user_id');
+            $table->integer('code')->unique()->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreateFulfillmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fulfillments');
+        Schema::dropIfExists('shops');
     }
 }

@@ -63,6 +63,7 @@ class Kernel extends HttpKernel
 
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class, //laravel-permission
         'update.data' => \App\Http\Middleware\CheckDataUpdated::class,
+        'current.shop' => \App\Http\Middleware\SelectShop::class,
     ];
 
     /**
