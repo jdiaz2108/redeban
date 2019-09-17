@@ -110,7 +110,7 @@ class PointController extends Controller
             $date = Carbon::now();
 
             // Define the headers
-            $collectHeader = ['event', 'value', 'user_id', 'fulfillment_results_id', 'month', 'year', 'created_at','updated_at'];
+            $collectHeader = ['event', 'value', 'shop_id', 'fulfillment_results_id', 'month', 'year', 'created_at','updated_at'];
             $add = [intval($date->format('m')), intval($date->format('Y')), $date, $date];
 
             // Mixing the collection with headers and data to generate points collection
@@ -120,7 +120,7 @@ class PointController extends Controller
                 if ($item['fulfillment']['goal'] < $item['transactions']) {
 
                     $value = ($item['transactions'] - $item['fulfillment']['MaxLiq']) * $item['fulfillment']['points'];
-                    $array = ["Cumplimiento meta semanal: {$item['fulfillment']['month']} - {$item['fulfillment']['year']}", $value, $item['fulfillment']['user_id'], $item['id'],];
+                    $array = ["Cumplimiento meta semanal: {$item['fulfillment']['month']} - {$item['fulfillment']['year']}", $value, $item['fulfillment']['shop_id'], $item['id'],];
                     $arrayUp = Arr::collapse([$array, $add]);
 
                     return collect($collectHeader)->combine($arrayUp)->all();

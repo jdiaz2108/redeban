@@ -20,7 +20,7 @@
         </div>
         <div class="row">
           <div class="col-6">
-            <div class="image-show">
+            <div class="image-show rounded">
               @if ($prize['image'])
               <img src="{{$prize['image']}}" class="img-fluid mx-auto d-block" alt="...">
               @else

@@ -23,7 +23,7 @@
             <div id="slider" class="cards-slider">
                 @foreach ($prizes as $key => $prize)
                 <div class="prize-item">
-                  <div class="content-image">
+                  <div class="content-image rounded-top shadow" >
                     <a href="{{url('prize',$prize['id'])}}">
                     @if ($prize['image'])
                     <img src="{{$prize['image']}}" class="img-fluid" width="170" alt="...">
@@ -33,7 +33,7 @@
                     <span class="stock" title="Unidades">{{$prize['stock']}}</span>
                     </a>
                   </div>
-                  <div class="box-text {{$colors[$key]}} text-left">
+                  <div class="box-text {{$colors[$key]}} text-left rounded-bottom shadow">
                     <p class="name" title="{{$prize['description']}}">{{$prize['name']}}</p>
                     <p class="num">{{$prize['point']}} Puntos</p>
                   </div>

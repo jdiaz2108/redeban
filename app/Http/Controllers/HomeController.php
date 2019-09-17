@@ -49,7 +49,7 @@ class HomeController extends Controller
     public function catalog()
     {
         $user = Auth::user();
-        $prizes = Prize::whereActive(true)->get();
+        $prizes = Prize::whereActive(true)->where('stock','>',0)->get();
         $colors = ['boxred','boxgreen','boxblue','boxred','boxgreen','boxblue'];
 
         return view('pages.home.prize.catalog', compact('prizes','user','colors'));
@@ -86,7 +86,7 @@ class HomeController extends Controller
     public function transactions()
     {
         $user = Auth::user();
-        $historyFulfillment = Fulfillment::whereShopId(session('current_shop'));
+        $historyFulfillment = Fulfillment::whereShopId(session('current_shop'))->get();
 
         return view('pages.home.history-transactions', compact('historyFulfillment','user'));
     }

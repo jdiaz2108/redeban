@@ -135,7 +135,7 @@ class RedeemValidateMailController extends Controller
 
                    $coupon = new Coupon([
                        'code' => strtoupper(Str::random(10)),
-                       'user_id' => $user->id,
+                       'shop_id' => session('current_shop'),
                        'prize_id' => $prize->id,
                        ]);
 

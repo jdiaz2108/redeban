@@ -18,9 +18,8 @@ class CreateUsersTable extends Migration
             $table->bigInteger('identification')->unique();
             $table->string('name_company');
             $table->boolean('active');
-            $table->integer('code')->unique()->nullable();
             $table->string('email')->nullable();
-            $table->string('phone')->unique()->nullable();
+            $table->string('phone')->nullable();
             $table->string('password');
             $table->string('name')->nullable();
             $table->string('address')->nullable();

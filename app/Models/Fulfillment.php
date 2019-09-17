@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Shop;
 use App\Models\Point;
 use App\Models\InvalidPoint;
 use App\Models\FulfillmentResult;
@@ -14,9 +15,9 @@ class Fulfillment extends Model
     ];
 
     // Relationships
-    public function user()
+    public function shop()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(Shop::class);
     }
 
     public function fulfillmentResults()
@@ -35,9 +36,9 @@ class Fulfillment extends Model
     }
 
     // Internal Functions calling relationships
-    public function userCategory()
+    public function shopCategory()
     {
-        return $this->user()->with('category');
+        return $this->shop()->first()->user()->with('category');
     }
 
     public function fulResSameMonth()
@@ -53,7 +54,7 @@ class Fulfillment extends Model
 
     public function getPointsAttribute()
     {
-        return $this->userCategory()->first()['category']['points_redeem'];
+        return $this->shopCategory()->first()['category']['points_redeem'];
     }
 
     public function getUserIdentificationAttribute()

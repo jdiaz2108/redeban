@@ -30,7 +30,8 @@
                 <table class="table table-custom table-striped">
                     <thead>
                         <tr>
-                            <th>Evento</th>
+                            <th>Mes</th>
+                            <th>Año</th>
                             <th>Meta</th>
                             <th>Transacciones</th>
                         </tr>
@@ -38,7 +39,8 @@
                     <tbody class="content-directory">
                         @forelse($historyFulfillment as $fulfillment)
                         <tr>
-                            <td>{{$fulfillment['event']}}</td>
+                            <td>{{$fulfillment['month']}}</td>
+                            <td>{{$fulfillment['year']}}</td>
                             <td>{{$fulfillment['goal']}}</td>
                             <td>{{$fulfillment['value'] ?? 0}}</td>
                         </tr>
