@@ -6,18 +6,7 @@
     <div class="row">
       <div class="col-md-1"></div>
       <div class="col-md-10 content-page">
-        <div class="row">
-          <div class="col-9">
-            <h2 class="name-company">{{$user->name_company}}</h2>
-            <hr class="line">
-            <p class="points">Puntos {{$user->sumpoints}}</p>
-          </div>
-          <div class="col-3">
-            @if(!is_null($user->category_id))
-              <img src="{{asset($user->categoryImage($user->category_id))}}" alt="">
-            @endif
-          </div>
-        </div>
+          @include('layouts.points')
           <div class="row">
               <div class="col-md-12">
                 @include('layouts.messages')
@@ -37,13 +26,14 @@
                     </div>
                 </div>
                   @empty
-                  <div class="card" style="width: 18rem;">
+                  <div class="col-12">
+                    <div class="card text-white bg-secondary shadow h-100">
                         <div class="card-body">
-                          <h5 class="card-title">Empty</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <h5 class="card-title">Sin punto de venta</h5>
+                          <p class="card-text">Actualmente no tiene ningún punto de venta relacionado, por favor póngase en contacto con soporte técnico.</p>
                         </div>
                       </div>
+                  </div>
                   @endforelse
               </div>
         </div>

@@ -6,18 +6,7 @@
     <div class="row">
       <div class="col-md-1"></div>
       <div class="col-md-10 content-page">
-        <div class="row">
-          <div class="col-9">
-            <h2 class="name-company">{{$user->name_company}}</h2>
-            <hr class="line">
-            <p class="points">Puntos {{$user->sumpoints}}</p>
-          </div>
-          <div class="col-3">
-            @if(!is_null($user->category_id))
-              <img src="{{asset($user->categoryImage($user->category_id))}}" alt="">
-            @endif
-          </div>
-        </div>
+            @include('layouts.points')
           <div class="row">
               <div class="col-md-12">
                 @include('layouts.messages')

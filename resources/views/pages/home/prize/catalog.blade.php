@@ -10,7 +10,7 @@
           <div class="col-9">
             <h2 class="title">Catálogo</h2>
             <hr class="line">
-            <p class="points">Puntos {{$user->sumpoints}}</p>
+            <p class="points">Puntos {{$user->points}}</p>
           </div>
           <div class="col-3">
             @if(!is_null($user->category_id))

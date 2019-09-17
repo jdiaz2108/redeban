@@ -26,7 +26,7 @@ class SelectShop
                 return $next($request);
             }
 
-            return redirect('/shop')->with('status', 'SELECCIONA UNA TIENDA PARA CONTINUAR.');
+            return redirect('/shop')->with('status', 'SELECCIONA UN PUNTO DE VENTA PARA CONTINUAR.');
         }
 
         return $next($request);

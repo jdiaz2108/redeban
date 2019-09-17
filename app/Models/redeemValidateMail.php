@@ -10,6 +10,6 @@ class redeemValidateMail extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'code', 'user_id', 'prize_id', 'active'
+        'code', 'shop_id', 'prize_id', 'active'
 	];
 }

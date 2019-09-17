@@ -17,8 +17,8 @@ class CreatePointsTable extends Migration
             $table->bigIncrements('id');
             $table->string('event');
             $table->integer('value');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('shop_id');
+            $table->foreign('shop_id')->references('id')->on('shops');
             $table->unsignedBigInteger('fulfillment_results_id')->nullable();
             $table->foreign('fulfillment_results_id')->references('id')->on('fulfillment_results');
             $table->integer('month');

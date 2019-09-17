@@ -52,9 +52,8 @@ class RedeemValidateMailController extends Controller
         $prize = Prize::whereCode($data['code'])->firstOrFail();
         $user = $request->user();
         // Validate if User has more points that the cost of the prize
-        if ($user->sumpoints >= $prize['point']) {
-
-            $data['user_id'] = $user->id;
+        if ($user->points >= $prize['point']) {
+            $data['shop_id'] = session('current_shop');
             $data['prize_id'] = $prize['id'];
             $data['code'] = strtoupper(Str::random(10));
             $code = new redeemValidateMail($data);
@@ -114,7 +113,7 @@ class RedeemValidateMailController extends Controller
     {
         $prize = Prize::whereCode($id)->firstOrFail();
         $user = $request->user();
-        $activeredeem = $user->activeredeem;
+        $activeredeem = $user->ActiveRedeem;
 
         // initialize MessageBag model and is used to redirect with $errors
         $errors = new MessageBag;
@@ -145,7 +144,7 @@ class RedeemValidateMailController extends Controller
                        $points = new Point([
                             'event' => 'Compra cupon '.$prize['name'],
                             'value' => -$prize['point'],
-                            'user_id' => $request->user()->id,
+                            'shop_id' => session('current_shop'),
                             'month' => $date->month,
                             'year' => $date->year
                         ]);

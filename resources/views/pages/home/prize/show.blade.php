@@ -10,7 +10,7 @@
           <div class="col-9">
             <h2 class="title">Catálogo</h2>
             <hr class="line">
-            <p class="points">Puntos {{$user->sumpoints}}</p>
+            <p class="points">Puntos {{$user->points}}</p>
           </div>
           <div class="col-3">
             @if(!is_null($user->category_id))
@@ -49,7 +49,7 @@
                 <h2 class="name">{{$prize['name']}}</h2>
                 <p class="points">{{$prize['point']}} Puntos {{$redeem}}</p>
                 <p class="description">{{$prize['description']}}</p>
-                @if (Auth::user()->sumpoints >= $prize['point'])
+                @if ($user->points >= $prize['point'])
                   <form action="/redeem-validate-mail" method="POST">
                       @csrf
                       <input type="hidden" name="code" value="{{$prize['code']}}">

@@ -62,14 +62,16 @@ class UpdateUserDataController extends Controller
         $userData = new UserData($data);
         $userData->save();
         $date = Carbon::now();
-        $points = new Point([
-            'event' => 'Actualización de datos',
-            'value' => 100,
-            'user_id' => $request->user()->id,
-            'month' => $date->month,
-            'year' => $date->year
-        ]);
-        $points->save();
+        if(session('current_shop')) {
+            $points = new Point([
+                'event' => 'Actualización de datos',
+                'value' => 100,
+                'shop_id' => session('current_shop'),
+                'month' => $date->month,
+                'year' => $date->year
+            ]);
+            $points->save();
+        }
 
         return back()->with('status', 'SE HAN ACTUALIZADO LOS DATOS CORRECTAMENTE');
     }

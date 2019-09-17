@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Point extends Model
 {
     protected $fillable = [
-        'event', 'value', 'user_id', 'month', 'year'
+        'event', 'value', 'shop_id', 'month', 'year'
     ];
 
     public function user()

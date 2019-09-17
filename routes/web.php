@@ -37,11 +37,11 @@ Route::middleware('auth')->group(function () {
 
             Route::resource('/shop', 'ShopController')->only(['index', 'show']);
 
-            Route::get('/catalog', 'HomeController@catalog');
 
             Route::get('/prize/{id}', 'HomeController@showPrize');
 
             Route::middleware('current.shop')->group(function () {
+                Route::get('/catalog', 'HomeController@catalog');
                 Route::resource('/redeem-validate-mail', 'RedeemValidateMailController')->only(['store', 'update']);
                 Route::get('/points', 'HomeController@points');
                 Route::get('/transactions', 'HomeController@transactions');

@@ -9,6 +9,7 @@ use App\Models\City;
 use App\Models\Prize;
 use App\Models\Coupon;
 use App\Models\Fulfillment;
+use App\Models\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -58,8 +59,7 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $prize = Prize::find($id);
-        $activeredeem = $user->activeredeem;
-
+        $activeredeem = $user->ActiveRedeem;
         $redeem = (($activeredeem->prize_id ?? '') == $prize->id && ($activeredeem->active ?? '')) ? true : false ;
         if ($redeem) {
 
@@ -77,7 +77,9 @@ class HomeController extends Controller
         $user = Auth::user();
         // Session::put('current_shop', 3);
         // return session('current_shop');
-        $historyPoints = Auth::user()->points()->get()->sortByDesc('created_at');
+        $test = $user->with('shops');
+
+        $historyPoints = Shop::whereUserId($user->id)->whereCode(session('current_shop'))->with('points')->first();
         return view('pages.home.history-points', compact('historyPoints','user'));
     }
 

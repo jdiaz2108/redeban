@@ -49,11 +49,6 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Category')->withDefault();
     }
 
-    public function points()
-    {
-        return $this->hasMany('App\Models\Point');
-    }
-
     public function redeemValidate()
     {
         return $this->hasMany('App\Models\redeemValidateMail');
@@ -79,15 +74,20 @@ class User extends Authenticatable
         return $this->hasMany(Shop::class);
     }
 
+    public function pointShop()
+    {
+        return $this->shops()->whereCode(session('current_shop'))->first();
+    }
+
     /* return an atribute in boolean variable if the user has updated data accessing with $user->updated */
     public function getUpdatedAttribute()
     {
         return ($this->userData) ? true : false ;
     }
     /* return the sum of points in value column 'value' accessing with $user->sumpoints */
-    public function getSumPointsAttribute()
+    public function getPointsAttribute()
     {
-        return $this->points()->sum('value');
+        return ($this->pointShop()) ? $this->pointShop()->totalpoints : null ;
     }
 
     public function getChangedPasswordAttribute()
@@ -97,7 +97,7 @@ class User extends Authenticatable
 
     public function getActiveRedeemAttribute()
     {
-        return $this->redeemValidate()->latest()->first();
+        return $this->pointShop()->redeemValidate()->latest()->first();
     }
 
     public function getFulfillmentGoalAttribute()

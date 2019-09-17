@@ -7,7 +7,7 @@
       <div class="col-md-10 content-page">
         <div class="row">
           <div class="col-9">
-            <h2 class="title">Historial de puntos <span class="line">|</span> <span class="points">Puntos {{$user->sumpoints}}</span></h2>
+            <h2 class="title">Historial de puntos <span class="line">|</span> <span class="points">Puntos {{$user->points ?? ''}}</span></h2>
           </div>
           <div class="col-3">
             @if(!is_null($user->category_id))
@@ -37,7 +37,7 @@
                         </tr>
                     </thead>
                     <tbody class="content-directory">
-                        @forelse($historyPoints as $point)
+                        @forelse($historyPoints['points'] as $point)
                         <tr>
                           <td>{{$point->id}}</td>
                           <td>{{$point->event}}</td>
