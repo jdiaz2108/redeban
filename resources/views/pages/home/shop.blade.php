@@ -17,10 +17,10 @@
                       <div class="card-body">
                       <h5 class="card-title">Codigo: {{$shop['code']}}</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        @if (session('current_shop') == $shop['code'])
-                            <a href="/shop/{{$shop['code']}}" class="btn btn-primary disabled">Tienda seleccionada</a>
+                        @if (session('current_shop') == $shop['id'])
+                            <a href="/selectShop/{{$shop['code']}}" class="btn btn-primary disabled">Tienda seleccionada</a>
                         @else
-                            <a href="/shop/{{$shop['code']}}" class="btn btn-primary">Seleccionar tienda</a>
+                            <a href="/selectShop/{{$shop['code']}}" class="btn btn-primary">Seleccionar tienda</a>
                         @endif
                       </div>
                     </div>

@@ -446,9 +446,12 @@ class CSVFileImporter extends Controller
         // Transform between the Body and Header to combinate and make the references columns and rows content
         $collectionMix = $collectBody->map(function ($item, $key) use ($collectHeader, $add) {
             $item = Arr::collapse([$item, $add]);
-            if (count($item) == count($collectHeader)) {
-                return collect($collectHeader)->combine($item)->all();
+            if (count($item) != count($collectHeader)) {
+                dd($item);
             }
+            // if (count($item) == count($collectHeader)) {
+                return collect($collectHeader)->combine($item)->all();
+            // }
         })->filter()->values()->all();
 
         // for with array chunk to ejecute 10000 petitions at time with the $collectionMix variable to push directrly to database
@@ -461,6 +464,58 @@ class CSVFileImporter extends Controller
 
             User::wherePassword('password')->update(['password' => bcrypt('redeban2019')]);
 
+         }
+
+        // Register a history of the file loads
+        $history = new LoadHistory([
+            'original_file_name' => $originalFilename,
+            'records_count' => count($collectionMix),
+        ]);
+        $history->save();
+
+        // error for fulfillments
+        if ($type == 'fulfillmentss') {
+            $this->InvalidFulfillments($collection, $collectBody, $add, $history);
+        }
+
+        // Returning the $history of file loaded
+        return $history;
+    }
+
+    public static function loadShopFromFile($file, $type, $update = false, $chunk = 1000, $event = null)
+    {
+        $date = Carbon::now();
+
+        $filename = $date->format('Y-m-d_H-i-s').'_data.csv';
+        $originalFilename = $file->getClientOriginalName();
+        $file->storeAs('uploads', $filename);
+
+        // Convert csv file in array variable called $array and convert that variable into a collection
+        $array = array_map("str_getcsv", file($file));
+        $collection = collect($array);
+
+        // Get the body of the collection, that means the body contain the rows of the table
+        $collectBody = $collection->splice(1);
+
+        // Get the header of the collection, that means the header is the columns of the table
+        $collectHeader = $collection->push(['created_at','updated_at'])->flatten()->all();
+        $add = [$date, $date];
+
+        // Transform between the Body and Header to combinate and make the references columns and rows content
+        $collectionMix = $collectBody->map(function ($item, $key) use ($collectHeader, $add) {
+            $item = Arr::collapse([$item, $add]);
+            if (count($item) != count($collectHeader)) {
+                dd($item);
+            }
+            // if (count($item) == count($collectHeader)) {
+                return collect($collectHeader)->combine($item)->all();
+            // }
+        })->filter()->values()->all();
+
+        // for with array chunk to ejecute 10000 petitions at time with the $collectionMix variable to push directrly to database
+
+         foreach (array_chunk($collectionMix, $chunk) as $t) {
+             DB::table('shops')->insert($t);
          }
 
         // Register a history of the file loads

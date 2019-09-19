@@ -16,14 +16,7 @@
 Route::middleware('auth')->group(function () {
 
     // Redirect user if has any role
-    Route::get('/', function () {
-        if (Auth::user()->hasAnyRole('admin')) {
-            return redirect('dashboard');
-        }
-        elseif(Auth::user()->hasAnyRole('user')) {
-            return redirect('home');
-        }
-    });
+    Route::get('/', 'RootController');
 
     Route::post('/change-password', 'Auth\ChangePassword')->name('change.password');
 
@@ -35,8 +28,8 @@ Route::middleware('auth')->group(function () {
         // Update data is required
         Route::middleware('update.data')->group(function () {
 
-            Route::resource('/shop', 'ShopController')->only(['index', 'show']);
-
+            Route::get('/shop', 'HomeController@showShops');
+            Route::get('/selectShop/{id}', 'HomeController@selectShop');
 
             Route::get('/prize/{id}', 'HomeController@showPrize');
 
@@ -63,9 +56,13 @@ Route::middleware('auth')->group(function () {
         // Prefix dashboard to use admin role
         Route::group(['prefix' => 'dashboard', 'as' => 'admin::'], function() {
 
+            Route::resource('/shops', 'ShopController')->only(['index', 'store']);
+
             Route::resource('/prizes', 'PrizeController')->only(['index', 'create' ,'store', 'edit','update', 'destroy']);
 
             Route::resource('/fulfillments', 'FulfillmentController')->only(['index', 'create' , 'edit', 'update', 'store', 'destroy']);
+
+            Route::resource('/prize-category', 'PrizeCategoryController')->only(['store']);
 
             Route::get('/liquidation', 'PointController@liquidation')->name('liquidation');
             Route::resource('/points', 'PointController')->only(['index']);

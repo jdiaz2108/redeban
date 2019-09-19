@@ -49,7 +49,7 @@
                             </td>
                         <td>{{$prize['description']}}</td>
                         <td>
-                          <a class="btn btn-sm {{($prize['stock'] <= 2) ? 'btn-danger' : 'btn-success'}}">{{$prize['stock']}}</a>
+                          <a class="btn btn-sm {{($prize['totalStock'] <= 2) ? 'btn-danger' : 'btn-success'}}">{{$prize['totalStock']}}</a>
                         </td>
                         <td>{{$prize['point']}}</td>
                         <td>

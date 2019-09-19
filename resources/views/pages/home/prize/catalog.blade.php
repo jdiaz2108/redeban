@@ -25,8 +25,8 @@
                 <div class="prize-item">
                   <div class="content-image rounded-top shadow" >
                     <a href="{{url('prize',$prize['id'])}}">
-                    @if ($prize['image'])
-                    <img src="{{$prize['image']}}" class="img-fluid" width="170" alt="...">
+                    @if ($prize['prize']['image'])
+                    <img src="{{$prize['prize']['image']}}" class="img-fluid" width="170" alt="...">
                     @else
                     <img src="{{asset('images/image.png')}}" class="img-fluid" alt="...">
                     @endif
@@ -34,8 +34,8 @@
                     </a>
                   </div>
                   <div class="box-text {{$colors[$key]}} text-left rounded-bottom shadow">
-                    <p class="name" title="{{$prize['description']}}">{{$prize['name']}}</p>
-                    <p class="num">{{$prize['point']}} Puntos</p>
+                    <p class="name" title="{{$prize['prize']['description']}}">{{$prize['prize']['name']}}</p>
+                    <p class="num">{{$prize['prize']['point']}} Puntos</p>
                   </div>
                 </div>
                 @endforeach

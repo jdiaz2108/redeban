@@ -33,7 +33,6 @@ class MailjetController extends Controller
         ];
 
         $response = $mj->post(Resources::$Email, ['body' => $body]);
-        //dd($response);
         if ($response->success()) {
             return true;
         }

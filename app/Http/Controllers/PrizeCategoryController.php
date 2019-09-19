@@ -2,31 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Shop;
-use App\User;
+use App\Models\PrizeCategory;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
-use App\Http\Requests\DataFileRequest;
 
-class ShopController extends Controller
+class PrizeCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if(!is_null($request['query']))
-        {
-          $shops = Shop::FindUser($request['query'])->paginate();
-        } else {
-          $shops = Shop::with('user')->paginate();
-        }
-
-
-        return view('pages.admin.shops', compact('shops'));
+        //
     }
 
     /**
@@ -45,14 +33,13 @@ class ShopController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DataFileRequest $request)
+    public function store(Request $request)
     {
-        $file = $request->file('data');
+        $data = $request->all();
+        $PrizeCategory = new PrizeCategory($data);
+        $PrizeCategory->save();
 
-        // Call a Controller and use the processCVSFile method
-        CsvFileImporter::loadShopFromFile($file, 'shops');
-
-        return redirect()->route('admin::histories.index')->with('status', 'Se han cargado los usuarios correctamente');
+        return back()->with('status', 'Se han creado un nuevo item correctamente');
     }
 
     /**
@@ -63,8 +50,7 @@ class ShopController extends Controller
      */
     public function show($id)
     {
-        Session::put('current_shop', $id);
-        return back()->with('status', 'Haz seleccionado correctamente la tienda con el codigo '.$id);
+        //
     }
 
     /**

@@ -9,6 +9,7 @@ use App\Models\City;
 use App\Models\Prize;
 use App\Models\Coupon;
 use App\Models\Fulfillment;
+use App\Models\PrizeCategory;
 use App\Models\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -49,7 +50,7 @@ class HomeController extends Controller
     public function catalog()
     {
         $user = Auth::user();
-        $prizes = Prize::whereActive(true)->where('stock','>',0)->get();
+        $prizes = PrizeCategory::whereCategoryId($user->category_id)->where('stock','>',0)->has('prize')->with('prize')->get();
         $colors = ['boxred','boxgreen','boxblue','boxred','boxgreen','boxblue'];
 
         return view('pages.home.prize.catalog', compact('prizes','user','colors'));
@@ -58,9 +59,9 @@ class HomeController extends Controller
     public function showPrize($id)
     {
         $user = Auth::user();
-        $prize = Prize::find($id);
-        $activeredeem = $user->ActiveRedeem;
-        $redeem = (($activeredeem->prize_id ?? '') == $prize->id && ($activeredeem->active ?? '')) ? true : false ;
+        $prize = PrizeCategory::find($id);
+        $activeredeem = Shop::whereCode(session('current_shop'))->first()->ActiveRedeem;
+        $redeem = (($activeredeem->prize_category_id ?? '') == $prize->id && ($activeredeem->active ?? '')) ? true : false ;
         if ($redeem) {
 
             $carbon = Carbon::now('America/Bogota')->subMinutes(10);
@@ -75,8 +76,6 @@ class HomeController extends Controller
     public function points()
     {
         $user = Auth::user();
-        // Session::put('current_shop', 3);
-        // return session('current_shop');
         $test = $user->with('shops');
 
         $historyPoints = Shop::whereUserId($user->id)->whereCode(session('current_shop'))->with('points')->first();
@@ -108,6 +107,20 @@ class HomeController extends Controller
       $cities = City::where('department_id',$id)->orderBy('name')->get();
 
       return response()->json(['cities' => $cities]);
+    }
+
+    public function showShops()
+    {
+        $user = Auth::user();
+        $shops = $user->shops();
+        return view('pages.home.shop', compact('user', 'shops'));
+    }
+
+    public function selectShop($id)
+    {
+        $shop = Shop::whereCode($id)->first();
+        Session::put('current_shop', $shop->code);
+        return back()->with('status', 'Haz seleccionado correctamente la tienda con el codigo '.$shop->code);
     }
 
 }

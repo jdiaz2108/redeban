@@ -17,7 +17,6 @@ class PrizesTableSeeder extends Seeder
             'point' => 15,
             'description' => 'Description prize 1',
             'code' => 1111,
-            'stock' => 10,
         ]);
 
         Prize::create([
@@ -25,7 +24,6 @@ class PrizesTableSeeder extends Seeder
             'point' => 20,
             'description' => 'Description prize 2',
             'code' => 2222,
-            'stock' => 5,
         ]);
 
         Prize::create([
@@ -33,7 +31,6 @@ class PrizesTableSeeder extends Seeder
             'point' => 30,
             'description' => 'Description prize 3',
             'code' => 3333,
-            'stock' => 3,
         ]);
     }
 }

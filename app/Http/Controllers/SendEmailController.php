@@ -41,11 +41,11 @@ class SendEmailController extends Controller
 		$data['user_email'] = $user->email;
 		$data['user_name'] = $name;
 		$data['email_subject'] = 'Codigo de verificación.';
-    $data['email_description'] = 'Test.';
+        $data['email_description'] = 'Test.';
 		$data['email_template'] = $template;
 
 		//Ejecuta el envío.
-		$res = MailjetController::sendEmail($data);
+        $res = MailjetController::sendEmail($data);
 
 		return $res;
 	}

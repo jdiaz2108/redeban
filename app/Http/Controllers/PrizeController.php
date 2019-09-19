@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Prize;
 use Illuminate\Http\Request;
 use App\Http\Requests\PrizeRequest;
+use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
 
 class PrizeController extends Controller
@@ -72,7 +73,9 @@ class PrizeController extends Controller
      */
     public function edit(Prize $prize)
     {
-        return view('pages.admin.prizes.edit', compact('prize'));
+        $value = $prize['prizeCategories']->pluck('category_id');
+        $categories = Category::whereNotIn('id', $value)->get();
+        return view('pages.admin.prizes.edit', compact('prize', 'categories'));
     }
 
     /**

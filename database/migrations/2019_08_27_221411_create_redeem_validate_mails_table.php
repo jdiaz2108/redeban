@@ -19,8 +19,8 @@ class CreateRedeemValidateMailsTable extends Migration
             $table->boolean('active')->default(true);
             $table->unsignedBigInteger('shop_id');
             $table->foreign('shop_id')->references('id')->on('shops');
-            $table->unsignedBigInteger('prize_id');
-            $table->foreign('prize_id')->references('id')->on('prizes');
+            $table->unsignedBigInteger('prize_category_id');
+            $table->foreign('prize_category_id')->references('id')->on('prize_categories');
             $table->softDeletes();
             $table->timestamps();
         });

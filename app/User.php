@@ -49,11 +49,6 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Category')->withDefault();
     }
 
-    public function redeemValidate()
-    {
-        return $this->hasMany('App\Models\redeemValidateMail');
-    }
-
     public function accessLogs()
     {
         return $this->hasMany('App\Models\AccessLog');
@@ -93,11 +88,6 @@ class User extends Authenticatable
     public function getChangedPasswordAttribute()
     {
         return ($this->accessLogs()->whereEvent('Cambio contraseña')->first()) ? true : false;
-    }
-
-    public function getActiveRedeemAttribute()
-    {
-        return $this->pointShop()->redeemValidate()->latest()->first();
     }
 
     public function getFulfillmentGoalAttribute()

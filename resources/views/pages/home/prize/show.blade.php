@@ -21,8 +21,8 @@
         <div class="row">
           <div class="col-6">
             <div class="image-show rounded">
-              @if ($prize['image'])
-              <img src="{{$prize['image']}}" class="img-fluid mx-auto d-block" alt="...">
+              @if ($prize['prize']['image'])
+              <img src="{{$prize['prize']['image']}}" class="img-fluid mx-auto d-block" alt="...">
               @else
               <img src="{{asset('images/image.png')}}" class="img-fluid mx-auto d-block" alt="...">
               @endif
@@ -31,9 +31,9 @@
           <div class="col-6 info">
           @include('layouts.messages')
           @if ($redeem && !session('redeemed'))
-            <h2 class="name">{{$prize['name']}}</h2>
+            <h2 class="name">{{$prize['prize']['name']}}</h2>
             <h5 class="card-title text-center">Código de seguridad</h5>
-            <form action="/redeem-validate-mail/{{$prize['code']}}" method="POST">
+            <form action="/redeem-validate-mail/{{$prize['id']}}" method="POST">
                 @csrf @method('PUT')
                 <div class="form-group">
                     <input class="form-control form-control-lg" type="text" name="code" placeholder="Ingrese aquí el código">
@@ -46,13 +46,13 @@
               @if (session('redeemed'))
                 {{session('redeemed')}}
               @endif
-                <h2 class="name">{{$prize['name']}}</h2>
-                <p class="points">{{$prize['point']}} Puntos {{$redeem}}</p>
-                <p class="description">{{$prize['description']}}</p>
-                @if ($user->points >= $prize['point'])
+                <h2 class="name">{{$prize['prize']['name']}}</h2>
+                <p class="points">{{$prize['prize']['point']}} Puntos {{$redeem}}</p>
+                <p class="description">{{$prize['prize']['description']}}</p>
+                @if ($user->points >= $prize['prize']['point'])
                   <form action="/redeem-validate-mail" method="POST">
                       @csrf
-                      <input type="hidden" name="code" value="{{$prize['code']}}">
+                      <input type="hidden" name="code" value="{{$prize['id']}}">
                       <button class="btn btn-primary btn-custom">REDIMIR</button>
                   </form>
                 @else
