@@ -20,7 +20,7 @@
                     <ul class="list-group list-group-flush text-white">
                     <li class="list-group-item list-group-item-dark">Puntos: {{$shop['totalpoints']}}</li>
                         <li class="list-group-item list-group-item-dark">Meta actual: {{$shop['fulfillmentgoal']}}</li>
-                        <li class="list-group-item list-group-item-dark">Vestibulum at eros</li>
+                        <li class="list-group-item list-group-item-dark">Transacciones actuales: {{$shop['FulfillmentValue']}}</li>
                     </ul>
                       <div class="card-body">
                         @if (session('current_shop') == $shop['code'])

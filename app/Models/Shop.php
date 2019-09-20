@@ -61,4 +61,9 @@ class Shop extends Model
         return ($this->fulfillment()['goal']) ? $this->fulfillment()['goal'] : 0 ;
     }
 
+    public function getFulfillmentValueAttribute()
+    {
+        return ($this->fulfillment()['value']) ? $this->fulfillment()['value'] : 0 ;
+    }
+
 }
