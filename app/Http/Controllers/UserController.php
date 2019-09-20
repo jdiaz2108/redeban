@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use DB;
 use App\User;
 use App\Models\AccessLog;
 use Illuminate\Http\Request;
@@ -98,23 +97,16 @@ class UserController extends Controller
         //
     }
 
-    public function reportAccess()
+    public function reportAdmin()
     {
-      $access = AccessLog::select(DB::raw('count(id) as data'),DB::raw('DATE(created_at) date'))
-                ->where('event','Inicio de sesión')->groupby('date')->get();
-     $users_all = AccessLog::where('event','Inicio de sesión')->count();
-     $rows = [];
-     $days = [];
-     foreach ($access as $value) {
-       array_push($rows,$value->data);
-       array_push($days,$value->date);
-     }
-
-     $access_logs = ["rows"=>$rows,"days"=>$days,"total"=>$users_all];
+      $access_logs = AccessLog::report();
+      $users_categories = User::reportCategories();
 
   		return response()->json([
-  			"access_logs" => $access_logs
+  			"access_logs" => $access_logs,
+        "users_categories" => $users_categories
   		]);
     }
+
 
 }

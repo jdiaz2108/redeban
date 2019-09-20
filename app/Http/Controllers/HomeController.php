@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Auth;
 use App\User;
 use Carbon\Carbon;
+use App\Models\Shop;
 use App\Models\City;
 use App\Models\Prize;
 use App\Models\Coupon;
 use App\Models\Fulfillment;
 use App\Models\PrizeCategory;
-use App\Models\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -36,8 +36,9 @@ class HomeController extends Controller
             $fulfillments = Fulfillment::count();
             $prizes = Prize::count();
             $coupons = Coupon::count();
+            $prizes_categories = PrizeCategory::get();
 
-            return view('home',compact('users','fulfillments','prizes','coupons'));
+            return view('home',compact('users','fulfillments','prizes','coupons','prizes_categories'));
 
         } else {
 
