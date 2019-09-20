@@ -82,4 +82,14 @@ class Fulfillment extends Model
         return $this->fulResSameMonth()->whereLiquidated(false)->max('transactions');
     }
 
+    public function getShopIdentificationAttribute()
+    {
+        return $this->shop()->first()['code'];
+    }
+
+    public function getShopUserAttribute()
+    {
+        return $this->shop()->first()['nit'];
+    }
+
 }

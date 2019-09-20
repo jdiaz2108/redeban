@@ -42,8 +42,8 @@
                           <th>Año</th>
                           <th>Semanas cargadas</th>
                           <th>Meta</th>
-                          <th>Valor</th>
-                          <th>Nombre Usuario</th>
+                          <th>Transacciones actuales</th>
+                          <th>Codigo punto de venta</th>
                           <th>Identificación Usuario</th>
                       </tr>
                   </thead>
@@ -69,10 +69,10 @@
                           {{$item->value ?? 0}}
                         </td>
                         <td>
-                          {{$item->user['name_company']}}
+                          {{$item->ShopIdentification}}
                         </td>
                         <td>
-                            {{$item->user['identification']}}
+                            {{$item->ShopUser}}
                         </td>
                       </tr>
                     @empty

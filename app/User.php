@@ -54,16 +54,6 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\AccessLog');
     }
 
-    public function fulfillment()
-    {
-        return $this->hasMany('App\Models\Fulfillment')->latest()->first();
-    }
-
-    public function fulfillmentAll()
-    {
-        return $this->hasMany('App\Models\Fulfillment')->latest()->get();
-    }
-
     public function shops()
     {
         return $this->hasMany(Shop::class);
@@ -88,11 +78,6 @@ class User extends Authenticatable
     public function getChangedPasswordAttribute()
     {
         return ($this->accessLogs()->whereEvent('Cambio contraseña')->first()) ? true : false;
-    }
-
-    public function getFulfillmentGoalAttribute()
-    {
-        return ($this->fulfillment()['goal']) ? $this->fulfillment()['goal'] : 0 ;
     }
 
     public function categoryImage($category_id)

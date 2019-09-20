@@ -25,14 +25,25 @@ class Shop extends Model
         return $this->hasMany(Point::class);
     }
 
-    public function getTotalPointsAttribute()
-    {
-        return $this->points()->sum('value');
-    }
-
     public function redeemValidate()
     {
         return $this->hasMany(redeemValidateMail::class);
+    }
+
+    public function fulfillment()
+    {
+        return $this->hasMany(Fulfillment::class)->latest()->first();
+    }
+
+    public function fulfillmentAll()
+    {
+        return $this->hasMany(Fulfillment::class)->latest()->get();
+    }
+
+    // Attributes zone
+    public function getTotalPointsAttribute()
+    {
+        return $this->points()->sum('value');
     }
 
     public function getNitAttribute()
@@ -43,6 +54,11 @@ class Shop extends Model
     public function getActiveRedeemAttribute()
     {
         return $this->redeemValidate()->latest()->first();
+    }
+
+    public function getFulfillmentGoalAttribute()
+    {
+        return ($this->fulfillment()['goal']) ? $this->fulfillment()['goal'] : 0 ;
     }
 
 }

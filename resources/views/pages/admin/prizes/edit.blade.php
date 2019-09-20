@@ -68,14 +68,18 @@
                             class="wysiwyg form-control">{{old('description', $prize['description'] ?? '')}}</textarea>
                         </div>
                     </div>
-                    @foreach ($prize->prizeCategories as $prizeCategory)
+
+                    @if ($prize->prizeCategories)
                         <div class="col-md-12">
-                    Categoria: {{$prizeCategory['category']->name}},
-                        Unidades: {{$prizeCategory['stock']}}
+                            <ul class="list-group">
+                                @foreach ($prize->prizeCategories as $prizeCategory)
+                                    <li class="list-group-item">Categoria: {{$prizeCategory['category']->name}}, Unidades: {{$prizeCategory['stock']}}</li>
+                                @endforeach
+                            </ul>
                         </div>
-                            @endforeach
+                    @endif
                             @if ($categories->isNotEmpty())
-                                <div class="col-md-12">
+                                <div class="col-md-12 my-3">
                                     <a href="" class="btn btn-custom-green" data-toggle="modal" data-target="#upload-users"><i class="fa fa-upload"></i> Agregar unidades a categoria</a>
                                 </div>
                             @endif

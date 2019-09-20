@@ -14,11 +14,17 @@
               @forelse ($user->shops as $shop)
                   <div class="col-12 col-md-6 col-lg-4 mb-4">
                   <div class="card text-white bg-secondary shadow h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Codigo: {{$shop['code']}}</h5>
+                    </div>
+                    <ul class="list-group list-group-flush text-white">
+                    <li class="list-group-item list-group-item-dark">Puntos: {{$shop['totalpoints']}}</li>
+                        <li class="list-group-item list-group-item-dark">Meta actual: {{$shop['fulfillmentgoal']}}</li>
+                        <li class="list-group-item list-group-item-dark">Vestibulum at eros</li>
+                    </ul>
                       <div class="card-body">
-                      <h5 class="card-title">Codigo: {{$shop['code']}}</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        @if (session('current_shop') == $shop['id'])
-                            <a href="/selectShop/{{$shop['code']}}" class="btn btn-primary disabled">Tienda seleccionada</a>
+                        @if (session('current_shop') == $shop['code'])
+                            <a href="/selectShop/{{$shop['code']}}" class="btn btn-primary disabled">Punto de venta actual</a>
                         @else
                             <a href="/selectShop/{{$shop['code']}}" class="btn btn-primary">Seleccionar tienda</a>
                         @endif

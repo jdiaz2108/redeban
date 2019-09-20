@@ -9,6 +9,7 @@ use Illuminate\Support\Arr;
 use App\Models\Fulfillment;
 use App\Models\LoadHistory;
 use App\Models\InvalidFulfillment;
+use App\Models\Shop;
 use Illuminate\Support\Facades\Schema;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -172,7 +173,7 @@ class CSVFileImporter extends Controller
     {
         $date = Carbon::now();
 
-        $user = User::all();
+        $user = Shop::all();
 
        if ($user->isNotEmpty()) {
            // Define download file name
@@ -182,7 +183,7 @@ class CSVFileImporter extends Controller
            $fp = fopen($fileDir, 'w');
 
            // Define the headers and insert into the csv file
-           $headers = array('goal', 'user_id' ,'identification');
+           $headers = array('goal', 'shop_id' ,'code');
            fputcsv($fp, $headers);
 
            foreach ($user->chunk(50000) as $t) {
@@ -190,7 +191,7 @@ class CSVFileImporter extends Controller
                // Mapping the array and inserting data inside the csv file
                $t->map(function ($item, $key) use ($fp) {
                      // Eliminate period and updated_at column from the object
-                     $array = array('', $item['id'], $item['identification']);
+                     $array = array('', $item['id'], $item['code']);
                      fputcsv($fp, $array);
 
                      return $array;
@@ -288,15 +289,16 @@ class CSVFileImporter extends Controller
 
         // Get the header of the collection, that means the header is the columns of the table
             $collectHeader = $collection->push(['month', 'year', 'created_at','updated_at'])->flatten()->all();
-            $collectHeader = array_diff($collectHeader, ['identification']);
+            // $collectHeader = array_diff($collectHeader, ['identification']);
             $add = [intval($date->format('m')), intval($date->format('Y')), $date, $date];
-
         // Transform between the Body and Header to combinate and make the references columns and rows content
         $collectionMix = $collectBody->map(function ($item, $key) use ($collectHeader, $add) {
-            array_pop($item);
+            // array_pop($item);
             $item = Arr::collapse([$item, $add]);
             if (count($item) == count($collectHeader) and !in_array("",$item)) {
-                return collect($collectHeader)->combine($item)->all();
+                return collect($collectHeader)->combine($item)->except(['code'])->all();
+            } else {
+                dd($item);
             }
         })->filter()->values()->all();
 
@@ -338,7 +340,7 @@ class CSVFileImporter extends Controller
            $fp = fopen($fileDir, 'w');
 
            // Define the headers and insert into the csv file
-           $headers = array('fulfillment_id', 'month', 'year', 'goal', 'user_id', 'transactions', 'identification');
+           $headers = array('fulfillment_id', 'month', 'year', 'goal', 'shop_id', 'transactions', 'code');
 
            fputcsv($fp, $headers);
 
@@ -347,7 +349,7 @@ class CSVFileImporter extends Controller
                // Mapping the array and inserting data inside the csv file
                $t->map(function ($item, $key) use ($fp) {
                      // Eliminate period and updated_at column from the object
-                     $collection = collect($item)->except(['created_at', 'updated_at'])->push([null, $item['useridentification']]);
+                     $collection = collect($item)->except(['created_at', 'updated_at'])->push([null, $item['shopidentification']]);
                      $flattened = Arr::flatten($collection);
                      fputcsv($fp, $flattened);
 

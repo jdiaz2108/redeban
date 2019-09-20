@@ -22,9 +22,9 @@ class FulfillmentController extends Controller
       $name = $request['query'];
       if(is_null($name))
       {
-        $fulfillments = Fulfillment::with('user')->paginate();
+        $fulfillments = Fulfillment::with('shop')->paginate();
       } else {
-        $fulfillments = Fulfillment::whereHas('user', function ($query) use ($name) {
+        $fulfillments = Fulfillment::whereHas('shop', function ($query) use ($name) {
             $query->where('name_company', 'LIKE', "%$name%")->orWhere('identification', 'LIKE', "%$name%");
         })->paginate();
       }
