@@ -18,7 +18,7 @@ Route::middleware('auth')->group(function () {
     // Redirect user if has any role
     Route::get('/', 'RootController');
 
-    Route::post('/change-password', 'Auth\ChangePassword')->name('change.password');
+    Route::post('/change-password', 'Auth\ChangePasswordController')->name('change.password');
 
     // Only users with user role
     Route::group(['middleware' => ['role:user']], function () {

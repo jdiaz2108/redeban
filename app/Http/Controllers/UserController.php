@@ -7,6 +7,8 @@ use App\User;
 use App\Models\AccessLog;
 use Illuminate\Http\Request;
 use App\Http\Requests\DataFileRequest;
+use Carbon\Carbon;
+use Illuminate\Support\Arr;
 
 class UserController extends Controller
 {
@@ -49,6 +51,33 @@ class UserController extends Controller
 
         // Call a Controller and use the processCVSFile method
         CsvFileImporter::loadUserFromFile($file, 'users');
+
+        $collection = User::get(['id']);
+
+            // Validate if the collection is not empty and have data to liquidate
+            if ($collection->isNotEmpty()) {
+
+                // Define the headers
+                $collectHeader = ['role_id', 'model_type', 'model_id'];
+
+                // Mixing the collection with headers and data to generate points collection
+                $collectionMix = $collection->map(function ($item, $key) use ($collectHeader) {
+
+                    // Validate if the user can get points
+                    if (!$item->hasAnyRole(['admin', 'user'])) {
+
+                        $array = [2, 'App\User', $item['id']];
+                        $arrayUp = Arr::collapse([$array]);
+                        return collect($collectHeader)->combine($arrayUp)->all();
+                    }
+
+                })->filter()->values()->all();
+
+                foreach (array_chunk($collectionMix, 10000) as $t) {
+                    DB::table('model_has_roles')->insert($t);
+                }
+
+            }
 
         return redirect()->route('admin::histories.index')->with('status', 'Se han cargado los usuarios correctamente');
     }

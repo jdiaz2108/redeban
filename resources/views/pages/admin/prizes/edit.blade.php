@@ -31,9 +31,9 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label>Puntos *</label>
-                            <input type="number" class="form-control" name="point" value="{{old('point', $prize['point'] ?? '')}}"
-                                required placeholder="Puntos">
+                            <label>Codigo *</label>
+                            <input type="text" class="form-control" name="code"
+                                value="{{old('code', $prize['code'] ?? '')}}" required placeholder="Codigo">
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -42,13 +42,6 @@
                             <h4 class="py-1 {{($prize['totalStock'] <= 2) ? 'text-danger' : 'text-success'}}">
                                 {{$prize['totalStock']}}
                             </h4>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Codigo *</label>
-                            <input type="text" class="form-control" name="code"
-                                value="{{old('code', $prize['code'] ?? '')}}" required placeholder="Codigo">
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -73,7 +66,7 @@
                         <div class="col-md-12">
                             <ul class="list-group">
                                 @foreach ($prize->prizeCategories as $prizeCategory)
-                                    <li class="list-group-item">Categoria: {{$prizeCategory['category']->name}}, Unidades: {{$prizeCategory['stock']}}</li>
+                                    <li class="list-group-item">Categoria: {{$prizeCategory['category']->name}}, Unidades: {{$prizeCategory['stock']}} , Puntos: {{$prizeCategory['point']}}</li>
                                 @endforeach
                             </ul>
                         </div>
@@ -126,9 +119,15 @@
               <div class="form-group row">
                 <label for="exampleInputEmail1" class="col-sm-3 col-form-label">Unidades</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" name="stock" placeholder="Ingrese las unidades">
+                  <input type="number" class="form-control" name="stock" placeholder="Ingrese las unidades">
                 </div>
               </div>
+              <div class="form-group row">
+                    <label for="exampleInputEmail1" class="col-sm-3 col-form-label">Puntos</label>
+                    <div class="col-sm-9">
+                      <input type="number" class="form-control" name="point" placeholder="Ingrese el costo de puntos">
+                    </div>
+                  </div>
               <button type="submit" class="btn btn-custom fontSize18 my-3">AGREGAR</button>
           </form>
         </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PrizeCategoryRequest;
 use App\Models\PrizeCategory;
 use Illuminate\Http\Request;
 
@@ -33,7 +34,7 @@ class PrizeCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PrizeCategoryRequest $request)
     {
         $data = $request->all();
         $PrizeCategory = new PrizeCategory($data);

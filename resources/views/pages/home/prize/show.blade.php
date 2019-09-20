@@ -47,9 +47,9 @@
                 {{session('redeemed')}}
               @endif
                 <h2 class="name">{{$prize['prize']['name']}}</h2>
-                <p class="points">{{$prize['prize']['point']}} Puntos {{$redeem}}</p>
+                <p class="points">{{$prize['point']}} Puntos {{$redeem}}</p>
                 <p class="description">{{$prize['prize']['description']}}</p>
-                @if ($user->points >= $prize['prize']['point'])
+                @if ($user->points >= $prize['point'])
                   <form action="/redeem-validate-mail" method="POST">
                       @csrf
                       <input type="hidden" name="code" value="{{$prize['id']}}">

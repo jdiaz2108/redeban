@@ -31,13 +31,6 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label>Puntos *</label>
-                            <input type="number" class="form-control" name="point" value="{{old('point')}}"
-                                required placeholder="Puntos">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
                             <label>Codigo *</label>
                             <input type="text" class="form-control" name="code"
                                 value="{{old('code')}}" required placeholder="Codigo">

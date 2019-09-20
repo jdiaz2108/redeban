@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\AccessLog;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ChangePasswordRequest;
 
-class ChangePassword extends Controller
+use App\Models\AccessLog;
+use App\Http\Requests\ChangePasswordRequest;
+use Illuminate\Support\Facades\Hash;
+
+class ChangePasswordController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -17,6 +19,8 @@ class ChangePassword extends Controller
      */
     public function __invoke(ChangePasswordRequest $request)
     {
+        $data = $request->all();
+        $request->user()->update(['password' => Hash::make($data['password'])]);
 
         AccessLog::create([
             'ip_address' => $request->ip(),

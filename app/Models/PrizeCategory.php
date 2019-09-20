@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class PrizeCategory extends Model
 {
     protected $fillable = [
-        'prize_id', 'category_id', 'stock'
+        'prize_id', 'category_id', 'stock', 'point'
     ];
 
     public function prize()

@@ -88,6 +88,11 @@ class PrizeController extends Controller
     public function update(PrizeRequest $request, Prize $prize)
     {
         $data = $request->all();
+        if ($request->file('image')) {
+            $path = Storage::putFile('public/prizes', $request->file('image'));
+            $fullpath = asset(Storage::url($path));
+            $data['image'] = $fullpath;
+        }
         $prize->update($data);
         return redirect('/dashboard/prizes')->with('status', 'Se han actualizado el item correctamente');
     }

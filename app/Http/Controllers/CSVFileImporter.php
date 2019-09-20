@@ -253,7 +253,6 @@ class CSVFileImporter extends Controller
 
                // Mapping the array and inserting data inside the csv file
                $t->map(function ($item, $key) use ($fp) {
-                   dd($item);
                      // Eliminate period and updated_at column from the object
                      $collection = collect($item)->forget('period')->forget('updated_at')->push($item['useridentification']);
                      $flattened = Arr::flatten($collection);

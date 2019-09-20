@@ -60,7 +60,7 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $prize = PrizeCategory::find($id);
-        $activeredeem = Shop::whereCode(session('current_shop'))->first()->ActiveRedeem;
+        $activeredeem = Shop::whereCode(session('current_shop'))->first()->ActiveRedeem ?? null;
         $redeem = (($activeredeem->prize_category_id ?? '') == $prize->id && ($activeredeem->active ?? '')) ? true : false ;
         if ($redeem) {
 
