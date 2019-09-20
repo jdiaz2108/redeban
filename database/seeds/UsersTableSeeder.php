@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
             'name_company' => 'Admin Corp',
             'email' => 'john.diaz@inxaitcorp.com',
             'password' => bcrypt('redeban19*'),
-            'category_id' => 1
+            'category_id' => 2
         ]);
 
         $user->assignRole('admin');
@@ -29,7 +29,7 @@ class UsersTableSeeder extends Seeder
             'name_company' => 'User Corp',
             'email' => 'jdiaz2108@hotmail.com',
             'password' => bcrypt('redeban19*'),
-            'category_id' => 1
+            'category_id' => 2
         ]);
 
         $user->assignRole('user');

@@ -33,7 +33,6 @@
                         <th scope="col">Imagen</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Unidades</th>
-                        <th scope="col">Puntos</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
@@ -51,7 +50,6 @@
                         <td>
                           <a class="btn btn-sm {{($prize['totalStock'] <= 2) ? 'btn-danger' : 'btn-success'}}">{{$prize['totalStock']}}</a>
                         </td>
-                        <td>{{$prize['point']}}</td>
                         <td>
                           <div class="dropdown">
                             <button class="btn btn-default border border-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

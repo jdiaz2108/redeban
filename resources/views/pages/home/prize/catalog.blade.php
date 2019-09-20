@@ -30,12 +30,11 @@
                     @else
                     <img src="{{asset('images/image.png')}}" class="img-fluid" alt="...">
                     @endif
-                    <span class="stock" title="Unidades">{{$prize['stock']}}</span>
                     </a>
                   </div>
                   <div class="box-text {{$colors[$key]}} text-left rounded-bottom shadow">
                     <p class="name" title="{{$prize['prize']['description']}}">{{$prize['prize']['name']}}</p>
-                    <p class="num">{{$prize['prize']['point']}} Puntos</p>
+                    <p class="num">{{$prize['point']}} Puntos</p>
                   </div>
                 </div>
                 @endforeach

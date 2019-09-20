@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PrizeCategoryRequest;
-use App\Models\PrizeCategory;
+use App\Models\Coupon;
 use Illuminate\Http\Request;
 
-class PrizeCategoryController extends Controller
+class CouponController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,9 @@ class PrizeCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $coupons = Coupon::paginate();
+
+        return view('pages.admin.coupons.index', compact('coupons'));
     }
 
     /**
@@ -34,13 +35,9 @@ class PrizeCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PrizeCategoryRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->all();
-        $PrizeCategory = new PrizeCategory($data);
-        $PrizeCategory->save();
-
-        return back()->with('status', 'Se han creado un nuevo item correctamente');
+        //
     }
 
     /**

@@ -16,8 +16,7 @@ class CreatePrizesTable extends Migration
         Schema::create('prizes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('point');
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->string('code');
             $table->string('image')->nullable();
             $table->boolean('active')->default(true);

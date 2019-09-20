@@ -26,6 +26,7 @@ class PrizeCategoryRequest extends FormRequest
         return [
             'category_id' => 'required',
             'stock'  => 'required|integer|min:1',
+            'point' => 'required|integer|min:1',
         ];
     }
 
@@ -34,6 +35,7 @@ class PrizeCategoryRequest extends FormRequest
         return [
             'category_id' => 'categoria',
             'stock'  => 'unidades',
+            'point' => 'puntos',
         ];
     }
 }

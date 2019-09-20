@@ -11,7 +11,7 @@ class Prize extends Model
 	use SoftDeletes;
 
 	protected $fillable = [
-        'name', 'point', 'description', 'code', 'image', 'active'
+        'name', 'description', 'code', 'image', 'active'
 	];
 
     public function getRouteKeyName()

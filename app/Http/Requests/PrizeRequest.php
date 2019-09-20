@@ -26,7 +26,7 @@ class PrizeRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'point' => 'required|integer|min:1',
+            // 'point' => 'required|integer|min:1',
             'code' => 'required|'.Rule::unique('prizes')->ignore($this->route('prize')),
             // 'image' => 'required',
             // 'stock'  => 'required|integer|min:1',
@@ -37,7 +37,7 @@ class PrizeRequest extends FormRequest
     {
         return [
             'name' => 'nombre',
-            'point' => 'puntos',
+            // 'point' => 'puntos',
             'code' => 'codigo',
             // 'image' => 'required',
             // 'stock'  => 'unidades',

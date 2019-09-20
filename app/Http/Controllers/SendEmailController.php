@@ -50,11 +50,10 @@ class SendEmailController extends Controller
 		return $res;
 	}
 
-	public static function redeem_prize($user,$prize)
+	public static function redeem_prize($user,$prize, $points)
 	{
         $name = $user->name_company;
         $image = ($prize->image) ? $prize->image : url('/images/image.png');
-		$points = $prize->point;
         $prize = $prize->name;
 
 		//Pinta variables en template.
