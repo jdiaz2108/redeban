@@ -21,6 +21,7 @@ class GlobalApp
           // Menu for admin
           ['name' => 'Inicio', 'url' => '/dashboard', 'icon' => 'dashboard', 'roles' => ['admin']],
           ['name' => 'premios', 'url' => '/dashboard/prizes', 'icon' => 'add_box', 'roles' => ['admin']],
+          ['name' => 'redenciones', 'url' => '/dashboard/coupons', 'icon' => 'add_box', 'roles' => ['admin']],
           ['name' => 'usuarios', 'url' => '/dashboard/users', 'icon' => 'add_box', 'roles' => ['admin']],
           ['name' => 'Puntos de venta', 'url' => '/dashboard/shops', 'icon' => 'add_box', 'roles' => ['admin']],
           ['name' => 'metas', 'url' => '/dashboard/fulfillments', 'icon' => 'add_box', 'roles' => ['admin']],

@@ -56,6 +56,8 @@ Route::middleware('auth')->group(function () {
         // Prefix dashboard to use admin role
         Route::group(['prefix' => 'dashboard', 'as' => 'admin::'], function() {
 
+            Route::resource('/coupons', 'CouponController')->only(['index']);
+
             Route::resource('/shops', 'ShopController')->only(['index', 'store']);
 
             Route::resource('/prizes', 'PrizeController')->only(['index', 'create' ,'store', 'edit','update', 'destroy']);
