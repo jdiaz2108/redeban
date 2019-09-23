@@ -41,6 +41,7 @@
                           <th>Mes</th>
                           <th>Año</th>
                           <th>Semanas cargadas</th>
+                          <th>Semanas liquidadas</th>
                           <th>Meta</th>
                           <th>Transacciones actuales</th>
                           <th>Codigo punto de venta</th>
@@ -62,6 +63,9 @@
                         <td>
                           {{$item->fulfillmentcount}}
                         </td>
+                        <td>
+                            {{$item->fulfillmentcountliquidated}}
+                          </td>
                         <td>
                           {{$item->goal}}
                         </td>

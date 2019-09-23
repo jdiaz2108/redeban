@@ -118,7 +118,6 @@ class PointController extends Controller
 
                 // Validate if the user can get points
                 if ($item['fulfillment']['goal'] < $item['transactions']) {
-
                     $value = ($item['transactions'] - $item['fulfillment']['MaxLiq']) * $item['fulfillment']['points'];
                     $array = ["Cumplimiento meta semanal: {$item['fulfillment']['month']} - {$item['fulfillment']['year']}", $value, $item['fulfillment']['shop_id'], $item['id'],];
                     $arrayUp = Arr::collapse([$array, $add]);

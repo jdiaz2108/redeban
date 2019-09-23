@@ -12,10 +12,10 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        Category::create(['name' => 'Oro', 'points_redeem' => 10]);
-        Category::create(['name' => 'Plata', 'points_redeem' => 8]);
-        Category::create(['name' => 'Bronce alto', 'points_redeem' => 6]);
-        Category::create(['name' => 'Bronce medio', 'points_redeem' => 4]);
-        Category::create(['name' => 'Bronce bajo', 'points_redeem' => 2]);
+        Category::create(['name' => 'Oro', 'points_redeem' => 1]);
+        Category::create(['name' => 'Plata', 'points_redeem' => 5]);
+        Category::create(['name' => 'Bronce alto', 'points_redeem' => 15]);
+        Category::create(['name' => 'Bronce medio', 'points_redeem' => 25]);
+        Category::create(['name' => 'Bronce bajo', 'points_redeem' => 40]);
     }
 }
