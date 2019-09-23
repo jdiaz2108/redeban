@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Controllers\MailjetController;
 use App\Models\Shop;
 use App\Models\Category;
 use App\Models\AccessLog;
@@ -122,5 +123,23 @@ class User extends Authenticatable
 
       return $users_categories;
     }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $url = url('/').'/password/reset/'.$token;
+  		$name = $this->first_name;
+
+  		$template = view('emails.restore-password', compact('url', 'name'))->render();
+
+  		$data['user_email'] = $this->email;
+  		$data['user_name'] = $name;
+  		$data['email_subject'] = $name.', has solicitado cambio de contraseña';
+  		$data['email_description'] = 'Restaurar acceso a la platafoma Vive+';
+  		$data['email_template'] = $template;
+
+          $res = MailjetController::sendEmail($data);
+      //dd($res);
+    }
+
 
   }

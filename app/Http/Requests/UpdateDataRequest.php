@@ -25,7 +25,7 @@ class UpdateDataRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required|email',
             'phone' => 'required',
             'address' => 'required',
             'city_id' => 'required',

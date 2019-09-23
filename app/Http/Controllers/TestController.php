@@ -35,6 +35,16 @@ class TestController extends Controller
 
 		//Pinta variables en template.
 		return view('emails.redeem-prize', compact('name', 'prize', 'points'));
+    }
+
+    public function restorePassword()
+	{
+		$name = 'Test';
+		$url = url('/');
+
+		//Pinta variables en template.
+		return view('emails.restore-password', compact('name', 'url'));
 	}
+
 
 }

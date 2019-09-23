@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Shop;
 use Illuminate\Database\Eloquent\Model;
 
 class Point extends Model
@@ -10,8 +11,8 @@ class Point extends Model
         'event', 'value', 'shop_id', 'month', 'year'
     ];
 
-    public function user()
+    public function shop()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(Shop::class);
     }
 }

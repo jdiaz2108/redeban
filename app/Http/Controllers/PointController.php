@@ -23,10 +23,10 @@ class PointController extends Controller
       $name = $request['query'];
       if(is_null($name))
       {
-        $points = Point::with('user')->paginate();
+        $points = Point::with('shop')->paginate();
       } else {
-        $points = Point::whereHas('user', function ($query) use ($name) {
-            $query->where('name_company', 'LIKE', "%$name%")->orWhere('identification', 'LIKE', "%$name%");
+        $points = Point::whereHas('shop', function ($query) use ($name) {
+            $query->where('code', 'LIKE', "%$name%");
         })->paginate();
       }
 

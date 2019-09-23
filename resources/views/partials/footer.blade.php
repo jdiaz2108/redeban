@@ -13,7 +13,7 @@
 		</div>
 		<div class="col-md-4 text-responsive-center text-right">
 			<br> <br>
-			<p>CONTACTO	|	MESA DE AYUDA</p>
+			<p onclick="window.scrollTo(0,document.body.scrollHeight);">CONTACTO	|	MESA DE AYUDA</p>
 		</div>
 	</div>
 </div>
