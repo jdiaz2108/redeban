@@ -80,7 +80,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/csv-user-base', 'CSVFileImporter@userBase')->name('user.base');
             Route::get('/reports-admin', 'UserController@reportAdmin');
 
-            Route::resource('/histories', 'CsvFileImporter')->only(['index']);
+            Route::resource('/histories', 'CSVFileImporter')->only(['index']);
         });
     });
 });

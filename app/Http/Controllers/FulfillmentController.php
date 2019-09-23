@@ -54,7 +54,7 @@ class FulfillmentController extends Controller
 
         // Call csvfileimporter controller and use the processCsvFile function
         // receive 3 parameters (1. file, 2. which table is, 3. if is first load or updated, 4. chunk, 5. Event string)
-        CsvFileImporter::storeFulfillmentCsv($file, 'fulfillments', false, 10000, 'Initial load');
+        CSVFileImporter::storeFulfillmentCsv($file, 'fulfillments', false, 10000, 'Initial load');
 
         return redirect()->route('admin::histories.index')->with('status', 'Se han cargado las metas correctamente');
     }
@@ -92,7 +92,7 @@ class FulfillmentController extends Controller
     {
         $file = $request->file('data');
 
-        CsvFileImporter::loadFulfillmentResults($file, 'fulfillments', true, 1000, null);
+        CSVFileImporter::loadFulfillmentResults($file, 'fulfillments', true, 1000, null);
 
         return redirect()->route('admin::histories.index')->with('status', 'Se han actualizado las metas correctamente');
     }

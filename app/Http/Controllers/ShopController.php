@@ -50,7 +50,7 @@ class ShopController extends Controller
         $file = $request->file('data');
 
         // Call a Controller and use the processCVSFile method
-        CsvFileImporter::loadShopFromFile($file, 'shops');
+        CSVFileImporter::loadShopFromFile($file, 'shops');
 
         return redirect()->route('admin::histories.index')->with('status', 'Se han cargado los usuarios correctamente');
     }
