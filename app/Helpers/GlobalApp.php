@@ -12,7 +12,7 @@ class GlobalApp
           // Menu for user
           ['name' => 'Inicio', 'url' => '/', 'icon' => 'dashboard', 'roles' => ['user']],
           ['name' => '¿Qué es?', 'url' => '/about', 'icon' => 'add_box', 'roles' => ['user']],
-          ['name' => 'Seleccionar punto', 'url' => '/shop', 'icon' => 'add_box', 'roles' => ['user']],
+          ['name' => 'Seleccionar código único', 'url' => '/shop', 'icon' => 'add_box', 'roles' => ['user']],
           ['name' => 'historial de puntos', 'url' => '/points', 'icon' => 'add_box', 'roles' => ['user']],
           ['name' => 'historial de transacciones', 'url' => '/transactions', 'icon' => 'add_box', 'roles' => ['user']],
           //['name' => 'trivias', 'url' => '/trivias', 'icon' => 'add_box', 'roles' => ['user']],

@@ -115,4 +115,52 @@
     </div>
   </div>
 </div>
+
+@if (1 == 2)
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+      </div>
+      <div class="modal-body">
+          <p>
+
+              Felicitaciones has ganado 100 puntos, selecciona un punto de venta para agregar los puntos.
+          </p>
+              <form>
+                      <div class="form-row align-items-center">
+                        <div class="col-12 my-1">
+                          <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                            <option selected>Choose...</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                          </select>
+                        </div>
+                        <div class="col-auto my-3">
+                          <button type="submit" class="btn btn-custom">Agregar puntos</button>
+                        </div>
+                      </div>
+                    </form>
+      </div>
+    </div>
+  </div>
+</div>
+@else
+
+@endif
+
+@endsection
+
+@section('scripts')
+    <script>
+        $('#myModal').modal({
+        keyboard: false,
+        backdrop: 'static'
+        })
+    </script>
 @endsection

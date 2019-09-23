@@ -5,7 +5,7 @@
           @if (session('current_shop'))
             <p class="points">Puntos {{$user->points}}</p>
             @else
-            <a href="/shop" class="btn btn-primary">Seleccionar punto de venta</a>
+            <a href="/shop" class="btn btn-custom">Seleccionar punto de venta</a>
             @endif
         </div>
         <div class="col-3">
