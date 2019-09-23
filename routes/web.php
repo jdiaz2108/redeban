@@ -78,7 +78,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/csv-user-point', 'CSVFileImporter@downloadUserPoints')->name('user.point');
             Route::get('/csv-fulfillments-base', 'CSVFileImporter@fulfillmentsBase')->name('fulfillment.base');
             Route::get('/csv-user-base', 'CSVFileImporter@userBase')->name('user.base');
-            Route::get('/reports-access', 'UserController@reportAccess');
+            Route::get('/reports-admin', 'UserController@reportAdmin');
 
             Route::resource('/histories', 'CsvFileImporter')->only(['index']);
         });

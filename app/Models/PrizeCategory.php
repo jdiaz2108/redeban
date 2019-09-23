@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Category;
 use App\Models\Prize;
+use App\Models\Coupon;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 
 class PrizeCategory extends Model
@@ -25,5 +26,12 @@ class PrizeCategory extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function redeem($id)
+    {
+      $coupons = Coupon::where('prize_category_id',$id)->count();
+
+      return $coupons;
     }
 }

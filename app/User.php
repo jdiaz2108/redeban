@@ -3,10 +3,12 @@
 namespace App;
 
 use App\Models\Shop;
+use App\Models\Category;
+use App\Models\AccessLog;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -101,6 +103,24 @@ class User extends Authenticatable
     public function scopeFindUser($query, $name)
     {
         return $query->where('name_company', 'LIKE', "%$name%")->orWhere('identification', 'LIKE', "%$name%");
+    }
+
+    public static function reportCategories()
+    {
+      $categories = Category::get();
+      $users_all = AccessLog::where('event','Inicio de sesión')->count();
+      $rows = [];
+      $users_count = [];
+
+      foreach ($categories as $value) {
+         $count = User::where('category_id',$value->id)->count();
+         array_push($rows,$value->name);
+         array_push($users_count,$count);
+      }
+
+      $users_categories = ["rows"=>$rows,"users_count"=>$users_count];
+
+      return $users_categories;
     }
 
   }
