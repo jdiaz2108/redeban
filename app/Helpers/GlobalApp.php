@@ -24,7 +24,7 @@ class GlobalApp
           ['name' => 'premios', 'url' => '/dashboard/prizes', 'icon' => 'add_box', 'roles' => ['admin']],
           ['name' => 'redenciones', 'url' => '/dashboard/coupons', 'icon' => 'add_box', 'roles' => ['admin']],
           ['name' => 'usuarios', 'url' => '/dashboard/users', 'icon' => 'add_box', 'roles' => ['admin']],
-          ['name' => 'Puntos de venta', 'url' => '/dashboard/shops', 'icon' => 'add_box', 'roles' => ['admin']],
+          ['name' => 'Códigos Únicos', 'url' => '/dashboard/shops', 'icon' => 'add_box', 'roles' => ['admin']],
           ['name' => 'metas', 'url' => '/dashboard/fulfillments', 'icon' => 'add_box', 'roles' => ['admin']],
           ['name' => 'historial carga', 'url' => '/dashboard/histories', 'icon' => 'add_box', 'roles' => ['admin']],
           ['name' => 'puntos', 'url' => '/dashboard/points', 'icon' => 'add_box', 'roles' => ['admin']],
