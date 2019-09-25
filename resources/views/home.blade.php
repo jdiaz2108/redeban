@@ -63,6 +63,10 @@
           <br> <br>
           <div id="container_prizes"></div>
         </div>
+        <div class="col-md-6 text-center">
+          <br> <br>
+          <div id="container_sections"></div>
+        </div>
       </div>
   </div>
 </div>
