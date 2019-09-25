@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use DB;
+use Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class AccessLog extends Model
@@ -26,5 +27,17 @@ class AccessLog extends Model
      $access_logs = ["rows"=>$rows,"days"=>$days,"total"=>$users_all];
 
      return $access_logs;
+    }
+
+    public static function accessSection($request, $name)
+    {
+      $data = array(
+        'ip_address' => $request->ip(),
+        'user_id' => Auth::user()->id,
+        'event' => $name
+      );
+      AccessLog::create($data);
+
+      return true;
     }
 }

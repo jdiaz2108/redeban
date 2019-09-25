@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Models\City;
 use App\Models\Point;
 use App\Models\UserData;
+use App\Models\AccessLog;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateDataRequest;
@@ -19,9 +20,10 @@ class UpdateUserDataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
+        AccessLog::accessSection($request,'Actualizar datos');
 
         if ($user->changedPassword) {
 

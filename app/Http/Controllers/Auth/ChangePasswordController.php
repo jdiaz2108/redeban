@@ -21,12 +21,8 @@ class ChangePasswordController extends Controller
     {
         $data = $request->all();
         $request->user()->update(['password' => Hash::make($data['password'])]);
-
-        AccessLog::create([
-            'ip_address' => $request->ip(),
-            'user_id' => $request->user()->id,
-            'event' => 'Cambio contraseña'
-        ]);
+        
+        AccessLog::accessSection($request,'Cambio contraseña');
 
         return back()->with('status', 'SE HA ACTUALIZADO LA CONTRASEÑA CORRECTAMENTE');
     }
