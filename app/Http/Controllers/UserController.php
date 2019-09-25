@@ -130,10 +130,12 @@ class UserController extends Controller
     {
       $access_logs = AccessLog::report();
       $users_categories = User::reportCategories();
+      $access_sections = AccessLog::reportSections();
 
   		return response()->json([
   			"access_logs" => $access_logs,
-        "users_categories" => $users_categories
+        "users_categories" => $users_categories,
+        "access_sections" => $access_sections
   		]);
     }
 

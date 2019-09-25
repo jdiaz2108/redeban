@@ -29,6 +29,23 @@ class AccessLog extends Model
      return $access_logs;
     }
 
+    public static function reportSections()
+    {
+     $access = AccessLog::select(DB::raw('count(id) as data, event'))
+                  ->groupby('event')->get();
+     $total = AccessLog::where('event','Inicio de sesión')->count();
+     $rows = [];
+     $sections = [];
+     foreach ($access as $value) {
+       array_push($rows,$value->data);
+       array_push($sections,$value->event);
+     }
+
+     $access_logs = ["rows"=>$rows,"sections"=>$sections,"total"=>$total];
+
+     return $access_logs;
+    }
+
     public static function accessSection($request, $name)
     {
       $data = array(
