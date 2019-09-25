@@ -13,6 +13,7 @@
       <a href="{{url('home')}}">
       @endrole
         <img src="{{asset('images/logo.png')}}" class="img-fluid" width="140" alt="La Transacción Ganadora">
+        <img src="{{asset('images/logo-redeban-white.png')}}" alt="Logo Redeban">
       </a>
     </div>
     <div class="col-md-4">

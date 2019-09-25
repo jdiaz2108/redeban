@@ -37,7 +37,12 @@
       @endhasanyrole
     @endforeach
     @endif
-    <a class="list-group-item" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+    @role('user')
+    <a class="list-group-item" onclick="window.scrollTo(0,document.body.scrollHeight);document.getElementById('btn-custom-sidemenu-close').click()">
+        <i class="fa fa-circle"></i> &nbsp; CONTACTO | MESA DE AYUDA
+    </a>
+@endrole
+    <a class="list-group-item"  id="btn-custom-sidemenu-close" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
       <i class="fa fa-circle"></i> &nbsp; CERRAR SESIÓN
     </a>
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

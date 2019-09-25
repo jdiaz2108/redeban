@@ -32,26 +32,32 @@
                 </div>
             </form>
           @else
-              @if (session('redeemed'))
-                {{session('redeemed')}}
-              @endif
-                <h2 class="name">{{$prize['prize']['name']}}</h2>
-                <p class="points">{{$prize['point']}} Puntos {{$redeem}}</p>
-                <p class="description">{{$prize['prize']['description']}}</p>
+
+          <h2 class="name">{{$prize['prize']['name']}}</h2>
+          <p class="points">{{$prize['point']}} Puntos {{$redeem}}</p>
+          <p class="description">{{$prize['prize']['description']}}</p>
+        @if (!session('reddemed'))
+
                 @if ($user->points >= $prize['point'])
-                  <form action="/redeem-validate-mail" method="POST">
-                      @csrf
-                      <input type="hidden" name="code" value="{{$prize['id']}}">
-                      <button class="btn btn-primary btn-custom">REDIMIR</button>
-                  </form>
+                <form action="/redeem-validate-mail" method="POST">
+                    @csrf
+                    <input type="hidden" name="code" value="{{$prize['id']}}">
+                    <button class="btn btn-primary btn-custom">REDIMIR</button>
+                </form>
                 @else
-                  <button type="submit" class="btn btn-primary btn-custom disabled mx-auto">TE FALTAN {{($prize['point'] - $user->points)}} PUNTOS</button>
+
+                <button type="submit" class="btn btn-primary btn-custom disabled mx-auto">TE FALTAN {{($prize['point'] - $user->points)}} PUNTOS</button>
                 @endif
-              @endif
-              </div>
-          </div>
-        </div>
+        @else
+            @php
+            session()->pull('reddemed', true)
+            @endphp
+        @endif
+        @endif
     </div>
-  </div>
+</div>
+</div>
+</div>
+</div>
 </div>
 @endsection

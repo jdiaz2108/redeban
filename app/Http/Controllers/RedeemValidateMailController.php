@@ -167,6 +167,7 @@ class RedeemValidateMailController extends Controller
 
                         if($res)
                         {
+                            $request->session()->put('reddemed', true);
                             return back()->with('status', 'Haz redimido el premio correctamente, recibirás todos los datos de tu redención al correo '.$user->email);
 
                         } else {
