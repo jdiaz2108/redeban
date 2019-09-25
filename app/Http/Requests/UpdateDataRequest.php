@@ -26,7 +26,7 @@ class UpdateDataRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required|email',
-            'phone' => 'required',
+            'phone' => 'required|numeric',
             'address' => 'required',
             'city_id' => 'required',
         ];
@@ -36,7 +36,7 @@ class UpdateDataRequest extends FormRequest
     {
         return [
             'name' => 'nombre encargado',
-            'email' => 'correo electronico',
+            'email' => 'correo electrónico',
             'phone' => 'teléfono o celular',
             'address' => 'dirección',
             'city_id' => 'ciudad',

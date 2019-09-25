@@ -59,7 +59,7 @@
           </div>
         </div>
         <div class="col-md-7">
-          <img src="{{asset('images/neon-logo-RBM_GIF4.gif')}}" class="img-fluid img-logo mx-auto d-block" alt="Transacción Ganadora">
+          <img src="{{asset('images/transaccion-ganadora.png')}}" class="img-fluid img-logo d-block" alt="Transacción Ganadora">
         </div>
     </div>
   </div>

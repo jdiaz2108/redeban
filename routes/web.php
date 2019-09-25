@@ -23,12 +23,17 @@ Route::middleware('auth')->group(function () {
     // Only users with user role
     Route::group(['middleware' => ['role:user']], function () {
 
-        Route::resource('/home', 'UpdateUserDataController')->only(['index', 'store', 'update']);
+
+        Route::post('/updateDataPoints', 'UpdateUserDataController@addPoints');
+        Route::resource('/update-data', 'UpdateUserDataController')->only(['index', 'store', 'update']);
+
 
         // Update data is required
         Route::middleware('update.data')->group(function () {
+            Route::get('/home', 'HomeController@showShops');
 
             Route::get('/shop', 'HomeController@showShops');
+
             Route::get('/selectShop/{id}', 'HomeController@selectShop');
 
             Route::get('/prize/{id}', 'HomeController@showPrize');

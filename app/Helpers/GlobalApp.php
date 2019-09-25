@@ -17,6 +17,7 @@ class GlobalApp
           ['name' => 'historial de transacciones', 'url' => '/transactions', 'icon' => 'add_box', 'roles' => ['user']],
           //['name' => 'trivias', 'url' => '/trivias', 'icon' => 'add_box', 'roles' => ['user']],
           ['name' => 'términos y condiciones', 'url' => '/terms', 'icon' => 'add_box', 'roles' => ['user']],
+          ['name' => 'Actualizar Datos', 'url' => '/update-data', 'icon' => 'add_box', 'roles' => ['user']],
 
           // Menu for admin
           ['name' => 'Inicio', 'url' => '/dashboard', 'icon' => 'dashboard', 'roles' => ['admin']],

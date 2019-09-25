@@ -18,6 +18,8 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->boolean('active')->default(true);
             $table->integer('points_redeem');
+            $table->integer('points_update_data');
+            $table->integer('points_trivia');
             $table->timestamps();
         });
     }

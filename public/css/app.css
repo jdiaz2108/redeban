@@ -11140,6 +11140,11 @@ select:-webkit-autofill:focus {
   color: #fff;
 }
 
+.text-points-cu {
+  font-weight: bold !important;
+  color: #fff06e;
+}
+
 .alert-custom-red {
   background-color: #424242c9;
   border: 2px solid #ff2c2c;
@@ -11401,6 +11406,18 @@ select:-webkit-autofill:focus {
   font-weight: bold;
 }
 
+.modal-content.modal-points {
+  color: #fff;
+  background: #242425;
+  box-shadow: 0 0 2em #ffc01d;
+  border-radius: 10px;
+  border: 3px solid #fff558;
+}
+
+.modal-content.modal-points .text-points {
+  color: #c0ff00;
+}
+
 .page.catalog .title {
   color: #fff;
 }
@@ -11575,5 +11592,69 @@ select:-webkit-autofill:focus {
   .page.login .login-form {
     margin: 0px;
   }
+}
+
+.card {
+  background: #0000005c !important;
+}
+
+.card .list-group .list-code {
+  background: #929292 !important;
+}
+
+.card .progress {
+  background-color: #3e3e3e;
+}
+
+.card .progress-bar-green {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #bbff2d;
+  transition: width 0.6s ease;
+  border: 1px solid #8bca0a;
+}
+
+.card .btn-custom-red {
+  background-color: transparent !important;
+  border-radius: 20px;
+  padding: 1px 15px;
+  color: #fff !important;
+  font-weight: bold;
+  border: 2px solid #9e1818;
+  font-size: 18px;
+  border: 1px solid #5c8800;
+}
+
+.card .btn-custom-purple {
+  background-color: transparent !important;
+  border-radius: 20px;
+  padding: 1px 15px;
+  color: #fff !important;
+  font-weight: bold;
+  border: 2px solid #fdafff;
+  box-shadow: 0 0 10px #b802bd99;
+  font-size: 18px;
+}
+
+.card .btn-custom-purple:hover {
+  color: #d4d4d4 !important;
+  border-color: #b802bd99;
+  cursor: pointer;
+}
+
+.card.code-active {
+  box-shadow: 0 0 2em #ffc01d !important;
+  border-radius: 10px;
+  border: 3px solid #fff558;
+}
+
+.card.code-inactive {
+  box-shadow: 0 0 1em rgba(0, 255, 255, 0.329) !important;
+  border-radius: 10px;
+  border: 1px solid #0ff;
 }
 

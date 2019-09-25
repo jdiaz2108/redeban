@@ -10,6 +10,7 @@ use App\Models\UserData;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateDataRequest;
+use App\Models\Shop;
 
 class UpdateUserDataController extends Controller
 {
@@ -27,9 +28,10 @@ class UpdateUserDataController extends Controller
             $departments = Department::orderBy('name')->get();
             $updatedData = ($user->updated) ? $user->userData : $user ;
             $city = ($user->userData) ? City::find($user->userData->city_id)->name : null ;
-            $action = $user->updated ? '/home/'.$updatedData['id'] : '/home';
+            $action = $user->updated ? '/update-data/'.$updatedData['id'] : '/update-data';
+            $shops = Shop::whereUserId($user->id);
 
-            return view('pages.home.update-data', compact('updatedData', 'user','action','departments','city'));
+            return view('pages.home.update-data', compact('updatedData', 'user','action','departments','city', 'shops'));
 
         } else {
 
@@ -61,17 +63,6 @@ class UpdateUserDataController extends Controller
         $data['user_id'] = $request->user()->id;
         $userData = new UserData($data);
         $userData->save();
-        $date = Carbon::now();
-        if(session('current_shop')) {
-            $points = new Point([
-                'event' => 'Actualización de datos',
-                'value' => 100,
-                'shop_id' => session('current_shop'),
-                'month' => $date->month,
-                'year' => $date->year
-            ]);
-            $points->save();
-        }
 
         return back()->with('status', 'SE HAN ACTUALIZADO LOS DATOS CORRECTAMENTE');
     }
@@ -122,4 +113,45 @@ class UpdateUserDataController extends Controller
     {
         //
     }
+
+    public function addPoints(Request $request)
+    {
+        $user = $request->user();
+        $code = $request['code'];
+        $date = Carbon::now();
+        $pointsUpdateData = $user->PointsUpdateData;
+
+        if ($code === 'allShops') {
+            $shops = Shop::whereUserId($user['id'])->get();
+            $numberShops = count($shops);
+            $poinstDivided = ($pointsUpdateData / $numberShops);
+
+            foreach ($shops as $key => $shop) {
+                $points = new Point([
+                    'event' => 'Actualización de datos',
+                    'value' => (integer) $poinstDivided,
+                    'shop_id' => $shop->id,
+                    'month' => $date->month,
+                    'year' => $date->year
+                ]);
+
+                $points->save();
+            }
+
+        } else {
+            $shop = Shop::whereUserId($user['id'])->whereCode($code)->first();
+            $points = new Point([
+                'event' => 'Actualización de datos',
+                'value' => $pointsUpdateData,
+                'shop_id' => $shop->id,
+                'month' => $date->month,
+                'year' => $date->year
+            ]);
+
+            $points->save();
+        }
+
+
+            return redirect('/home')->with('status', 'SE HAN ACTUALIZADO LOS DATOS CORRECTAMENTE');
+        }
 }

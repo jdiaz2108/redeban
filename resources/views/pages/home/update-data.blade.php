@@ -116,42 +116,75 @@
   </div>
 </div>
 
-@if (1 == 2)
+@if ($user->updated && !$user->HasUpdateDataPoints)
+
+@if (count($user['shops']) > 1)
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-      </div>
-      <div class="modal-body">
-          <p>
-
-              Felicitaciones has ganado 100 puntos, selecciona un punto de venta para agregar los puntos.
-          </p>
-              <form>
-                      <div class="form-row align-items-center">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-points">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Felicitaciones</h5>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Ganaste <span class="text-points">{{$user->PointsUpdateData}} puntos</span>. Selecciona el Código Único al cual quieres agregar los puntos.
+                </p>
+                <form action="/updateDataPoints" method="POST">
+                        @csrf
+                    <div class="form-row align-items-center">
                         <div class="col-12 my-1">
-                          <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                            <option selected>Choose...</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                          </select>
-                        </div>
-                        <div class="col-auto my-3">
-                          <button type="submit" class="btn btn-custom">Agregar puntos</button>
-                        </div>
-                      </div>
-                    </form>
-      </div>
-    </div>
-  </div>
-</div>
-@else
+                            <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="code">
+                                @forelse ($user['shops'] as $shop)
+                                <option value="{{$shop['code']}}">Código Único: {{$shop['code']}}</option>
+                                @empty
 
+                                @endforelse
+                                <option value="allShops">Repartir equitativamente</option>
+                            </select>
+                        </div>
+                        <div class="col-auto mt-4 mb-2 mx-auto">
+                            <button type="submit" class="btn btn-custom">Agregar puntos</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@elseif(count($user['shops']) == 1)
+
+<!-- Modal -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-points">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">FELICITACIONES</h5>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Ganaste <span class="text-points">{{$user->PointsUpdateData}} puntos</span> y se agregaron a tu Código Único.
+                    </p>
+                    <form action="/updateDataPoints" method="POST">
+                            @csrf
+                        <div class="form-row align-items-center">
+                            <div class="col-12 my-1">
+                                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                                <input type="hidden" name="code" value="{{$user['shops'][0]->code}}">
+                            </div>
+                            <div class="col-auto mt-4 mb-2 mx-auto">
+                                <button type="submit" class="btn btn-custom">Aceptar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@endif
 @endif
 
 @endsection
@@ -162,5 +195,14 @@
         keyboard: false,
         backdrop: 'static'
         })
+
+    </script>
+
+<script>
+        $('#myModal2').modal({
+        keyboard: false,
+        backdrop: 'static'
+        })
+
     </script>
 @endsection

@@ -72,6 +72,14 @@ class User extends Authenticatable
     {
         return ($this->userData) ? true : false ;
     }
+
+    public function getHasPointsUpdatedDataAttribute()
+    {
+        $this->shops()->filter(function ($value, $key) {
+            return $value > 2;
+        });
+        return ($this->userData) ? true : false ;
+    }
     /* return the sum of points in value column 'value' accessing with $user->sumpoints */
     public function getPointsAttribute()
     {
@@ -140,6 +148,27 @@ class User extends Authenticatable
           $res = MailjetController::sendEmail($data);
       //dd($res);
     }
+
+    public function HasUpdateDataPointsFun()
+    {
+        return $this->shops()->get()->map(function($value) {
+                if ($value['PointsByUpdatingData']) {
+                    return true;
+                };
+            })->filter()->values()->isNotEmpty();
+    }
+
+    public function getHasUpdateDataPointsAttribute()
+    {
+        return ($this->HasUpdateDataPointsFun()) ? true : false ;
+    }
+
+    public function getPointsUpdateDataAttribute()
+    {
+        return $this->category()->first()->points_update_data;
+    }
+
+    protected $with = ['shops'];
 
 
   }

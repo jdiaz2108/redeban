@@ -46,6 +46,11 @@ class Shop extends Model
         return $this->points()->sum('value');
     }
 
+    public function getPointsByUpdatingDataAttribute()
+    {
+        return $this->points()->whereEvent('Actualización de datos')->get()->isNotEmpty() ? true : false;
+    }
+
     public function getNitAttribute()
     {
         return $this->user()->first()['identification'] ;
