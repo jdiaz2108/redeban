@@ -66,7 +66,7 @@ class UpdateUserDataController extends Controller
         $userData = new UserData($data);
         $userData->save();
 
-        return back()->with('status', 'SE HAN ACTUALIZADO LOS DATOS CORRECTAMENTE');
+        return redirect('/home')->with('status', 'SE HAN ACTUALIZADO LOS DATOS CORRECTAMENTE');
     }
 
     /**
@@ -102,7 +102,7 @@ class UpdateUserDataController extends Controller
     {
         $userData = UserData::find($id)->update($request->all());
 
-        return back()->with('status', 'SE HAN ACTUALIZADO LOS DATOS CORRECTAMENTE');
+        return redirect('/home')->with('status', 'SE HAN ACTUALIZADO LOS DATOS CORRECTAMENTE');
     }
 
     /**

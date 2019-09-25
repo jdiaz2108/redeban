@@ -84,10 +84,11 @@ class HomeController extends Controller
         return view('pages.home.history-points', compact('historyPoints','user'));
     }
 
-    public function transactions()
+    public function transactions(Request $request)
     {
         $user = Auth::user();
-        $historyFulfillment = Fulfillment::whereShopId(session('current_shop'))->get();
+        $shop = Shop::whereCode(session('current_shop'))->first();
+        $historyFulfillment = Fulfillment::whereShopId($shop->id)->get();
         AccessLog::accessSection($request,'Historial de transacciones');
 
         return view('pages.home.history-transactions', compact('historyFulfillment','user'));
@@ -118,9 +119,10 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $shops = $user->shops();
+        $shop = Shop::whereCode(session('current_shop'))->first() ?? null;
         AccessLog::accessSection($request,'Seleccionar codigo unico');
 
-        return view('pages.home.shop', compact('user', 'shops'));
+        return view('pages.home.shop', compact('user', 'shops', 'shop'));
     }
 
     public function selectShop($id)
@@ -128,7 +130,7 @@ class HomeController extends Controller
         $shop = Shop::whereCode($id)->first();
         Session::put('current_shop', $shop->code);
 
-        return back()->with('status', 'Haz seleccionado correctamente la tienda con el codigo '.$shop->code);
+        return back()->with('status', 'Haz seleccionado correctamente el Código Único: '.$shop->code);
     }
 
 }

@@ -39829,8 +39829,8 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-custom-sidemenu-close").clic
 
 jquery__WEBPACK_IMPORTED_MODULE_0___default()('#slider').slick({
   infinite: true,
-  slidesToShow: 3,
-  slidesToScroll: 3,
+  slidesToShow: 2,
+  slidesToScroll: 2,
   responsive: [{
     breakpoint: 1000,
     settings: {
@@ -39968,8 +39968,8 @@ if (token) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\projects\transaccionganadora-redeban\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\projects\transaccionganadora-redeban\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\projects\redeban\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\projects\redeban\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

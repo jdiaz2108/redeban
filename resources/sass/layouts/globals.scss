@@ -189,3 +189,12 @@ select:-webkit-autofill:focus {
     font-weight: bold !important;
     color: #fff06e;
 }
+
+.global-point {
+    .line-purple {
+        margin: 10px 0px;
+        width: 200px;
+        border: 1px solid #d669ff;
+        box-shadow: 0 0 3px 1px #D669FF;
+    }
+}

@@ -6,36 +6,36 @@
     <div class="row">
       <div class="col-md-1"></div>
       <div class="col-md-10 content-page">
-        <div class="row">
-          <div class="col-9">
-            <h2 class="title">Catálogo</h2>
-            <hr class="line">
-            <p class="points">Puntos {{$user->points}}</p>
-          </div>
-          <div class="col-3">
-            @if(!is_null($user->category_id))
-              <img src="{{asset($user->categoryImage($user->category_id))}}" alt="">
-            @endif
-          </div>
-        </div>
+            @include('layouts.points')
         <div class="row">
           <div class="col-12">
             <div id="slider" class="cards-slider">
                 @foreach ($prizes as $key => $prize)
-                <div class="prize-item">
-                  <div class="content-image rounded-top shadow" >
-                    <a href="{{url('prize',$prize['id'])}}">
-                    @if ($prize['prize']['image'])
-                    <img src="{{$prize['prize']['image']}}" class="img-fluid" width="170" alt="...">
-                    @else
-                    <img src="{{asset('images/image.png')}}" class="img-fluid" alt="...">
-                    @endif
-                    </a>
-                  </div>
-                  <div class="box-text {{$colors[$key]}} text-left rounded-bottom shadow">
-                    <p class="name" title="{{$prize['prize']['description']}}">{{$prize['prize']['name']}}</p>
-                    <p class="num">{{$prize['point']}} Puntos</p>
-                  </div>
+                <div class="prize-item mx-1">
+                        <a href="{{url('prize',$prize['id'])}}">
+                    <div class="row px-2">
+                        <div class="col-6 p-0">
+                            <div class="content-image" >
+                              @if ($prize['prize']['image'])
+                              <img src="{{$prize['prize']['image']}}" class="img-fluid" width="170" alt="...">
+                              @else
+                              <img src="{{asset('images/image.png')}}" class="img-fluid" alt="...">
+                              @endif
+                            </div>
+                        </div>
+                        <div class="col-6 p-0 h-100">
+                            <div class="box-text {{$colors[$key]}} text-left shadow">
+                            <p class="name text-center m-0" title="{{$prize['prize']['description']}}">{{$prize['prize']['name']}}</p>
+                        </div>
+                        <div class="text-truncate py-3 px-2 text-white">
+                            {{$prize['prize']['description']}}
+                        </div>
+                        <div class="d-flex align-items-end">
+                                <p class="num text text-center mx-auto {{$colors[$key]}}">{{$prize['point']}} Puntos</p>
+                        </div>
+                        </div>
+                    </div>
+                </a>
                 </div>
                 @endforeach
             </div>

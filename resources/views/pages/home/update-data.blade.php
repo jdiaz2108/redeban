@@ -183,9 +183,13 @@
             </div>
         </div>
     </div>
+     @endif
+    @endif
+    @if (!$user->updated)
+    @include('layouts.modal-wellcome')
+    @endif
 
-@endif
-@endif
+</div>
 
 @endsection
 
@@ -196,13 +200,17 @@
         backdrop: 'static'
         })
 
-    </script>
-
-<script>
         $('#myModal2').modal({
         keyboard: false,
         backdrop: 'static'
         })
 
+
+
+        $('#myModalShow').modal('show');
+
+        $('.carousel').carousel({
+            interval: 20000
+        })
     </script>
 @endsection

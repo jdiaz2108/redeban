@@ -11145,6 +11145,13 @@ select:-webkit-autofill:focus {
   color: #fff06e;
 }
 
+.global-point .line-purple {
+  margin: 10px 0px;
+  width: 200px;
+  border: 1px solid #d669ff;
+  box-shadow: 0 0 3px 1px #D669FF;
+}
+
 .alert-custom-red {
   background-color: #424242c9;
   border: 2px solid #ff2c2c;
@@ -11418,6 +11425,39 @@ select:-webkit-autofill:focus {
   color: #c0ff00;
 }
 
+.modal-content.modal-steps {
+  color: #fff;
+  background: #242425;
+  box-shadow: 0 0 2em #ffc01d;
+  border-radius: 10px;
+  border: 3px solid #fff558;
+}
+
+.modal-content.modal-steps .carousel-control-prev,
+.modal-content.modal-steps .carousel-control-next {
+  width: 50px;
+  top: unset;
+  bottom: 10px;
+}
+
+.modal-content.modal-steps .section-step {
+  margin-bottom: 30px;
+}
+
+.modal-content.modal-steps .carousel-control-next-icon {
+  background-image: url("/images/steps/right.png");
+}
+
+.modal-content.modal-steps .carousel-control-prev-icon {
+  background-image: url("/images/steps/left.png");
+}
+
+.modal-content.modal-steps .carousel-control-prev-icon,
+.modal-content.modal-steps .carousel-control-next-icon {
+  width: 40px;
+  height: 40px;
+}
+
 .page.catalog .title {
   color: #fff;
 }
@@ -11448,10 +11488,21 @@ select:-webkit-autofill:focus {
   padding: 20px;
 }
 
+.page.catalog .cards-slider .prize-item a:hover {
+  color: none;
+  text-decoration: none;
+}
+
+.page.catalog .cards-slider .prize-item a:hover .num {
+  text-shadow: 0 0 12px #0808089e;
+}
+
 .page.catalog .cards-slider .prize-item .content-image {
   background-color: #fff;
   border: 1px solid #fff;
   position: relative;
+  border-radius: 0.5rem 0 0.5rem 0.5rem;
+  box-shadow: 0 0 7px #ffffff;
 }
 
 .page.catalog .cards-slider .prize-item .content-image .stock {
@@ -11470,11 +11521,13 @@ select:-webkit-autofill:focus {
 .page.catalog .cards-slider .prize-item .box-text {
   color: #fff;
   padding: 10px;
+  border-radius: 0 0.5rem 0.5rem 0rem;
 }
 
 .page.catalog .cards-slider .prize-item .box-text .name {
   font-weight: bold;
   margin-bottom: 5px;
+  font-size: 17px;
 }
 
 .page.catalog .cards-slider .prize-item .box-text .num {
@@ -11482,16 +11535,34 @@ select:-webkit-autofill:focus {
   margin-bottom: 0px;
 }
 
-.page.catalog .cards-slider .prize-item .boxred {
+.page.catalog .cards-slider .prize-item .box-text.boxred {
   background-color: #ff5959;
 }
 
-.page.catalog .cards-slider .prize-item .boxgreen {
+.page.catalog .cards-slider .prize-item .box-text.boxblue {
+  background-color: #35d5e5;
+}
+
+.page.catalog .cards-slider .prize-item .box-text.boxgreen {
   background-color: #8be523;
 }
 
-.page.catalog .cards-slider .prize-item .boxblue {
-  background-color: #35d5e5;
+.page.catalog .cards-slider .prize-item .text.boxgreen {
+  color: #8be523;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.page.catalog .cards-slider .prize-item .text.boxred {
+  color: #ff5959;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.page.catalog .cards-slider .prize-item .text.boxblue {
+  color: #35d5e5;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .page.catalog .slick-prev:before,
@@ -11630,7 +11701,6 @@ select:-webkit-autofill:focus {
   white-space: nowrap;
   background-color: #bbff2d;
   transition: width 0.6s ease;
-  border: 1px solid #8bca0a;
 }
 
 .card .btn-custom-red {

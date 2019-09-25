@@ -14,7 +14,7 @@
             <form action="{{ route('admin::points.index') }}" method="GET">
               <div class="form-group row">
                 <div class="col-md-7">
-                  <input class="form-control input-custom2" type="search" placeholder="Codigo punto de venta" name="query">
+                  <input class="form-control input-custom2" type="search" placeholder="Código Único" name="query">
                 </div>
                 <div class="col-md-5 text-center">
                   <button class="btn btn-custom fontSize18" type="submit"><i class="fa fa-search" aria-hidden="true"></i> Buscar</button>
@@ -31,7 +31,7 @@
                       <tr>
                           <th>Evento</th>
                           <th>Valor</th>
-                          <th>Codigo punto</th>
+                          <th>Código Único</th>
                           <th>Nombre Usuario</th>
                           <th>Identificacion Usuario</th>
                           <th>Fecha</th>

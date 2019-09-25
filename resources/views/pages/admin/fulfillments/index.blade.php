@@ -44,7 +44,7 @@
                           <th>Semanas liquidadas</th>
                           <th>Meta</th>
                           <th>Transacciones actuales</th>
-                          <th>Codigo punto de venta</th>
+                          <th>Código único</th>
                           <th>Identificación Usuario</th>
                       </tr>
                   </thead>

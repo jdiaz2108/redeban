@@ -27,12 +27,23 @@
 	    margin: auto;
 	    position: relative;
 	    text-align: center;
-			padding: 20px;
+            padding: 20px;
+
+            a:hover {
+                color: none;
+                text-decoration: none;
+
+                .num {
+                    text-shadow: 0 0 12px #0808089e;
+                }
+            }
 
 	    .content-image {
 	      background-color: #fff;
 				border: 1px solid #fff;
-				position:relative;
+                position:relative;
+                border-radius: 0.5rem 0 0.5rem 0.5rem;
+                box-shadow: 0 0 7px #ffffff;
 
 				.stock {
 					bottom:0;
@@ -50,11 +61,13 @@
 
 			.box-text {
 				color: #fff;
-				padding: 10px;
+                padding: 10px;
+                border-radius: 0 0.5rem 0.5rem 0rem;
 
 				.name {
 					font-weight: bold;
-					margin-bottom: 5px;
+                    margin-bottom: 5px;
+                    font-size: 17px;
 				}
 
 				.num {
@@ -63,14 +76,32 @@
 				}
 			}
 
-			.boxred {
+			.box-text.boxred {
 				background-color: #ff5959;
-			}
-			.boxgreen {
-				background-color: #8be523;
-			}
-			.boxblue {
+            }
+            .box-text.boxblue {
 				background-color: #35d5e5;
+            }
+
+			.box-text.boxgreen {
+				background-color: #8be523;
+            }
+
+            .text.boxgreen {
+                color: #8be523;
+                font-size: 20px;
+                font-weight: bold;
+            }
+
+			.text.boxred {
+                color: #ff5959;
+                font-size: 20px;
+                font-weight: bold;
+            }
+            .text.boxblue {
+                color: #35d5e5;
+                font-size: 20px;
+                font-weight: bold;
 			}
 
 	  }

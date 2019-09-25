@@ -38,8 +38,8 @@ $("#btn-custom-sidemenu-close").click(function(){
 //slider catalog
 $('#slider').slick({
   infinite: true,
-  slidesToShow: 3,
-  slidesToScroll: 3,
+  slidesToShow: 2,
+  slidesToScroll: 2,
   responsive: [
     {
       breakpoint: 1000,

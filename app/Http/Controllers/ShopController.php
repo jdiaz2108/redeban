@@ -64,7 +64,7 @@ class ShopController extends Controller
     public function show($id)
     {
         Session::put('current_shop', $id);
-        return back()->with('status', 'Haz seleccionado correctamente la tienda con el codigo '.$id);
+        return back()->with('status', 'Haz seleccionado correctamente el Código Único '.$id);
     }
 
     /**

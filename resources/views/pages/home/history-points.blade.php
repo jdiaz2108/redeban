@@ -10,9 +10,6 @@
             <h2 class="title">Historial de puntos <span class="line">|</span> <span class="points">Puntos {{$user->points ?? ''}}</span></h2>
           </div>
           <div class="col-3">
-            @if(!is_null($user->category_id))
-              <img src="{{asset($user->categoryImage($user->category_id))}}" alt="">
-            @endif
           </div>
         </div>
         <div class="row">

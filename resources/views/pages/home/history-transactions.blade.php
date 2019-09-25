@@ -10,9 +10,7 @@
             <h2 class="title">Historial de transacciones <span class="line">|</span> <span class="points">Puntos {{$user->sumpoints}}</span></h2>
           </div>
           <div class="col-3">
-            @if(!is_null($user->category_id))
-              <img src="{{asset($user->categoryImage($user->category_id))}}" alt="">
-            @endif
+
           </div>
         </div>
         <div class="row">
