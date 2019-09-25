@@ -3,7 +3,7 @@
             <div class="modal-content modal-steps">
                 <div class="modal-body">
                         <div class="bd-example">
-                                <div id="carouselExampleCaptions" class="carousel slide" style="min-height: 600px" data-ride="carousel">
+                                <div id="carouselExampleCaptions" class="carousel slide" style="height: 500px" data-ride="carousel">
                                   <ol class="carousel-indicators">
                                     <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
                                     <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
@@ -29,8 +29,7 @@
                                             </div>
                                             <div class="col-md-5 my-auto">
                                                 <p style="font-size: 20px " class="my-auto">A continuación te daremos un paso a paso de la plataforma,
-                                                    para que empieces a acumular y a ganar con tus
-                                                        códigos únicos</p>
+                                                    para que empieces a acumular y ganar con Redeban</p>
                                             </div>
                                         </div>
                                     </div>
@@ -51,8 +50,8 @@
                                                 <img src="{{asset('images/steps/one.png')}}" class="d-block" alt="...">
                                                 </div>
                                                 <div class="col-md-7 pl-5">
-                                                    <p style="font-size: 20px">Actualiza tus datos para activarte en la transacción ganadora
-                                                        y ganar los primeros puntos para que empieces a acumular</p>
+                                                    <p style="font-size: 20px">Actualiza tus datos para activarte en La Transacción Ganadora
+                                                        y acumular tus primeros puntos</p>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <img src="{{asset('images/steps/image-one.png')}}" class="img-fluid">
@@ -101,8 +100,7 @@
                                                 <img src="{{asset('images/steps/tree.png')}}" class="d-block" alt="...">
                                             </div>
                                             <div class="col-md-8 pl-5">
-                                                <p style="font-size: 20px">En el inicio encontrarás cuántos puntos tienes
-                                                        por cada código único y la meta de cada uno</p>
+                                                <p style="font-size: 20px">En el INICIO encontrarás tus códigos únicos la meta y puntos acumulados de cada uno</p>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <img src="{{asset('images/steps/image-tree.png')}}" class="img-fluid">
@@ -131,8 +129,8 @@
                                                     * Revisar historial de puntos<br>
                                                     * Historial de transacciones<br>
                                                     * Redimir premios<br>
-                                                    (todas las opciones anteriores
-                                                            las encontrarás en el menú)
+                                                    (Todas las opciones anteriores
+                                                            las encontrarás en el MENÚ)
                                                     </p>
                                                 </div>
                                                 <div class="col-md-3">
@@ -153,7 +151,7 @@
                                                 </div>
                                                 <div class="row section-step px-5 pb-5">
                                                     <div class="col-md-10 mx-auto text-center">
-                                                            <p style="font-size: 20px" class="text-center">¡Y listo! Empieza a acumular y a ganar con</p>
+                                                            <p style="font-size: 20px" class="text-center">¡Y listo! Empieza a acumular y ganar con</p>
                                                         <img src="{{asset('images/steps/five.png')}}" class="img-fluid mx-auto" alt="...">
                                                     </div>
                                                     </div>

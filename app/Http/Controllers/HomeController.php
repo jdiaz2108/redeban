@@ -61,17 +61,23 @@ class HomeController extends Controller
     public function showPrize(Request $request,$id)
     {
         $user = Auth::user();
-        $prize = PrizeCategory::find($id);
-        $activeredeem = Shop::whereCode(session('current_shop'))->first()->ActiveRedeem ?? null;
-        $redeem = (($activeredeem->prize_category_id ?? '') == $prize->id && ($activeredeem->active ?? '')) ? true : false ;
-        AccessLog::accessSection($request,'Premio '.$prize->prize->name.' - Categoria '.$prize->category_id);
-        if ($redeem) {
-            $carbon = Carbon::now('America/Bogota')->subMinutes(10);
-            $tenMinutesValidation = $carbon <= $activeredeem->created_at;
-            $redeem = ($tenMinutesValidation) ? true : false ;
+        $prize = PrizeCategory::whereCategoryId($user->category_id)->find($id);
+        if ($prize) {
+            $activeredeem = Shop::whereCode(session('current_shop'))->first()->ActiveRedeem ?? null;
+            $redeem = (($activeredeem->prize_category_id ?? '') == $prize->id && ($activeredeem->active ?? '')) ? true : false ;
+            AccessLog::accessSection($request,'Premio '.$prize->prize->name.' - Categoria '.$prize->category_id);
+            if ($redeem) {
+                $carbon = Carbon::now('America/Bogota')->subMinutes(10);
+                $tenMinutesValidation = $carbon <= $activeredeem->created_at;
+                $redeem = ($tenMinutesValidation) ? true : false ;
+            }
+
+            return view('pages.home.prize.show', compact('prize', 'redeem','user'));
+        } else {
+            return back()->with('status', 'No permitido');
         }
 
-        return view('pages.home.prize.show', compact('prize', 'redeem','user'));
+
     }
 
     public function points(Request $request)
