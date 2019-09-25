@@ -185,7 +185,7 @@
     </div>
      @endif
     @endif
-    @if (!$user->updated)
+    @if (!$user->updated && !$errors->any())
     @include('layouts.modal-wellcome')
     @endif
 
