@@ -19,9 +19,11 @@ function renderData(data)
 {
   var access_logs = data.access_logs;
   var users_categories = data.users_categories;
+  var access_sections = data.access_sections;
 
 	graph1(access_logs);
   graph2(users_categories);
+  graph4(access_sections);
 }
 
 
@@ -41,7 +43,6 @@ function graph1(access_logs){
   }
   console.log(days);
 
-  // graph 2
   Highcharts.chart('container_access_users', {
       chart: {
         backgroundColor: 'transparent',
@@ -85,7 +86,10 @@ function graph1(access_logs){
 	            dataLabels: {
 	                enabled: true
 	            }
-	        }
+	        },
+          line: {
+            color: '#8be523'
+          }
 	    },
 	    tooltip: {
 	        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
@@ -229,4 +233,79 @@ function graph3()
     },
     colors : ['#ff2c2c', '#ccc']
   });
+}
+
+function graph4(access_sections){
+  console.log("access_sections");
+  console.log(access_sections);
+  var days = [];
+	var access_all = access_sections.total;
+
+  for(i=0;i < access_sections.sections.length; i++){
+      var row = {
+        'name' : access_sections.sections[i],
+        'y' : parseInt(access_sections.rows[i]),
+				'color' : '#6d9a39'
+      };
+      days.push(row);
+  }
+  console.log(days);
+
+  Highcharts.chart('container_sections', {
+      chart: {
+        backgroundColor: 'transparent',
+        borderWidth: 1,
+        borderColor: '#8be523'
+      },
+	    title: {
+	        text: 'Ingresos a Secciones',
+          style: {
+            color: '#8be523'
+          }
+	    },
+	    subtitle: {
+	        text: 'Numero de ingresos por sección',
+          style: {
+            color: '#fff'
+          }
+	    },
+	    xAxis: {
+	        type: 'category',
+          labels: {
+            style: {
+              color: '#fff'
+            }
+          }
+	    },
+	    yAxis: {
+	        title: {
+            text: 'Numero Ingresos',
+            style: {
+              color: '#fff'
+            }
+          }
+	    },
+	    legend: {
+	        enabled: false
+	    },
+	    plotOptions: {
+	        series: {
+	            borderWidth: 0,
+	            dataLabels: {
+	                enabled: true
+	            }
+	        },
+          line: {
+            color: '#8be523'
+          }
+	    },
+	    tooltip: {
+	        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+	        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> de '+access_all+'<br/>'
+	    },
+	    series: [{
+	      name: 'Ingresos por día',
+	      data: days
+	    }]
+	});
 }
