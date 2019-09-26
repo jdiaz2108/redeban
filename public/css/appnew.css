@@ -11095,7 +11095,7 @@ select:-webkit-autofill:focus {
 }
 
 .content-page {
-  background: #ffffff57;
+  background: rgba(255, 255, 255, 0.341);
   padding: 40px 50px;
   border-radius: 0px 0px 50px 50px;
   margin-bottom: 20px;
@@ -11138,7 +11138,7 @@ select:-webkit-autofill:focus {
 }
 
 .content-text {
-  background-color: #00000054;
+  background-color: rgba(0, 0, 0, 0.329);
   border-radius: 50px;
   padding: 20px 25px;
   color: #fff;
@@ -11157,7 +11157,7 @@ select:-webkit-autofill:focus {
 }
 
 .alert-custom-red {
-  background-color: #424242c9;
+  background-color: rgba(66, 66, 66, 0.788);
   border: 2px solid #ff2c2c;
   box-shadow: 0 0 2em #ff2c2c;
   text-transform: uppercase;
@@ -11165,7 +11165,7 @@ select:-webkit-autofill:focus {
 }
 
 .alert-custom-green {
-  background-color: #424242c9;
+  background-color: rgba(66, 66, 66, 0.788);
   border: 2px solid #8be523;
   box-shadow: 0 0 2em #8be523;
   text-transform: uppercase;
@@ -11304,7 +11304,7 @@ select:-webkit-autofill:focus {
 }
 
 .contact .input-custom {
-  background-color: #ffffff4d !important;
+  background-color: rgba(255, 255, 255, 0.302) !important;
   border: 0px;
   width: 100%;
   padding: 5px 10px;
@@ -11314,7 +11314,7 @@ select:-webkit-autofill:focus {
 }
 
 .contact .select-custom {
-  background-color: #ffffff4d !important;
+  background-color: rgba(255, 255, 255, 0.302) !important;
   border: 0px;
   width: 100%;
   padding: 5px 10px;
@@ -11407,7 +11407,7 @@ select:-webkit-autofill:focus {
 }
 
 .page.update-data .content-update {
-  background-color: #00000054;
+  background-color: rgba(0, 0, 0, 0.329);
   border-radius: 50px;
   padding: 30px 50px;
 }
@@ -11595,7 +11595,7 @@ select:-webkit-autofill:focus {
 }
 
 .page.catalog .alert-custom-red {
-  background-color: #424242c9;
+  background-color: rgba(66, 66, 66, 0.788);
   border: 2px solid #ff2c2c;
   box-shadow: 0 0 2em #ff2c2c;
   text-transform: uppercase;
@@ -11603,7 +11603,7 @@ select:-webkit-autofill:focus {
 }
 
 .page.catalog .alert-custom-green {
-  background-color: #424242c9;
+  background-color: rgba(66, 66, 66, 0.788);
   border: 2px solid #8be523;
   box-shadow: 0 0 2em #8be523;
   text-transform: uppercase;
@@ -11674,12 +11674,12 @@ select:-webkit-autofill:focus {
 }
 
 .card .card-body {
-  background: #3a3a3ba6 !important;
+  background: rgba(58, 58, 59, 0.651) !important;
   border-radius: 10px 10px 0px 0px !important;
 }
 
 .card .card-footer {
-  background: #3a3a3ba6;
+  background: rgba(58, 58, 59, 0.651);
   border-radius: 0px 0px 10px 10px;
 }
 
@@ -11689,7 +11689,7 @@ select:-webkit-autofill:focus {
 }
 
 .card .list-group .list-code {
-  background: transparent !important;
+  background: #565657 !important;
 }
 
 .card .progress {
