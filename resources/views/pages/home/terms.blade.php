@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-md-12">
               <div class="content-text">
-                    <iframe class="w-100" style="min-height: 600px; border-radius: 20px;" src="/documents/terminos-y-condiciones.pdf"></iframe>
+                    <iframe class="w-100" style="min-height: 600px; border-radius: 20px;" src="/documents/Terminos_y_Condiciones_La_Trasanccion_Ganadora_Octubre_2019"></iframe>
               </div>
             </div>
         </div>
