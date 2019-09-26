@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Carbon\Carbon;
 use App\Models\AccessLog;
+use App\Models\Fulfillment;
 use Illuminate\Http\Request;
 use App\Http\Requests\DataFileRequest;
-use Carbon\Carbon;
 use Illuminate\Support\Arr;
 
 class UserController extends Controller
@@ -131,11 +132,13 @@ class UserController extends Controller
       $access_logs = AccessLog::report();
       $users_categories = User::reportCategories();
       $access_sections = AccessLog::reportSections();
+      $fulfillments_category = Fulfillment::reportFulfillments();
 
   		return response()->json([
   			"access_logs" => $access_logs,
         "users_categories" => $users_categories,
-        "access_sections" => $access_sections
+        "access_sections" => $access_sections,
+        "fulfillments_category" => $fulfillments_category
   		]);
     }
 

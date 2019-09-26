@@ -34,12 +34,12 @@ class HomeController extends Controller
         if ($user->changedPassword) {
 
             $users = User::count();
-            $fulfillments = Fulfillment::count();
+            $shops = Shop::count();
             $prizes = Prize::count();
             $coupons = Coupon::count();
             $prizes_categories = PrizeCategory::get();
 
-            return view('home',compact('users','fulfillments','prizes','coupons','prizes_categories'));
+            return view('pages.admin.home',compact('users','shops','prizes','coupons','prizes_categories'));
 
         } else {
 
