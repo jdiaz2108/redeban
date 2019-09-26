@@ -12,6 +12,7 @@ use App\Models\redeemValidateMail;
 use Illuminate\Support\MessageBag;
 use App\Http\Requests\RedeemCodeRequest;
 use App\Http\Controllers\SendEmailController;
+use App\Http\Requests\VierifyDataToRedeemRequest;
 use App\Models\PrizeCategory;
 use App\Models\Shop;
 use App\Models\UserData;
@@ -49,9 +50,8 @@ class RedeemValidateMailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(VierifyDataToRedeemRequest $request)
     {
-
         $data = $request->all();
         $prizeCategory = PrizeCategory::whereId($data['code'])->with('prize')->first();
         $prize = $prizeCategory->prize;
@@ -172,7 +172,7 @@ class RedeemValidateMailController extends Controller
                         if($res)
                         {
                             $request->session()->put('reddemed', true);
-                            return back()->with('status', 'Haz redimido el premio correctamente, recibirás todos los datos de tu redención al correo '.$user->email);
+                            return back()->with('status', 'Has redimido el premio correctamente, recibirás todos los datos de tu redención al correo '.$user->email);
 
                         } else {
 
@@ -182,7 +182,7 @@ class RedeemValidateMailController extends Controller
 
                 } else {
                     // Redirect back with the error that explain the code is invalid
-                    $errors->add('code', 'El Código es incorrecto!');
+                    $errors->add('code', 'El código ingresado es incorrecto, para obtener un nuevo código realiza nuevamente el proceso de redención.');
                     return back()->withErrors($errors);
                 }
 

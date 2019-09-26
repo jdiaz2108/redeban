@@ -54,7 +54,7 @@
                       </div>
                       <div class="col-md-11">
                         <input name="phone" type="text" class="input-custom @error('phone') is-invalid @enderror"
-                        value="{{$updatedData->phone}}" placeholder="Telefono ó celular" required>
+                        value="{{$updatedData->phone}}" placeholder="Teléfono fijo o celular" required>
                       </div>
                       @error('phone')
                       <span class="invalid-feedback" role="alert">
@@ -129,7 +129,7 @@
             </div>
             <div class="modal-body">
                 <p>
-                    Ganaste <span class="text-points">{{$user->PointsUpdateData}} puntos</span>. Selecciona el Código Único al cual quieres agregar los puntos.
+                    Ganaste <span class="text-points">{{$user->PointsUpdateData}} puntos</span>. Selecciona el código único al cual quieres asignarlos.
                 </p>
                 <form action="/updateDataPoints" method="POST">
                         @csrf
@@ -146,7 +146,7 @@
                             </select>
                         </div>
                         <div class="col-auto mt-4 mb-2 mx-auto">
-                            <button type="submit" class="btn btn-custom">Agregar puntos</button>
+                            <button type="submit" class="btn btn-custom">Asignar puntos</button>
                         </div>
                     </div>
                 </form>

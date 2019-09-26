@@ -69,7 +69,7 @@
             </div>
             <div class="modal-body">
                 <p>
-                   Verifica que tu dirección y número de contacto esten correctos para enviarte tu premio.
+                   Verifica que tu dirección y número de contacto esten correctos para hacer válida tu redención.
                 </p>
 
                 <form action="/redeem-validate-mail" class="form-update p-4" method="POST">
@@ -81,7 +81,7 @@
                       </div>
                       <div class="col-md-11">
                         <input name="phone" type="text" class="input-custom @error('phone') is-invalid @enderror"
-                        value="{{$user->userData->phone}}" placeholder="Telefono ó celular" required>
+                        value="{{$user->userData->phone}}" placeholder="Teléfono fijo o celular" required>
                       </div>
                       @error('phone')
                       <span class="invalid-feedback" role="alert">

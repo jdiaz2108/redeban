@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateDataRequest extends FormRequest
+class VierifyDataToRedeemRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,22 +24,16 @@ class UpdateDataRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'email' => 'required|email',
             'phone' => 'required|numeric',
             'address' => 'required',
-            'city_id' => 'required',
         ];
     }
 
     public function attributes()
     {
         return [
-            'name' => 'nombre encargado',
-            'email' => 'correo electrónico',
             'phone' => 'teléfono fijo o celular',
             'address' => 'dirección',
-            'city_id' => 'ciudad',
         ];
     }
 }

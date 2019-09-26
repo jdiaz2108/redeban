@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-md-1"></div>
       <div class="col-md-10 content-page">
-            @include('layouts.points')
+            @include('layouts.points', ['title' => 'Catálogo'])
         <div class="row">
           <div class="col-12">
             <div id="slider" class="cards-slider">

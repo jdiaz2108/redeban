@@ -18,11 +18,10 @@
                 <div class="card text-white shadow h-100 code code-active">
                     <div class="card-body p-3">
                         <div class="row">
-                            <div class="col-6 h5">
-                                CÓDIGO:<br>
+                            <div class="col-12 h5">
+                                CÓDIGO ÚNICO:<br>
                                 {{$shop['code']}}
                             </div>
-                            <div class="col-6"></div>
                         </div>
                     </div>
                     <ul class="list-group list-group-flush text-white">
@@ -54,11 +53,10 @@
                 <div class="card text-white shadow h-100 code {{ session('current_shop') == $shop['code'] ? 'code-active' : 'code-inactive'}}">
                     <div class="card-body p-3">
                         <div class="row">
-                            <div class="col-6 h5">
-                                CÓDIGO:<br>
+                            <div class="col-12 h5">
+                                CÓDIGO ÚNICO:<br>
                                 {{$shop['code']}}
                             </div>
-                            <div class="col-6"></div>
                         </div>
                     </div>
                     <ul class="list-group list-group-flush text-white">

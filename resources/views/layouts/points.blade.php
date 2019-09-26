@@ -2,6 +2,7 @@
     <div class="col-8">
         <h2 class="name-company" style="color: #ffffff">{{$user->name_company}}</h2>
         <hr class="line-purple">
+        <h3 class="name-company" style="color: #ffffff">{{$title ?? ''}}</h3>
     </div>
     <div class="col-4 row text-right">
         <div class="col-8 my-auto p-0">

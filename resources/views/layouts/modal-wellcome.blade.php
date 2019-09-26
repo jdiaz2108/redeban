@@ -23,13 +23,14 @@
                                                       </button>
                                             </div>
                                         </div>
-                                        <div class="row section-step px-5 pb-5" style="margin-top: 125px">
+                                        <div class="row section-step px-5 pb-5" style="margin-top: 100px">
                                             <div class="col-md-7 pr-5">
                                             <img src="{{asset('images/steps/wellcome.png')}}" class="img-fluid" alt="...">
                                             </div>
                                             <div class="col-md-5 my-auto">
-                                                <p style="font-size: 20px " class="my-auto">A continuación te daremos un paso a paso de la plataforma,
-                                                    para que empieces a acumular y ganar con Redeban</p>
+                                                <p style="font-size: 19px " class="my-auto">
+                                                    A continuación encontrarás el paso a paso de navegación en la plataforma para que empieces a acumular y ganar con Redeban
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -76,8 +77,10 @@
                                                 <img src="{{asset('images/steps/two.png')}}" class="d-block" alt="...">
                                                 </div>
                                                 <div class="col-md-8 pl-5">
-                                                    <p style="font-size: 20px">Escoge el código único al que quieras asignar los puntos
-                                                        (puedes escoger uno o asignarlos por igual en todos tus códigos únicos)</p>
+                                                    <p style="font-size: 20px">
+                                                        Escoge el código único al que quieres asignar los puntos otorgados por la actualización de datos,
+                                                        puedes asignarlos en su totalidad al código único elegido o asignarlos equitativamente entre todos tus códigos únicos
+                                                    </p>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <img src="{{asset('images/steps/image-two.png')}}" class="img-fluid">
@@ -90,9 +93,9 @@
                                             <div class="row section-step">
                                             <div class="col-md-12 form-group text-center">
                                                 <img src="{{asset('images/logo-redeban-white.png')}}" alt="">
-                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <img src="{{asset('images/steps/close.png')}}" class="float-right" alt="">
-                                                      </button>
+                                                    </button>
                                             </div>
                                         </div>
                                         <div class="row section-step px-5 pb-5" style="margin-top: 125px">
@@ -100,7 +103,9 @@
                                                 <img src="{{asset('images/steps/tree.png')}}" class="d-block" alt="...">
                                             </div>
                                             <div class="col-md-8 pl-5">
-                                                <p style="font-size: 20px">En el INICIO encontrarás tus códigos únicos la meta y puntos acumulados de cada uno</p>
+                                                <p style="font-size: 20px">
+                                                    En la página de inicio encontrarás la información referente a la meta y puntos acumulados para cada uno de tus códigos únicos
+                                                </p>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <img src="{{asset('images/steps/image-tree.png')}}" class="img-fluid">
@@ -124,13 +129,14 @@
                                                 <img src="{{asset('images/steps/four.png')}}" class="d-block" alt="...">
                                             </div>
                                             <div class="col-md-8 pl-5">
-                                                <p style="font-size: 20px">Deberás seleccionar el código único con el que quieras:</p>
+                                                <p style="font-size: 20px">
+                                                    Para ver el detalle de cada uno de tus códigos únicos, deberás seleccionarlo en la
+                                                    página de inicio y elegir en el menú lateral cualquiera de las siguientes acciones:
+                                                </p>
                                                 <p style="font-size: 20px">
                                                     * Revisar historial de puntos<br>
-                                                    * Historial de transacciones<br>
-                                                    * Redimir premios<br>
-                                                    (Todas las opciones anteriores
-                                                            las encontrarás en el MENÚ)
+                                                    * Consultar historial de transacciones<br>
+                                                    * Redimir premios
                                                     </p>
                                                 </div>
                                                 <div class="col-md-3">

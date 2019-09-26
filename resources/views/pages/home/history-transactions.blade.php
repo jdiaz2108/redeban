@@ -5,14 +5,7 @@
     <div class="row">
       <div class="col-md-1"></div>
       <div class="col-md-10 content-page">
-        <div class="row">
-          <div class="col-9">
-            <h2 class="title">Historial de transacciones <span class="line">|</span> <span class="points">Puntos {{$user->sumpoints}}</span></h2>
-          </div>
-          <div class="col-3">
-
-          </div>
-        </div>
+            @include('layouts.points', ['title' => 'Historial de transacciones'])
         <div class="row">
             <div class="col-md-9">
                 @if (session('status'))
