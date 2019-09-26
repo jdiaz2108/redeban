@@ -11118,6 +11118,10 @@ select:-webkit-autofill:focus {
   font-size: 24px;
 }
 
+.card-info .small {
+  font-size: 12px;
+}
+
 .card2 {
   border: 2px solid #3bd1ff;
   box-shadow: 0 0 2em #3bd1ff;

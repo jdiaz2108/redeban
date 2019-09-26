@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use App\Models\Shop;
 use App\Models\Point;
+use App\Models\Category;
 use App\Models\InvalidPoint;
 use App\Models\FulfillmentResult;
 use Illuminate\Database\Eloquent\Model;
@@ -95,6 +97,27 @@ class Fulfillment extends Model
     public function getShopUserAttribute()
     {
         return $this->shop()->first()['nit'];
+    }
+
+    public static function reportFulfillments()
+    {
+       $date = Carbon::now();
+       $categories_all = Category::all();
+       $fulfillments = FulfillmentResult::select('fulfillments.* , fulfillment_results.*')
+                    ->join('fulfillments','fulfillments.id','=','fulfillment_results.fulfillment_id')
+                    ->where('goal','<','transactions')->count();
+       $total = Fulfillment::where('month',$date->month)
+                    ->where('year',$date->year)->count();
+       $rows = [];
+       $categories = [];
+       foreach ($categories_all as $value) {
+         array_push($rows,$fulfillments);
+         array_push($categories,$value->name);
+       }
+
+       $access_logs = ["rows"=>$rows,"categories"=>$categories,"total"=>$total];
+
+       return $access_logs;
     }
 
 }
