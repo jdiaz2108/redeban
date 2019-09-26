@@ -14,6 +14,7 @@ use App\Http\Requests\RedeemCodeRequest;
 use App\Http\Controllers\SendEmailController;
 use App\Models\PrizeCategory;
 use App\Models\Shop;
+use App\Models\UserData;
 
 class RedeemValidateMailController extends Controller
 {
@@ -50,11 +51,14 @@ class RedeemValidateMailController extends Controller
      */
     public function store(Request $request)
     {
+
         $data = $request->all();
         $prizeCategory = PrizeCategory::whereId($data['code'])->with('prize')->first();
         $prize = $prizeCategory->prize;
         $shop = Shop::whereCode(session('current_shop'))->first();
         $user = $request->user();
+
+        UserData::find($user->userData['id'])->update($request->all());
         // Validate if User has more points that the cost of the prize
         if ($user->points >= $prizeCategory['point']) {
             $data['shop_id'] = $shop['id'];

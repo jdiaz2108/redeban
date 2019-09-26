@@ -10,8 +10,10 @@ use App\Models\City;
 use App\Models\Prize;
 use App\Models\Coupon;
 use App\Models\AccessLog;
+use App\Models\Department;
 use App\Models\Fulfillment;
 use App\Models\PrizeCategory;
+use App\Models\UserData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -63,6 +65,9 @@ class HomeController extends Controller
         $user = Auth::user();
         $prize = PrizeCategory::whereCategoryId($user->category_id)->find($id);
         if ($prize) {
+            $departments = Department::orderBy('name')->get();
+            $city = ($user->userData) ? City::find($user->userData->city_id)->name : null ;
+
             $activeredeem = Shop::whereCode(session('current_shop'))->first()->ActiveRedeem ?? null;
             $redeem = (($activeredeem->prize_category_id ?? '') == $prize->id && ($activeredeem->active ?? '')) ? true : false ;
             AccessLog::accessSection($request,'Premio '.$prize->prize->name.' - Categoria '.$prize->category_id);
@@ -72,7 +77,7 @@ class HomeController extends Controller
                 $redeem = ($tenMinutesValidation) ? true : false ;
             }
 
-            return view('pages.home.prize.show', compact('prize', 'redeem','user'));
+            return view('pages.home.prize.show', compact('prize', 'redeem','user', 'departments', 'city'));
         } else {
             return back()->with('status', 'No permitido');
         }

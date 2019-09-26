@@ -39,11 +39,8 @@
         @if (!session('reddemed'))
 
                 @if ($user->points >= $prize['point'])
-                <form action="/redeem-validate-mail" method="POST">
-                    @csrf
-                    <input type="hidden" name="code" value="{{$prize['id']}}">
-                    <button class="btn btn-primary btn-custom">REDIMIR</button>
-                </form>
+                    <button class="btn btn-primary btn-custom"  data-toggle="modal" data-target="#myModal2">REDIMIR</button>
+
                 @else
 
                 <button type="submit" class="btn btn-primary btn-custom disabled mx-auto">TE FALTAN {{($prize['point'] - $user->points)}} PUNTOS</button>
@@ -59,5 +56,85 @@
 </div>
 </div>
 </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-points">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">VERIFICA TU DIRECCIÓN</h5>
+            </div>
+            <div class="modal-body">
+                <p>
+                   Verifica que tu dirección y número de contacto esten correctos para enviarte tu premio.
+                </p>
+
+                <form action="/redeem-validate-mail" class="form-update p-4" method="POST">
+                    @csrf
+                    <input type="hidden" name="code" value="{{$prize['id']}}" >
+                    <div class="form-group row row-input">
+                      <div class="col-md-1 icon-col">
+                        <img src="{{asset('images/icons/cellphone.png')}}" alt="">
+                      </div>
+                      <div class="col-md-11">
+                        <input name="phone" type="text" class="input-custom @error('phone') is-invalid @enderror"
+                        value="{{$user->userData->phone}}" placeholder="Telefono ó celular" required>
+                      </div>
+                      @error('phone')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
+                    </div>
+                    <div class="form-group row row-input">
+                      <div class="col-md-1 icon-col">
+                        <img src="{{asset('images/icons/address.png')}}" alt="">
+                      </div>
+                      <div class="col-md-11">
+                        <input name="address" type="text" class="input-custom @error('address') is-invalid @enderror"
+                         value="{{$user->userData->address}}" placeholder="Dirección" required>
+                      </div>
+                        @error('address')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="form-group  row row-input">
+                      <div class="col-md-12">
+                        <strong class="text-white">Tu ciudad actual es: {{$city}}</strong>
+                      </div>
+                      <div class="col-md-1 icon-col">
+                        <img src="{{asset('images/icons/city.png')}}" alt="">
+                      </div>
+                      <div class="col-md-5">
+                        <select class="select-custom" id="department_id">
+                          <option value="" disabled selected>Selecione una opción</option>
+                          @foreach($departments as $item)
+                            <option value="{{$item->id}}">{{$item->name}}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                      <div class="col-md-5">
+                        <select name="city_id" id="city_id" type="text" class="select-custom @error('city_id') is-invalid @enderror" placeholder="Ciudad">
+                          <option value="" disabled selected>Selecione una opción</option>
+                        </select>
+                      </div>
+                      @error('city_id')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
+                    </div>
+                    <div class="form-group mt-5 text-center">
+                      <button type="submit" class="btn btn-primary btn-custom">CONFIRMAR</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
