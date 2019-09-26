@@ -26,23 +26,36 @@
                     </div>
                     <ul class="list-group list-group-flush text-white">
                         <li class="list-group-item list-code">Puntos: {{$shop['totalpoints']}}</li>
-                        <li class="list-group-item list-code">Meta actual: {{$shop['fulfillmentgoal']}}</li>
+                        <li class="list-group-item list-code">Meta actual: {{$shop['FirstGoal']}}</li>
                         <li class="list-group-item list-code">Transacciones actuales: {{$shop['FulfillmentValue']}}</li>
                         <li class="list-group-item list-code">
+                            <div class="row mb-2">
+                                    <div class="col-md-4 text-left">
+                                    </div>
+                                    <div class="col-md-4 text-center">
+                                            <b>Puntos</b>
+                                        </div>
+                                    <div class="col-md-4 text-right">
+                                        <span class="goal">{{$shop['FirstPrizePoint']}}</span>
+                                    </div>
+                                </div>
                             <div class="progress" style="height: 10px;">
-                            <div class="progress-bar-green" role="progressbar" style="width: {{($shop['FulfillmentValue'] * 100) / ($shop['fulfillmentgoal'] ? $shop['fulfillmentgoal'] : 1)}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar-green" role="progressbar" style="width: {{($shop['FulfillmentValue'] * 100) / ($shop['FirstGoal'] ? $shop['FirstGoal'] : 1)}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
+                            <div class="row mt-2">
+                                    <div class="col-md-4 text-left">
+                                        <b>{{$shop['FulfillmentValue']}}</b>
+                                    </div>
+                                    <div class="col-md-4 text-center">
+                                            <b>Transacciones</b>
+                                        </div>
+                                    <div class="col-md-4 text-right">
+                                        <span class="goal">{{$shop['FirstGoal']}}</span>
+                                    </div>
+                                </div>
                         </li>
                     </ul>
                     <div class="card-footer">
-                        <div class="row">
-                            <div class="col-md-6 text-left">
-                                <b>{{$shop['FulfillmentValue']}}</b>
-                            </div>
-                            <div class="col-md-6 text-right">
-                                <span class="goal">{{$shop['fulfillmentgoal']}}</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -61,11 +74,11 @@
                     </div>
                     <ul class="list-group list-group-flush text-white">
                         <li class="list-group-item list-code">Puntos: {{$shop['totalpoints']}}</li>
-                        <li class="list-group-item list-code">Meta actual: {{$shop['fulfillmentgoal']}}</li>
+                        <li class="list-group-item list-code">Meta actual: {{$shop['FirstGoal']}}</li>
                         <li class="list-group-item list-code">Transacciones actuales: {{$shop['FulfillmentValue']}}</li>
                         <li class="list-group-item list-code">
                             <div class="progress" style="height: 10px;">
-                                <div class="progress-bar-green" role="progressbar" style="width: {{($shop['FulfillmentValue'] * 100) / ($shop['fulfillmentgoal'] ? $shop['fulfillmentgoal'] : 1)}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar-green" role="progressbar" style="width: {{($shop['FulfillmentValue'] * 100) / ($shop['FirstGoal'] ? $shop['FirstGoal'] : 1)}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </li>
                     </ul>

@@ -30,7 +30,10 @@
                     <tbody class="content-directory">
                         @forelse($historyFulfillment as $fulfillment)
                         <tr>
-                            <td>{{$fulfillment['month']}}</td>
+                            @php
+                                $date = Carbon\Carbon::createFromFormat('m', $fulfillment['month'])->locale('es');
+                            @endphp
+                            <td class="text-capitalize">{{ $date->getTranslatedMonthName('Do MMMM')}}</td>
                             <td>{{$fulfillment['year']}}</td>
                             <td>{{$fulfillment['goal']}}</td>
                             <td>{{$fulfillment['value'] ?? 0}}</td>

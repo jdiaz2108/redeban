@@ -15,7 +15,7 @@ class PrizeCategoriesTableSeeder extends Seeder
         PrizeCategory::create([
             'prize_id' => 1,
             'category_id' => 4,
-            'stock' => 150,
+            'stock' => 250,
             'point' => 566,
         ]);
 
@@ -36,7 +36,7 @@ class PrizeCategoriesTableSeeder extends Seeder
         PrizeCategory::create([
             'prize_id' => 2,
             'category_id' => 5,
-            'stock' => 250,
+            'stock' => 150,
             'point' => 228,
         ]);
 

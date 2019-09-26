@@ -66,6 +66,28 @@ class Shop extends Model
         return ($this->fulfillment()['goal']) ? $this->fulfillment()['goal'] : 0 ;
     }
 
+    //
+
+    public function CategoryId()
+    {
+        return $this->user()->first()->category_id;
+    }
+
+    public function getFirstPrizePointAttribute()
+    {
+        return PrizeCategory::whereCategoryId($this->CategoryId())->min('point');
+    }
+
+    public function getPointsRedeemCategoryAttribute()
+    {
+        return Category::find(2)->points_redeem;
+    }
+
+    public function getFirstGoalAttribute()
+    {
+        return ($this->firstPrizePoint / $this->PointsRedeemCategory) ? ((integer) ($this->firstPrizePoint / $this->PointsRedeemCategory) + $this->FulfillmentGoal) : 0 ;
+    }
+
     public function getFulfillmentValueAttribute()
     {
         return ($this->fulfillment()['value']) ? $this->fulfillment()['value'] : 0 ;

@@ -74,10 +74,21 @@ class Fulfillment extends Model
         return $this->fulResSameMonth()->whereLiquidated(true)->count();
     }
 
+
+
+
+
+
     public function getValueAttribute()
     {
-        return $this->fulResSameMonth()->max('transactions');
+        return $this->fulfillmentResults()->get()->sum('transactions');
     }
+
+
+
+
+
+
 
     public function getMaxLiqAttribute()
     {
