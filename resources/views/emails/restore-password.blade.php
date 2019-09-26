@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Redeban - Recupera tu contraseña</title>
-    .
 </head>
 
 <body>
@@ -57,8 +56,7 @@
                         <tbody>
                             <tr>
                                 <td style="padding-top: 0px" align="center">
-                                    <p
-                                        style="font-family:Arial, Helvetica, sans-serif;font-size:20px;color:#FFFFFF;margin: 0px; padding: 0px; font-weight: bold;font-style: normal; line-height: 1.2em; text-transform: uppercase;">
+                                    <p style="font-family:Arial, Helvetica, sans-serif;font-size:20px;color:#FFFFFF;margin: 0px; padding: 0px; font-weight: bold;font-style: normal; line-height: 1.2em; text-transform: uppercase;">
                                         {{$name}},
                                     </p>
                                 </td>

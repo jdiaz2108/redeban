@@ -135,7 +135,7 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $url = url('/').'/password/reset/'.$token;
-  		$name = $this->first_name;
+  		$name = $this->name_company;
 
   		$template = view('emails.restore-password', compact('url', 'name'))->render();
 

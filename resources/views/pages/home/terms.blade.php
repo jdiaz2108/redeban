@@ -6,25 +6,19 @@
       <div class="col-md-1"></div>
       <div class="col-md-10 content-page">
         <div class="row">
-          <div class="col-9">
+          <div class="col-10 my-auto">
             <h2 class="title">Términos y condiciones</h2>
             <hr class="line-text">
           </div>
+          <div class="col-md-2">
+            <img src="{{asset('images/terms.png')}}" class="img-fluid" alt="">
+          </div>
         </div>
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
               <div class="content-text">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <iframe class="w-100" style="min-height: 600px; border-radius: 20px;" src="/documents/terminos-y-condiciones.pdf"></iframe>
               </div>
-            </div>
-            <div class="col-md-4">
-              <img src="{{asset('images/terms.png')}}" class="img-fluid" alt="">
             </div>
         </div>
       </div>
