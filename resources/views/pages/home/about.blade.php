@@ -13,35 +13,12 @@
         </div>
         <div class="row">
             <div class="col-md-9">
-              <div class="content-text py-5">
-                1.	Haz clic en el link de abajo para ingresar a la plataforma<br>
-                2.	Una vez ingresas encontrarás el paso a paso pero acá te los recordamos<br>
-                3.	Después actualiza tus datos para activarte<br>
-                4.	Por actualizar tus datos ganarás tus primeros puntos para que empueces a acumular<br>
-                5.	Recuerda que podrás acumular y redimir tus puntos por código único <br>
-                6.	Asigna los puntos a un solo código único o si prefieres a todos por igual<br>
-                7.	Después irás a home donde podrás ver cuántos puntos tienes por cada código único y la meta de cada uno<br>
-                8.	Deberás seleccionar el código único con el que quieras:<br>
-                -	Revisar historial de puntos<br>
-                -	Historial de transacciones<br>
-                -	Redimir premios<br>
-                (todas las opciones anteriores als encontrarás en el menú)<br>
-                <br>
-                Recuerda que tendrás que regresar al home para revisar la información anterior, de cada código único.<br>
-                <br>
-                <br>
-                1.	Actualiza tus datos para activarte en la transacción ganadora y ganar los primeros puntos para que empieces a acumular<br>
-                2.	Escoge el código único al que quieras asignar los puntos (puedes escoger uno o asignarlos por igual en todos tus códigos únicos)<br>
-                9.	Regresa al home para ver cuántos puntos tienes por cada código único y la meta de cada uno<br>
-                10.	Deberás seleccionar el código único con el que quieras:<br>
-                -	Revisar historial de puntos<br>
-                -	Historial de transacciones<br>
-                -	Redimir premios<br>
-                (todas las opciones anteriores als encontrarás en el menú)<br>
-                <br>
-                Recuerda que tendrás que regresar al home para revisar la información anterior, de cada código único.<br>
-                <br>
-                Y listo empieza a acumular y a ganar con la transacción ganadora!<br>
+              <div class="content-text py-5" style="font-size: 18px">
+                La Transacción Ganadora es un programa de recompensas pensado para nuestros clientes que tienen pequeños y medianos negocios, para que por medio de transacciones, puedan ganar diferentes premios.
+                <br><br>
+                Recuerda que estarás concursando por código único, vas a tener una meta, si la cumples ganarás un premio, y si sobre cumples ganarás mucho más.
+                <br><br>
+                Aquí ganas por utilizar tu código único y ayudas a impulsar aún más tu negocio. Así que te invitamos a ser parte de esta gran experiencia donde entre más transacciones realices, más oportunidades tendrás de ganar increíbles premios.
 
               </div>
             </div>

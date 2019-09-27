@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use App\User;
 use App\Models\Fulfillment;
 use App\Models\Point;
@@ -35,6 +36,12 @@ class Shop extends Model
         return $this->hasMany(Fulfillment::class)->latest()->first();
     }
 
+    public function fulfillmentSameMonth()
+    {
+        $date = Carbon::now();
+        return $this->hasMany(Fulfillment::class)->where('month',$date->month)->where('year',$date->year)->first();
+    }
+
     public function fulfillmentAll()
     {
         return $this->hasMany(Fulfillment::class)->latest()->get();
@@ -63,7 +70,7 @@ class Shop extends Model
 
     public function getFulfillmentGoalAttribute()
     {
-        return ($this->fulfillment()['goal']) ? $this->fulfillment()['goal'] : 0 ;
+        return ($this->fulfillmentSameMonth()['goal']) ? $this->fulfillmentSameMonth()['goal'] : 0 ;
     }
 
     //
