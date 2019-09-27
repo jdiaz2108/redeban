@@ -12,7 +12,7 @@
             <div id="slider" class="cards-slider">
                 @foreach ($prizes as $key => $prize)
                 <div class="prize-item mx-1">
-                        <a href="{{url('prize',$prize['id'])}}">
+                        <a href="{{url('prize',$prize['code'])}}">
                     <div class="row px-2">
                         <div class="col-6 p-0">
                             <div class="content-image" >

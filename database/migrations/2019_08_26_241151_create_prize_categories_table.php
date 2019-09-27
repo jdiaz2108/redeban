@@ -21,6 +21,7 @@ class CreatePrizeCategoriesTable extends Migration
             $table->foreign('category_id')->references('id')->on('categories');
             $table->integer('stock')->default(1);
             $table->integer('point');
+            $table->string('code');
             $table->timestamps();
         });
     }

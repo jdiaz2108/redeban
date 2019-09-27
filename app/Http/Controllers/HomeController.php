@@ -63,7 +63,7 @@ class HomeController extends Controller
     public function showPrize(Request $request,$id)
     {
         $user = Auth::user();
-        $prize = PrizeCategory::whereCategoryId($user->category_id)->find($id);
+        $prize = PrizeCategory::whereCategoryId($user->category_id)->whereCode($id)->first();
         if ($prize) {
             $departments = Department::orderBy('name')->get();
             $city = ($user->userData) ? City::find($user->userData->city_id)->name : null ;
@@ -138,7 +138,9 @@ class HomeController extends Controller
 
     public function selectShop($id)
     {
-        $shop = Shop::whereCode($id)->first();
+        $user = Auth::user();
+
+        $shop = Shop::whereCode($id)->whereUserId($user->id)->firstOrFail();
         Session::put('current_shop', $shop->code);
 
         return back()->with('status', 'Haz seleccionado correctamente el Código Único: '.$shop->code);
