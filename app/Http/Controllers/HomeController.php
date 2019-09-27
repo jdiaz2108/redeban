@@ -130,6 +130,12 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $shops = $user->shops();
+
+        if ($shops->count() == 1) {
+            Session::put('current_shop', $shops->first()->code);
+        }
+
+
         $shop = Shop::whereCode(session('current_shop'))->first() ?? null;
         AccessLog::accessSection($request,'Seleccionar codigo unico');
 

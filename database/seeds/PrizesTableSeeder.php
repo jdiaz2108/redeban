@@ -26,7 +26,7 @@ class PrizesTableSeeder extends Seeder
         ]);
 
         Prize::create([
-            'name' => 'Licuadora Personal',
+            'name' => 'Licuadora Personal Hamilton Beach',
             'description' => 'Modelo: 51101B.
             Marca: Hamilton Beach
             Capacidad: 1.4 lt.
@@ -44,7 +44,7 @@ class PrizesTableSeeder extends Seeder
         ]);
 
         Prize::create([
-            'name' => 'Wafflera',
+            'name' => 'Wafflera Holstein',
             'description' => 'Modelo: H-09125005B.
             Marca: Holstein
             Capacidad: 1 Waffle.

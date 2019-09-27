@@ -30,9 +30,9 @@ Route::middleware('auth')->group(function () {
 
         // Update data is required
         Route::middleware('update.data')->group(function () {
-            Route::get('/home', 'HomeController@showShops');
 
             Route::get('/shop', 'HomeController@showShops');
+            Route::get('/home', 'HomeController@showShops');
 
             Route::get('/selectShop/{id}', 'HomeController@selectShop');
 
