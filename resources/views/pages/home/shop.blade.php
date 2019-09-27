@@ -24,7 +24,7 @@
                                     </div>
                                     <ul class="list-group list-group-flush text-white">
                                         <li class="list-group-item list-code">Puntos: {{$shop['totalpoints']}}</li>
-                                        <li class="list-group-item list-code">Meta actual: {{$shop['FirstGoal']}}</li>
+                                        <li class="list-group-item list-code">Meta actual transacciones: {{$shop['FirstGoal']}}</li>
                                         <li class="list-group-item list-code">Transacciones actuales: {{$shop['FulfillmentValue']}}</li>
                                         <li class="list-group-item list-code">
                                             <div class="row mb-2">
@@ -71,7 +71,7 @@
                                     </div>
                                     <ul class="list-group list-group-flush text-white">
                                         <li class="list-group-item list-code">Puntos: {{$shop['totalpoints']}}</li>
-                                        <li class="list-group-item list-code">Meta actual: {{$shop['FirstGoal']}}</li>
+                                        <li class="list-group-item list-code">Meta actual transacciones: {{$shop['FirstGoal']}}</li>
                                         <li class="list-group-item list-code">Transacciones actuales: {{$shop['FulfillmentValue']}}</li>
                                         <li class="list-group-item list-code">
                                             <div class="progress" style="height: 10px;">
