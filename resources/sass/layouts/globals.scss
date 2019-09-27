@@ -150,7 +150,8 @@ select:-webkit-autofill:focus {
 	padding: 10px;
 	margin-top: 15px;
 	color: #fff;
-	font-size: 22px;
+    font-size: 22px;
+    border-radius: 15px;
 
 	p {
 		margin-bottom: 0px;
@@ -200,4 +201,60 @@ select:-webkit-autofill:focus {
         border: 1px solid #d669ff;
         box-shadow: 0 0 3px 1px #D669FF;
     }
+}
+
+.container_users_categories{
+    //box-shadow: 0 0 2em #3bd1ff !important;
+    border: 2px solid #3bd1ff;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: rgba(43, 43, 43, 0.7);
+}
+
+.container_fulfillments_category{
+    //box-shadow: 0 0 2em #3bd1ff !important;
+    border: 2px solid #3bd1ff;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: rgba(43, 43, 43, 0.7);
+}
+
+.container_access_users{
+    //box-shadow: 0 0 2em #8be523 !important;
+    border: 2px solid #8be523;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: rgba(43, 43, 43, 0.7);
+}
+
+.container_sections{
+    //box-shadow: 0 0 2em #8be523 !important;
+    border: 2px solid #8be523;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: rgba(43, 43, 43, 0.7);
+}
+
+.container_prizes_bronce{
+    //box-shadow: 0 0 2em #ff2c2c !important;
+    border: 2px solid #ff2c2c;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: rgba(43, 43, 43, 0.7);
+}
+
+.container_prizes_plata{
+    //box-shadow: 0 0 2em #969696 !important;
+    border: 2px solid #969696;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: rgba(43, 43, 43, 0.7);
+}
+
+.container_prizes_oro{
+    //box-shadow: 0 0 2em #ffd400 !important;
+    border: 2px solid #ffd400;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: rgba(43, 43, 43, 0.7);
 }

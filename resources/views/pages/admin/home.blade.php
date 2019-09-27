@@ -34,11 +34,11 @@
         </div>
         <div class="col-md-6 text-center">
           <br> <br>
-          <div id="container_access_users"></div>
+          <div id="container_access_users" class="container_access_users"></div>
         </div>
         <div class="col-md-6 text-center">
           <br> <br>
-          <div id="container_users_categories"></div>
+          <div id="container_users_categories" class="container_users_categories"></div>
         </div>
         <div class="col-md-4 d-none">
           <br> <br>
@@ -107,23 +107,23 @@
         </div>
         <div class="col-md-6 text-center">
           <br> <br>
-          <div id="container_prizes_oro"></div>
+          <div id="container_prizes_oro" class="container_prizes_oro"></div>
         </div>
         <div class="col-md-6 text-center">
           <br> <br>
-          <div id="container_prizes_plata"></div>
+          <div id="container_prizes_plata" class="container_prizes_plata"></div>
         </div>
         <div class="col-md-6 text-center">
           <br> <br>
-          <div id="container_prizes_bronce"></div>
+          <div id="container_prizes_bronce" class="container_prizes_bronce"></div>
         </div>
         <div class="col-md-6 text-center">
           <br> <br>
-          <div id="container_sections"></div>
+          <div id="container_sections" class="container_sections"></div>
         </div>
         <div class="col-md-12 text-center">
           <br> <br>
-          <div id="container_fulfillments_category"></div>
+          <div id="container_fulfillments_category" class="container_fulfillments_category"></div>
         </div>
       </div>
   </div>

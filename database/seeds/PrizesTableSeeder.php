@@ -17,12 +17,14 @@ class PrizesTableSeeder extends Seeder
             'name' => 'Bono Netflix',
             'description' => 'Bono Netflix $30.000',
             'code' => Str::random(16),
+            'image' => 'https://latransaccionganadora.com/storage/prizes/DZRmH7sxC4GFPrCrV8rtOEoVo6L0i7jZyxW8bYZH.png'
         ]);
 
         Prize::create([
             'name' => 'Bono Adidas',
             'description' => 'Bono Adidas $50.000',
             'code' => Str::random(16),
+            'image' => 'https://latransaccionganadora.com/storage/prizes/Qo1vvrT1Ex4Ub3uk8pSx21M1xVMPufU64Q34iHvV.png'
         ]);
 
         Prize::create([
@@ -41,6 +43,7 @@ class PrizesTableSeeder extends Seeder
             Garantía: 3 años.
             ',
             'code' => Str::random(16),
+            'image' => 'https://latransaccionganadora.com/storage/prizes/BGaXEqYtFRYOwljFunpQVWFYRK1JTuLTpMSfIrZA.png'
         ]);
 
         Prize::create([
@@ -55,12 +58,14 @@ class PrizesTableSeeder extends Seeder
             Garantía: 6 Meses.
             ',
             'code' => Str::random(16),
+            'image' => 'https://latransaccionganadora.com/storage/prizes/5lI3L6JiEFfq8mpvEeEGzjYoZfuoQ8gXy6oMauNj.png'
         ]);
 
         Prize::create([
             'name' => 'Bono Crepes',
             'description' => 'Bono Crepes $100.000',
             'code' => Str::random(16),
+            'image' => 'https://latransaccionganadora.com/storage/prizes/nA7332ChmdoHe5e4RTa7L2b6C5o2l2u1DO9Qwmzf.png'
         ]);
 
         Prize::create([
@@ -75,6 +80,7 @@ class PrizesTableSeeder extends Seeder
             Garantía de 1 año.
             ',
             'code' => Str::random(16),
+            'image' => 'https://latransaccionganadora.com/storage/prizes/NKC8w8gFkPu8bvgXHtFO1GreJGgFgpz2OZinYim7.png'
         ]);
     }
 }

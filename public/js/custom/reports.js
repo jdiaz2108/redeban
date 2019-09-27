@@ -50,8 +50,8 @@ function graph1(access_logs){
   Highcharts.chart('container_access_users', {
       chart: {
         backgroundColor: 'transparent',
-        borderWidth: 1,
-        borderColor: '#8be523'
+        // borderWidth: 1,
+        // borderColor: '#8be523'
       },
 	    title: {
 	        text: 'Ingresos de Usuarios',
@@ -129,8 +129,6 @@ function graph2(users_categories) {
           plotShadow: false,
           type: 'pie',
           backgroundColor: 'transparent',
-          borderWidth: 1,
-          borderColor: '#3bd1ff'
       },
       exporting: { enabled: false },
       title: {
@@ -186,8 +184,8 @@ function graph3()
     chart: {
         type: 'column',
         backgroundColor: 'transparent',
-        borderWidth: 1,
-        borderColor: '#ffd400'
+        // borderWidth: 1,
+        // borderColor: '#ffd400'
     },
     title: {
         text: 'Redención de premios Categoria Oro',
@@ -250,8 +248,8 @@ function graph4()
     chart: {
         type: 'column',
         backgroundColor: 'transparent',
-        borderWidth: 1,
-        borderColor: '#969696'
+        // borderWidth: 1,
+        // borderColor: '#969696'
     },
     title: {
         text: 'Redención de premios Categoria Plata',
@@ -314,8 +312,8 @@ function graph5()
     chart: {
         type: 'column',
         backgroundColor: 'transparent',
-        borderWidth: 1,
-        borderColor: '#ff2c2c'
+        // borderWidth: 1,
+        // borderColor: '#ff2c2c'
     },
     title: {
         text: 'Redención de premios Categoria Bronce',
@@ -387,8 +385,8 @@ function graph6(access_sections){
   Highcharts.chart('container_sections', {
       chart: {
         backgroundColor: 'transparent',
-        borderWidth: 1,
-        borderColor: '#8be523'
+        // borderWidth: 1,
+        // borderColor: '#8be523'
       },
 	    title: {
 	        text: 'Ingresos a Secciones',
@@ -462,8 +460,8 @@ function graph7(fulfillments_category){
   Highcharts.chart('container_fulfillments_category', {
       chart: {
         backgroundColor: 'transparent',
-        borderWidth: 1,
-        borderColor: '#3bd1ff'
+        // borderWidth: 1,
+        // borderColor: '#3bd1ff'
       },
 	    title: {
 	        text: 'Cumplimientos por Categoria',

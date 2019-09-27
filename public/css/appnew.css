@@ -11108,6 +11108,7 @@ select:-webkit-autofill:focus {
   margin-top: 15px;
   color: #fff;
   font-size: 22px;
+  border-radius: 15px;
 }
 
 .card-info p {
@@ -11154,6 +11155,55 @@ select:-webkit-autofill:focus {
   width: 200px;
   border: 1px solid #d669ff;
   box-shadow: 0 0 3px 1px #D669FF;
+}
+
+.container_users_categories {
+  border: 2px solid #3bd1ff;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: rgba(43, 43, 43, 0.7);
+}
+
+.container_fulfillments_category {
+  border: 2px solid #3bd1ff;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: rgba(43, 43, 43, 0.7);
+}
+
+.container_access_users {
+  border: 2px solid #8be523;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: rgba(43, 43, 43, 0.7);
+}
+
+.container_sections {
+  border: 2px solid #8be523;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: rgba(43, 43, 43, 0.7);
+}
+
+.container_prizes_bronce {
+  border: 2px solid #ff2c2c;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: rgba(43, 43, 43, 0.7);
+}
+
+.container_prizes_plata {
+  border: 2px solid #969696;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: rgba(43, 43, 43, 0.7);
+}
+
+.container_prizes_oro {
+  border: 2px solid #ffd400;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: rgba(43, 43, 43, 0.7);
 }
 
 .alert-custom-red {
