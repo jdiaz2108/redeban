@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\User;
 use Carbon\Carbon;
 use App\Models\AccessLog;
@@ -21,9 +22,9 @@ class UserController extends Controller
     {
       if(!is_null($request['query']))
       {
-        $users = User::FindUser($request['query'])->paginate();
+        $users = User::FindUser($request['query'])->with('shops')->paginate();
       } else {
-        $users = User::paginate();
+        $users = User::with('shops')->paginate();
       }
 
       return view('pages.admin.users.index', compact('users'));

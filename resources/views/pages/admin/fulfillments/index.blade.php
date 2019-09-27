@@ -81,7 +81,7 @@
                       </tr>
                     @empty
                       <tr>
-                        <td colspan="8" align="center">No hay registros de carga de datos</td>
+                        <td colspan="9" align="center">No hay registros de carga de datos</td>
                       </tr>
                     @endforelse
                   </tbody>

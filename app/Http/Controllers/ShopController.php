@@ -52,7 +52,7 @@ class ShopController extends Controller
         // Call a Controller and use the processCVSFile method
         CSVFileImporter::loadShopFromFile($file, 'shops');
 
-        return redirect()->route('admin::histories.index')->with('status', 'Se han cargado los usuarios correctamente');
+        return redirect()->route('admin::histories.index')->with('status', 'Se han cargado los códigos únicos correctamente');
     }
 
     /**

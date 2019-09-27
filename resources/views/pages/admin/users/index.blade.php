@@ -31,7 +31,7 @@
                       <tr>
                           <th>Id</th>
                           <th>Nombre Compañía</th>
-                          <th>Codigo Único</th>
+                          <th>Codigos Únicos</th>
                           <th>Correo Electrónico</th>
                           <th>Teléfono</th>
                           <th>Fecha Afiliación</th>
@@ -42,13 +42,13 @@
                       @forelse($users as $user)
                       <tr>
                           <td>
-                              {{$user->id}}
+                              {{$user->identification}}
                           </td>
                           <td>
                               {{$user->name_company}}
                           </td>
                           <td>
-                              {{$user->code}}
+                              {{$user->shops->count()}}
                           </td>
                           <td>
                               {{$user->email}}

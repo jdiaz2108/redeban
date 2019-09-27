@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 class Fulfillment extends Model
 {
     protected $fillable = [
-        'goal', 'value', 'user_id', 'event',
+        'goal', 'value', 'user_id', 'event', 'month', 'year',
     ];
 
     // Relationships

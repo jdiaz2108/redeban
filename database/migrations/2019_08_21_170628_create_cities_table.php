@@ -17,6 +17,7 @@ class CreateCitiesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->tinyInteger('state')->default(1);
+            $table->integer('code');
             $table->unsignedBigInteger('department_id');
             $table->foreign('department_id')->references('id')->on('departments');
             $table->timestamps();
