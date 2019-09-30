@@ -15,6 +15,7 @@ class GlobalApp
           ['name' => 'Seleccionar código único', 'url' => '/shop', 'icon' => 'add_box', 'roles' => ['user']],
           ['name' => 'historial de puntos', 'url' => '/points', 'icon' => 'add_box', 'roles' => ['user']],
           ['name' => 'historial de transacciones', 'url' => '/transactions', 'icon' => 'add_box', 'roles' => ['user']],
+          ['name' => 'historial de redenciones', 'url' => '/coupons', 'icon' => 'add_box', 'roles' => ['user']],
           //['name' => 'trivias', 'url' => '/trivias', 'icon' => 'add_box', 'roles' => ['user']],
           ['name' => 'términos y condiciones', 'url' => '/terms', 'icon' => 'add_box', 'roles' => ['user']],
           ['name' => 'Actualizar Datos', 'url' => '/update-data', 'icon' => 'add_box', 'roles' => ['user']],

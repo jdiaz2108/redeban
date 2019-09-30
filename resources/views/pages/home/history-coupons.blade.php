@@ -5,29 +5,32 @@
     <div class="row">
       <div class="col-md-1"></div>
       <div class="col-md-10 content-page">
-            @include('layouts.points', ['title' => 'Historial de transacciones'])
+            @include('layouts.points', ['title' => 'Historial de redenciones'])
         <div class="row">
             <div class="col-md-9">
-                    @include('layouts.messages')
+                @include('layouts.messages')
                 <table class="table table-custom table-striped">
                     <thead>
                         <tr>
-                            <th>Mes</th>
-                            <th>Año</th>
-                            <th>Meta</th>
-                            <th>Transacciones</th>
+                            <th>Código</th>
+                            <th>Imagen Bono</th>
+                            <th>Nombre bono</th>
+                            <th>fecha</th>
                         </tr>
                     </thead>
                     <tbody class="content-directory">
-                        @forelse($historyFulfillment as $fulfillment)
+                        @forelse($coupons as $coupon)
                         <tr>
-                            @php
-                                $date = Carbon\Carbon::createFromFormat('m', $fulfillment['month'])->locale('es');
-                            @endphp
-                            <td class="text-capitalize">{{ $date->getTranslatedMonthName('Do MMMM')}}</td>
-                            <td>{{$fulfillment['year']}}</td>
-                            <td>{{$fulfillment['goal']}}</td>
-                            <td>{{$fulfillment['value'] ?? 0}}</td>
+                            <td>{{$coupon['code']}}</td>
+                            <td>
+                                @if ($coupon['prizecategory']['prize']['image'])
+                                    <img src="{{$coupon['prizecategory']['prize']['image']}}" width="110">
+                                @else
+                                    <img src="{{asset('images/image.png')}}" width="110">
+                                @endif
+                            </td>
+                            <td>{{$coupon['prizecategory']['prize']['name']}}</td>
+                            <td>{{$coupon['created_at']}}</td>
                         </tr>
                       @empty
                         <tr>

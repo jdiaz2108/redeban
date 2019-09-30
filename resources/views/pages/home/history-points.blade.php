@@ -8,16 +8,7 @@
           @include('layouts.points', ['title' => 'Historial de puntos'])
         <div class="row">
             <div class="col-md-9">
-                @if (session('status'))
-                <div class="alert alert-success status">
-                    {{ session('status') }}
-                </div>
-                @endif
-                @if (session('error'))
-                <div class="alert alert-warning error">
-                    {{ session('error') }}
-                </div>
-                @endif
+                    @include('layouts.messages')
                 <table class="table table-custom table-striped">
                     <thead>
                         <tr>

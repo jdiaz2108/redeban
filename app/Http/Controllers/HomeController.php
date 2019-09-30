@@ -105,6 +105,17 @@ class HomeController extends Controller
         return view('pages.home.history-transactions', compact('historyFulfillment','user'));
     }
 
+    public function Redeem(Request $request)
+    {
+        $user = Auth::user();
+        $shop = Shop::whereCode(session('current_shop'))->first();
+        $coupons = Coupon::whereShopId($shop->id)->with('prizeCategory.prize')->get();
+
+        AccessLog::accessSection($request,'Historial de redenciones');
+
+        return view('pages.home.history-coupons', compact('coupons','user'));
+    }
+
     public function about(Request $request)
     {
         AccessLog::accessSection($request,'¿Que es?');

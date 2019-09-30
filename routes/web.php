@@ -43,6 +43,7 @@ Route::middleware('auth')->group(function () {
                 Route::resource('/redeem-validate-mail', 'RedeemValidateMailController')->only(['store', 'update']);
                 Route::get('/points', 'HomeController@points');
                 Route::get('/transactions', 'HomeController@transactions');
+                Route::get('/coupons', 'HomeController@redeem');
             });
 
         });
