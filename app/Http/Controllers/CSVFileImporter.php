@@ -415,7 +415,7 @@ class CSVFileImporter extends Controller
 
          if ($type = 'users') {
 
-            User::wherePassword('password')->update(['password' => bcrypt('redeban2019')]);
+            User::wherePassword('password')->update(['password' => bcrypt('r3d3b4n2019*')]);
 
          }
 
