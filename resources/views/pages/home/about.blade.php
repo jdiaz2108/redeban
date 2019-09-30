@@ -18,7 +18,7 @@
                 <br><br>
                 Recuerda que estarás concursando por código único, vas a tener una meta, si la cumples ganarás un premio, y si sobre cumples ganarás mucho más.
                 <br><br>
-                Aquí ganas por utilizar tu código único y ayudas a impulsar aún más tu negocio. Así que te invitamos a ser parte de esta gran experiencia donde entre más transacciones realices, más oportunidades tendrás de ganar increíbles premios.
+                Aquí ganas por utilizar tu Datáfono y ayudas a impulsar aún más tu negocio. Así que te invitamos a ser parte de esta gran experiencia donde entre más transacciones realices, más oportunidades tendrás de ganar increíbles premios.
 
               </div>
             </div>

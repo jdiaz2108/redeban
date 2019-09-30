@@ -130,6 +130,7 @@ class HomeController extends Controller
         return view('pages.home.terms');
     }
 
+
     public function JsonCities($id)
     {
         $cities = City::where('department_id',$id)->orderBy('name')->get();

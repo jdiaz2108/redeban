@@ -12,7 +12,6 @@
 */
 
 // Auth is required
-
 Route::middleware('auth')->group(function () {
 
     // Redirect user if has any role
@@ -90,6 +89,7 @@ Route::middleware('auth')->group(function () {
         });
     });
 });
+Route::get('/tyc', 'TestController@tyc');
 
 Auth::routes();
 

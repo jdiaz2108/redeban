@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AccessLog;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
@@ -44,7 +45,13 @@ class TestController extends Controller
 
 		//Pinta variables en template.
 		return view('emails.restore-password', compact('name', 'url'));
-	}
+    }
+
+    public function tyc(Request $request)
+    {
+        return view('terms');
+    }
+
 
 
 }
