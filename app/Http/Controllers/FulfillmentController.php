@@ -50,7 +50,7 @@ class FulfillmentController extends Controller
      */
     public function store(LoadFulfillmentRequest $request)
     {
-        set_time_limit (0);
+        ini_set('memory_limit', '-1');
         $file = $request->file('data');
 
         // Call csvfileimporter controller and use the processCsvFile function
