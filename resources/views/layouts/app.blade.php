@@ -30,6 +30,14 @@
           <!-- END SIDEMENU  -->
         @endauth
     </div>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149265994-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', "UA-149265994-1");
+    </script>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
     @yield('scripts')
