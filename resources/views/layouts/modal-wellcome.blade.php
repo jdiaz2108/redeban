@@ -23,6 +23,7 @@
                                                       </button>
                                             </div>
                                         </div>
+                                        <div class="d-none d-md-block">
                                         <div class="row section-step px-5 pb-5" style="margin-top: 100px">
                                             <div class="col-md-7 pr-5">
                                             <img src="{{asset('images/steps/wellcome.png')}}" class="img-fluid" alt="...">
@@ -33,6 +34,22 @@
                                                 </p>
                                             </div>
                                         </div>
+                                        </div>
+
+                                        <div class="d-block d-md-none">
+                                                <div class="row px-2 justify-content-center">
+                                                        <div class="col-12 pr-5">
+                                                                <img src="{{asset('images/steps/wellcome.png')}}" class="img-fluid" alt="...">
+                                                                </div>
+                                                                <div class="col-12 py-5 my-auto">
+                                                                    <p style="font-size: 19px " class="my-auto">
+                                                                        A continuación encontrarás el paso a paso de navegación en la plataforma para que empieces a acumular y ganar con Redeban
+                                                                    </p>
+                                                                </div>
+                                                </div>
+                                            </div>
+
+
                                     </div>
 
 
@@ -46,18 +63,35 @@
                                                       </button>
                                                 </div>
                                             </div>
-                                            <div class="row section-step px-5 pb-5" style="margin-top: 125px">
-                                                <div class="col-md-1">
-                                                <img src="{{asset('images/steps/one.png')}}" class="d-block" alt="...">
-                                                </div>
-                                                <div class="col-md-7 pl-5">
-                                                    <p style="font-size: 20px">Actualiza tus datos para activarte en La Transacción Ganadora
-                                                        y acumular tus primeros puntos</p>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <img src="{{asset('images/steps/image-one.png')}}" class="img-fluid">
-                                                </div>
-                                            </div>
+<div class="d-none d-md-block">
+    <div class="row section-step px-5 pb-5" style="margin-top: 125px">
+        <div class="col-md-1">
+            <img src="{{asset('images/steps/one.png')}}" class="d-block" alt="...">
+        </div>
+        <div class="col-md-7 pl-5">
+            <p style="font-size: 20px">Actualiza tus datos para activarte en La Transacción Ganadora
+            y acumular tus primeros puntos</p>
+        </div>
+        <div class="col-md-4">
+            <img src="{{asset('images/steps/image-one.png')}}" class="img-fluid">
+        </div>
+    </div>
+</div>
+
+<div class="d-block d-md-none">
+    <div class="row px-2 justify-content-center">
+        <div class="col-1">
+            <img src="{{asset('images/steps/one.png')}}" class="d-block" alt="...">
+        </div>
+        <div class="col-9 pl-5">
+            <p style="font-size: 13px">Actualiza tus datos para activarte en La Transacción Ganadora
+            y acumular tus primeros puntos</p>
+        </div>
+        <div class="col-10">
+            <img src="{{asset('images/steps/image-one.png')}}" class="img-fluid">
+        </div>
+    </div>
+</div>
                                         </div>
 
 
@@ -72,20 +106,40 @@
                                                       </button>
                                                 </div>
                                             </div>
-                                            <div class="row section-step px-5 pb-5"  style="margin-top: 125px">
-                                                <div class="col-md-1">
-                                                <img src="{{asset('images/steps/two.png')}}" class="d-block" alt="...">
-                                                </div>
-                                                <div class="col-md-8 pl-5">
-                                                    <p style="font-size: 20px">
+                                            <div class="d-none d-md-block">
+                                                <div class="row section-step px-5 pb-5"  style="margin-top: 125px">
+                                                    <div class="col-md-1">
+                                                        <img src="{{asset('images/steps/two.png')}}" class="d-block" alt="...">
+                                                    </div>
+                                                    <div class="col-md-8 pl-5">
+                                                        <p style="font-size: 20px">
                                                         Escoge el código único al que quieres asignar los puntos otorgados por la actualización de datos,
                                                         puedes asignarlos en su totalidad al código único elegido o asignarlos equitativamente entre todos tus códigos únicos
-                                                    </p>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <img src="{{asset('images/steps/image-two.png')}}" class="img-fluid">
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <img src="{{asset('images/steps/image-two.png')}}" class="img-fluid">
+                                                    </div>
                                                 </div>
                                             </div>
+
+                                            <div class="d-block d-md-none">
+                                                <div class="row px-2 justify-content-center">
+                                                    <div class="col-1">
+                                                        <img src="{{asset('images/steps/two.png')}}" class="d-block" alt="...">
+                                                    </div>
+                                                    <div class="col-9 pl-5">
+                                                        <p style="font-size: 11px">
+                                                                Escoge el código único al que quieres asignar los puntos otorgados por la actualización de datos,
+                                                                puedes asignarlos en su totalidad al código único elegido o asignarlos equitativamente entre todos tus códigos únicos
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <img src="{{asset('images/steps/image-two.png')}}" class="img-fluid">
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
 
 
@@ -98,9 +152,10 @@
                                                     </button>
                                             </div>
                                         </div>
+                                        <div class="d-none d-md-block">
                                         <div class="row section-step px-5 pb-5" style="margin-top: 125px">
                                             <div class="col-md-1">
-                                                <img src="{{asset('images/steps/tree.png')}}" class="d-block" alt="...">
+                                                <img src="{{asset('images/steps/three.png')}}" class="d-block" alt="...">
                                             </div>
                                             <div class="col-md-8 pl-5">
                                                 <p style="font-size: 20px">
@@ -108,9 +163,26 @@
                                                 </p>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <img src="{{asset('images/steps/image-tree.png')}}" class="img-fluid">
+                                                        <img src="{{asset('images/steps/image-three.png')}}" class="img-fluid">
                                                     </div>
                                                 </div>
+                                        </div>
+
+                                                <div class="d-block d-md-none">
+                                                        <div class="row px-2 justify-content-center">
+                                                            <div class="col-1">
+                                                                <img src="{{asset('images/steps/three.png')}}" class="d-block" alt="...">
+                                                            </div>
+                                                            <div class="col-9 pl-5">
+                                                                <p style="font-size: 13px">
+                                                                        En la página de inicio encontrarás la información referente a la meta y puntos acumulados para cada uno de tus códigos únicos
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <img src="{{asset('images/steps/image-three.png')}}" class="img-fluid">
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                             </div>
 
 
@@ -124,6 +196,7 @@
                                                       </button>
                                             </div>
                                         </div>
+                                        <div class="d-none d-md-block">
                                         <div class="row section-step px-5 pb-5" style="margin-top: 100px">
                                             <div class="col-md-1">
                                                 <img src="{{asset('images/steps/four.png')}}" class="d-block" alt="...">
@@ -143,6 +216,29 @@
                                                     <img src="{{asset('images/steps/image-four.png')}}" class="img-fluid">
                                                 </div>
                                             </div>
+                                        </div>
+
+                                            <div class="d-block d-md-none">
+                                                    <div class="row px-2 justify-content-center">
+                                                        <div class="col-1">
+                                                            <img src="{{asset('images/steps/four.png')}}" class="d-block" alt="...">
+                                                        </div>
+                                                        <div class="col-9 pl-5">
+                                                                <p style="font-size: 13px">
+                                                                        Para ver el detalle de cada uno de tus códigos únicos, deberás seleccionarlo en la
+                                                                        página de inicio y elegir en el menú lateral cualquiera de las siguientes acciones:
+                                                                    </p>
+                                                                    <p style="font-size: 11px">
+                                                                        * Revisar historial de puntos<br>
+                                                                        * Consultar historial de transacciones<br>
+                                                                        * Redimir premios
+                                                                        </p>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <img src="{{asset('images/steps/image-four.png')}}" class="img-fluid">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                         </div>
 
 
