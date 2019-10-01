@@ -48,6 +48,7 @@ class UserController extends Controller
      */
     public function store(DataFileRequest $request)
     {
+        ini_set('memory_limit', '-1');
         $file = $request->file('data');
 
         // Call a Controller and use the processCVSFile method
