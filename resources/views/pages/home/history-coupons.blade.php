@@ -9,6 +9,7 @@
         <div class="row">
             <div class="col-md-9">
                 @include('layouts.messages')
+                <div class="table-responsive-md">
                 <table class="table table-custom table-striped">
                     <thead>
                         <tr>
@@ -39,6 +40,7 @@
                       @endforelse
                     </tbody>
                 </table>
+                </div>
             </div>
             <div class="col-md-3">
               <img src="{{asset('images/datafono.png')}}" class="img-fluid" alt="">

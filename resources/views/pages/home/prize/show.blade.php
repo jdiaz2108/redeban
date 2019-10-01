@@ -8,7 +8,7 @@
       <div class="col-md-10 content-page">
             @include('layouts.points')
         <div class="row">
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <div class="image-show rounded">
               @if ($prize['prize']['image'])
               <img src="{{$prize['prize']['image']}}" class="img-fluid mx-auto d-block" alt="...">
@@ -17,7 +17,7 @@
               @endif
             </div>
           </div>
-          <div class="col-6 info">
+          <div class="col-12 col-md-6 info">
           @include('layouts.messages')
           @if ($redeem && !session('redeemed'))
             <h2 class="name">{{$prize['prize']['name']}}</h2>
