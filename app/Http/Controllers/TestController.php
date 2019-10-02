@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AccessLog;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
@@ -52,6 +53,12 @@ class TestController extends Controller
         return view('terms');
     }
 
+    public function contacts()
+    {
+        $contact = Contact::get()->first();
+        $res = SendEmailController::send_contact($contact);
+        return view('emails.contacts', compact('contact'));
+    }
 
 
 }

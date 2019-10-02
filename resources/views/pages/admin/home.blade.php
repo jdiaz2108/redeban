@@ -34,12 +34,19 @@
         </div>
         <div class="col-md-4 text-center">
             <div class="card-info">
-              <p class="name"><i class="fa fa-address-card"></i> &nbsp; Usuarios Activos </p>
-              <p class="num">{{$userDataCount}}</p>
-              <p class="small">Total de usuarios datos actualizados</p>
+                <p class="name"><i class="fa fa-address-card"></i> &nbsp; Usuarios Activados </p>
+                <p class="num">{{$userDataCount}}</p>
+                <p class="small">Total de usuarios datos actualizados</p>
             </div>
-          </div>
-      </div>
+        </div>
+        <div class="col-md-4 text-center">
+            <div class="card-info card2">
+                <p class="name"><i class="fa fa-asterisk"></i> &nbsp; Codigos Unicos </p>
+                <p class="num">{{$shops}}</p>
+                <p class="small">Total de codigos unicos registrados</p>
+            </div>
+            </div>
+        </div>
           <div class="row">
         <div class="col-md-6 text-center">
           <br> <br>

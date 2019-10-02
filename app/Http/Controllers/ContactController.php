@@ -39,6 +39,8 @@ class ContactController extends Controller
     {
       $contact = Contact::create($request->all());
 
+      SendEmailController::send_contact($contact);
+
       return redirect('home')->with('status','Correo enviado correctamente.');
     }
 

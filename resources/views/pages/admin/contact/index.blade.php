@@ -29,12 +29,12 @@
                   <tbody class="content-directory">
                       @forelse($contacts as $item)
                       <tr>
-                          <td>{{$item->name}}</td>
-                          <td>{{$item->email}}</td>
-                          <td>{{$item->phone}}</td>
-                          <td>{{$item->city->name}}</td>
-                          <td>{{$item->description}}</td>
-                          <td>{{$item->created_at}}</td>
+                          <td>{{$item['name']}}</td>
+                          <td>{{$item['email']}}</td>
+                          <td>{{$item['phone']}}</td>
+                          <td>{{$item['city']['name']}}</td>
+                          <td>{{$item['description']}}</td>
+                          <td>{{$item['created_at']}}</td>
                           <td>
                             @if($item->state == 0)
                             <a href="{{url('dashboard/contacts',$item->id)}}">Marcar como Contactado</a>

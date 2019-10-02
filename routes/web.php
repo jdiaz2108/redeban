@@ -97,3 +97,4 @@ Route::get('/test/welcome', 'TestController@welcome');
 Route::get('/test/send-code', 'TestController@sendCode');
 Route::get('/test/redeem-prize', 'TestController@redeemPrize');
 Route::get('/test/restore-password', 'TestController@restorePassword');
+Route::get('/test/send-contact', 'TestController@contacts');
