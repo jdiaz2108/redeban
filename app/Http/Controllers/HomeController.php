@@ -37,12 +37,11 @@ class HomeController extends Controller
 
             $users = User::count();
             $shops = Shop::count();
-            $prizes = Prize::count();
             $coupons = Coupon::count();
             $userDataCount = count(UserData::get());
             $prizes_categories = PrizeCategory::get();
 
-            return view('pages.admin.home',compact('users','shops','prizes','coupons','prizes_categories', 'userDataCount'));
+            return view('pages.admin.home',compact('users','shops','coupons','prizes_categories', 'userDataCount'));
 
         } else {
 

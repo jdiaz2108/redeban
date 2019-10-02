@@ -235,9 +235,25 @@ select:-webkit-autofill:focus {
     background-color: rgba(43, 43, 43, 0.7);
 }
 
-.container_prizes_bronce{
+.container_prizes_bronce_high{
     //box-shadow: 0 0 2em #ff2c2c !important;
     border: 2px solid #ff2c2c;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: rgba(43, 43, 43, 0.7);
+}
+
+.container_prizes_bronce_middle{
+    //box-shadow: 0 0 2em #ff2c2c !important;
+    border: 2px solid #e56b23;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: rgba(43, 43, 43, 0.7);
+}
+
+.container_prizes_bronce_low{
+    //box-shadow: 0 0 2em #ff2c2c !important;
+    border: 2px solid #e6a329;
     overflow: hidden;
     border-radius: 10px;
     background-color: rgba(43, 43, 43, 0.7);
