@@ -120,7 +120,7 @@ class UpdateUserDataController extends Controller
     {
         $user = $request->user();
 
-        if(!$user->update) {
+        if(!$user->update && !$user->HasUpdateDataPoints) {
 
             $code = $request['code'];
             $date = Carbon::now();
