@@ -1,6 +1,6 @@
 $(document).ready(function() {
     data();
-    graph3();
+    // graph3();
     graph4();
     graph5();
 });
@@ -174,69 +174,69 @@ function graph2(users_categories) {
     });
 }
 
-function graph3()
-{
-  Highcharts.chart('container_prizes_oro', {
-    data: {
-        table: 'prizes_oro',
-        color : ['#ffd400', '#ccc']
-    },
-    chart: {
-        type: 'column',
-        backgroundColor: 'transparent',
-        // borderWidth: 1,
-        // borderColor: '#ffd400'
-    },
-    title: {
-        text: 'Redención de premios Categoria Oro',
-        style: {
-          color: '#ffd400'
-        }
-    },
-    subtitle: {
-        text: 'Numero de redenciones por premio',
-        style: {
-          color: '#fff'
-        }
-    },
-    yAxis: {
-        allowDecimals: false,
-        title: {
-            text: 'Cantidad',
-            style: {
-              color: '#ffffff'
-            }
-        },
-        labels: {
-          style: {
-            color: '#fff'
-          }
-        }
-    },
-    xAxis: {
-        labels: {
-          style: {
-            color: '#fff'
-          }
-        }
-    },
-    legend: {
-      itemStyle: {
-        color: '#fff'
-      },
-      itemHoverStyle: {
-        color: '#d4d2d2'
-      }
-    },
-    tooltip: {
-        formatter: function () {
-            return '<b>' + this.series.name + '</b><br/>' +
-                this.point.y + ' ' + this.point.name.toLowerCase();
-        }
-    },
-    colors : ['#ffd400', '#ccc']
-  });
-}
+// function graph3()
+// {
+//   Highcharts.chart('container_prizes_oro', {
+//     data: {
+//         table: 'prizes_oro',
+//         color : ['#ffd400', '#ccc']
+//     },
+//     chart: {
+//         type: 'column',
+//         backgroundColor: 'transparent',
+//         // borderWidth: 1,
+//         // borderColor: '#ffd400'
+//     },
+//     title: {
+//         text: 'Redención de premios Categoria Oro',
+//         style: {
+//           color: '#ffd400'
+//         }
+//     },
+//     subtitle: {
+//         text: 'Numero de redenciones por premio',
+//         style: {
+//           color: '#fff'
+//         }
+//     },
+//     yAxis: {
+//         allowDecimals: false,
+//         title: {
+//             text: 'Cantidad',
+//             style: {
+//               color: '#ffffff'
+//             }
+//         },
+//         labels: {
+//           style: {
+//             color: '#fff'
+//           }
+//         }
+//     },
+//     xAxis: {
+//         labels: {
+//           style: {
+//             color: '#fff'
+//           }
+//         }
+//     },
+//     legend: {
+//       itemStyle: {
+//         color: '#fff'
+//       },
+//       itemHoverStyle: {
+//         color: '#d4d2d2'
+//       }
+//     },
+//     tooltip: {
+//         formatter: function () {
+//             return '<b>' + this.series.name + '</b><br/>' +
+//                 this.point.y + ' ' + this.point.name.toLowerCase();
+//         }
+//     },
+//     colors : ['#ffd400', '#ccc']
+//   });
+// }
 
 function graph4()
 {
@@ -252,7 +252,7 @@ function graph4()
         // borderColor: '#969696'
     },
     title: {
-        text: 'Redención de premios Categoria Plata',
+        text: 'Inventario y Redención de premios Categoria Plata',
         style: {
           color: '#969696'
         }
@@ -316,7 +316,7 @@ function graph5()
         // borderColor: '#ff2c2c'
     },
     title: {
-        text: 'Redención de premios Categoria Bronce',
+        text: 'Inventario y Redención de premios Categoria Bronce',
         style: {
           color: '#ff2c2c'
         }

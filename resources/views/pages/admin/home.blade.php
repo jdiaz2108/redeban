@@ -4,34 +4,43 @@
 <div class="page dashboard">
   <div class="container">
       <div class="row">
-        <div class="col-md-3 text-center">
+        <div class="col-md-4 text-center">
           <div class="card-info">
             <p class="name"><i class="fa fa-users"></i> &nbsp; Usuarios </p>
             <p class="num">{{$users}}</p>
             <p class="small">Total de usuarios registrados</p>
           </div>
         </div>
-        <div class="col-md-3 text-center">
+        <div class="col-md-4 text-center">
           <div class="card-info card2">
             <p class="name"><i class="fa fa-asterisk"></i> &nbsp; Codigos Unicos </p>
             <p class="num">{{$shops}}</p>
             <p class="small">Total de codigos unicos registrados</p>
           </div>
         </div>
-        <div class="col-md-3 text-center">
+        <div class="col-md-4 text-center">
           <div class="card-info card3">
             <p class="name"><i class="fa fa-shopping-cart"></i> &nbsp; Premios </p>
             <p class="num">{{$prizes}}</p>
             <p class="small">Numero de premios disponibles</p>
           </div>
         </div>
-        <div class="col-md-3 text-center">
+        <div class="col-md-4 text-center">
           <div class="card-info card4">
             <p class="name"><i class="fa fa-ticket"></i> &nbsp; Redenciones </p>
             <p class="num">{{$coupons}}</p>
             <p class="small">Numero de redenciones realizadas</p>
           </div>
         </div>
+        <div class="col-md-4 text-center">
+            <div class="card-info">
+              <p class="name"><i class="fa fa-address-card"></i> &nbsp; Usuarios Activos </p>
+              <p class="num">{{$userDataCount}}</p>
+              <p class="small">Total de usuarios datos actualizados</p>
+            </div>
+          </div>
+      </div>
+          <div class="row">
         <div class="col-md-6 text-center">
           <br> <br>
           <div id="container_access_users" class="container_access_users"></div>
@@ -105,10 +114,10 @@
             </table>
           </div>
         </div>
-        <div class="col-md-6 text-center">
+        {{-- <div class="col-md-6 text-center">
           <br> <br>
           <div id="container_prizes_oro" class="container_prizes_oro"></div>
-        </div>
+        </div> --}}
         <div class="col-md-6 text-center">
           <br> <br>
           <div id="container_prizes_plata" class="container_prizes_plata"></div>
@@ -117,7 +126,7 @@
           <br> <br>
           <div id="container_prizes_bronce" class="container_prizes_bronce"></div>
         </div>
-        <div class="col-md-6 text-center">
+        <div class="col-md-12 text-center">
           <br> <br>
           <div id="container_sections" class="container_sections"></div>
         </div>
