@@ -1,33 +1,33 @@
 $(document).ready(function() {
-  data();
-  graph3();
-  graph4();
-  graph5();
+    data();
+    graph3();
+    graph4();
+    graph5();
 });
 
 function data(){
-  $.ajax({
-      type : 'GET',
-      url : '/dashboard/reports-admin',
-      dataType : "json",
-      success : function(data){
-        renderData(data);
-      }
+    $.ajax({
+        type : 'GET',
+        url : '/dashboard/reports-admin',
+        dataType : "json",
+        success : function(data){
+            renderData(data);
+        }
     });
 }
 
 
 function renderData(data)
 {
-  var access_logs = data.access_logs;
-  var users_categories = data.users_categories;
-  var access_sections = data.access_sections;
-  var fulfillments_category = data.fulfillments_category;
+    var access_logs = data.access_logs;
+    var users_categories = data.users_categories;
+    var access_sections = data.access_sections;
+    var fulfillments_category = data.fulfillments_category;
 
-	graph1(access_logs);
-  graph2(users_categories);
-  graph6(access_sections);
-  graph7(fulfillments_category);
+    graph1(access_logs);
+    graph2(users_categories);
+    graph6(access_sections);
+    graph7(fulfillments_category);
 }
 
 

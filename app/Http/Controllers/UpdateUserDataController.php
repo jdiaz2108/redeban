@@ -119,19 +119,35 @@ class UpdateUserDataController extends Controller
     public function addPoints(Request $request)
     {
         $user = $request->user();
-        $code = $request['code'];
-        $date = Carbon::now();
-        $pointsUpdateData = $user->PointsUpdateData;
 
-        if ($code === 'allShops') {
-            $shops = Shop::whereUserId($user['id'])->get();
-            $numberShops = count($shops);
-            $poinstDivided = ($pointsUpdateData / $numberShops);
+        if(!$user->update) {
 
-            foreach ($shops as $key => $shop) {
+            $code = $request['code'];
+            $date = Carbon::now();
+            $pointsUpdateData = $user->PointsUpdateData;
+
+            if ($code === 'allShops') {
+                $shops = Shop::whereUserId($user['id'])->get();
+                $numberShops = count($shops);
+                $poinstDivided = ($pointsUpdateData / $numberShops);
+
+                foreach ($shops as $key => $shop) {
+                    $points = new Point([
+                        'event' => 'Actualización de datos',
+                        'value' => (integer) $poinstDivided,
+                        'shop_id' => $shop->id,
+                        'month' => $date->month,
+                        'year' => $date->year
+                    ]);
+
+                    $points->save();
+                }
+
+            } else {
+                $shop = Shop::whereUserId($user['id'])->whereCode($code)->first();
                 $points = new Point([
                     'event' => 'Actualización de datos',
-                    'value' => (integer) $poinstDivided,
+                    'value' => $pointsUpdateData,
                     'shop_id' => $shop->id,
                     'month' => $date->month,
                     'year' => $date->year
@@ -140,20 +156,10 @@ class UpdateUserDataController extends Controller
                 $points->save();
             }
 
-        } else {
-            $shop = Shop::whereUserId($user['id'])->whereCode($code)->first();
-            $points = new Point([
-                'event' => 'Actualización de datos',
-                'value' => $pointsUpdateData,
-                'shop_id' => $shop->id,
-                'month' => $date->month,
-                'year' => $date->year
-            ]);
 
-            $points->save();
-        }
-
-
-            return redirect('/home')->with('status', 'SE HAN ACTUALIZADO LOS DATOS CORRECTAMENTE');
+                return redirect('/home')->with('status', 'SE HAN ACTUALIZADO LOS DATOS CORRECTAMENTE');
+            } else {
+                return redirect('/home')->with('status', 'SE HAN ACTUALIZADO LOS DATOS CORRECTAMENTE');
+            }
         }
 }
