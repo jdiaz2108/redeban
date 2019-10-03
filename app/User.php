@@ -127,6 +127,10 @@ class User extends Authenticatable
          array_push($users_count,$count);
       }
 
+      //Deleting the first category "Oro"
+      array_shift($rows);
+      array_shift($users_count);
+
       $users_categories = ["rows"=>$rows,"users_count"=>$users_count];
 
       return $users_categories;

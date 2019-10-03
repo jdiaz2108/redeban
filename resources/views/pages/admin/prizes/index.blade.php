@@ -26,6 +26,7 @@
                 {{ session('error') }}
             </div>
             @endif
+            <div class="table-responsive">
             <table class="table table-custom table-striped">
                 <thead>
                     <tr>
@@ -75,6 +76,7 @@
                     @endforelse
                 </tbody>
             </table>
+            </div>
             {{$prizes->links()}}
             </div>
         </div>

@@ -26,6 +26,7 @@
         <div class="row">
           <div class="col-md-12">
             @include('layouts.messages')
+            <div class="table-responsive">
               <table class="table table-striped table-custom">
                   <thead>
                       <tr>
@@ -56,6 +57,7 @@
                       @endforelse
                   </tbody>
               </table>
+            </div>
               {{$points->links()}}
           </div>
         </div>

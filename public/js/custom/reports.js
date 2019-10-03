@@ -18,7 +18,6 @@ function data(){
     });
 }
 
-
 function renderData(data)
 {
     var access_logs = data.access_logs;
@@ -32,10 +31,9 @@ function renderData(data)
     graph7(fulfillments_category);
 }
 
-
 function graph1(access_logs){
-  console.log("access_logs");
-  console.log(access_logs);
+//   console.log("access_logs");
+//   console.log(access_logs);
   var days = [];
 	var access_all = access_logs.total;
 
@@ -47,7 +45,7 @@ function graph1(access_logs){
       };
       days.push(row);
   }
-  console.log(days);
+//   console.log(days);
 
   Highcharts.chart('container_access_users', {
       chart: {
@@ -109,11 +107,12 @@ function graph1(access_logs){
 }
 
 function graph2(users_categories) {
-  console.log("users_categories");
-  console.log(users_categories);
+//   console.log("users_categories");
+//   console.log(users_categories);
 
   var bills = [];
-	var colors = ['#ffd400','#969696','#ff2c2c','#e56b23','#e6a329']
+//   '#ffd400',
+	var colors = ['#969696','#ff2c2c','#e56b23','#e6a329']
   for(i=0;i < users_categories.rows.length; i++){
     var row = {
       'name' : users_categories.rows[i],
@@ -433,8 +432,8 @@ function graph9()
 }
 
 function graph6(access_sections){
-  console.log("access_sections");
-  console.log(access_sections);
+/*   console.log("access_sections");
+  console.log(access_sections); */
   var days = [];
 	var access_all = access_sections.total;
 
@@ -446,7 +445,7 @@ function graph6(access_sections){
       };
       days.push(row);
   }
-  console.log(days);
+//   console.log(days);
 
   Highcharts.chart('container_sections', {
       chart: {
@@ -508,8 +507,8 @@ function graph6(access_sections){
 }
 
 function graph7(fulfillments_category){
-  console.log("fulfillments_category");
-  console.log(fulfillments_category);
+//   console.log("fulfillments_category");
+//   console.log(fulfillments_category);
   var categories = [];
 	var total = fulfillments_category.total;
 
@@ -521,7 +520,7 @@ function graph7(fulfillments_category){
       };
       categories.push(row);
   }
-  console.log(categories);
+//   console.log(categories);
 
   Highcharts.chart('container_fulfillments_category', {
       chart: {

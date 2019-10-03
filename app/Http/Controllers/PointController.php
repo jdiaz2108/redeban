@@ -104,6 +104,7 @@ class PointController extends Controller
         // Define the collection with fulfillment relationship, liquidation has to be false and get uniques fulfillments id
         $collection = FulfillmentResult::whereLiquidated(false)->with('fulfillment')->get()->unique('fulfillment_id');
 
+        dd($collection);
         // Validate if the collection is not empty and have data to liquidate
         if ($collection->isNotEmpty()) {
 
