@@ -104,7 +104,6 @@ class PointController extends Controller
         // Define the collection with fulfillment relationship, liquidation has to be false and get uniques fulfillments id
         $collection = FulfillmentResult::whereLiquidated(false)->with('fulfillment')->get()->unique('fulfillment_id');
 
-        dd($collection);
         // Validate if the collection is not empty and have data to liquidate
         if ($collection->isNotEmpty()) {
 
@@ -116,10 +115,14 @@ class PointController extends Controller
 
             // Mixing the collection with headers and data to generate points collection
             $collectionMix = $collection->map(function ($item, $key) use ($collectHeader, $add) {
-
                 // Validate if the user can get points
-                if ($item['fulfillment']['goal'] < $item['transactions']) {
-                    $value = ($item['transactions'] - $item['fulfillment']['MaxLiq']) * $item['fulfillment']['points'];
+                if (($item['fulfillment']['valueliquidated'] + $item['transactions']) > $item['fulfillment']['goal']) {
+
+                    $diferencial = ($item['fulfillment']['goal'] > $item['fulfillment']['valueliquidated']) ? $item['fulfillment']['goal'] : $item['fulfillment']['valueliquidated'];
+                    $finaltransactions = ($item['fulfillment']['valueliquidated'] + $item['transactions']) - $diferencial ;
+
+                    $value = $finaltransactions * $item['fulfillment']['points'];
+
                     $array = ["Cumplimiento meta semanal: {$item['fulfillment']['month']} - {$item['fulfillment']['year']}", $value, $item['fulfillment']['shop_id'], $item['id'],];
                     $arrayUp = Arr::collapse([$array, $add]);
 

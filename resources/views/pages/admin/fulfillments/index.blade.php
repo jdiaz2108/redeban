@@ -160,11 +160,28 @@
             @csrf
               {{-- @method('PUT') --}}
               <div class="form-group">
-                {{-- <label for="week">Seleccione la semana que va a actualizar:</label>
-                <select class="form-control" id="week" name="week" required>
-                        <option>2</option>
-                </select> --}}
+                <label for="month">Seleccione el mes que va a actualizar:</label>
+                <select class="form-control" id="month" name="month" required>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                </select>
               </div>
+              <div class="form-group">
+                <label for="year">Seleccione el año que va a actualizar:</label>
+                <select class="form-control" id="year" name="year" required>
+                    <option>2019</option>
+                </select>
+                </div>
               <button type="submit" class="btn btn-custom fontSize18">Descargar</button>
           </form>
         </div>

@@ -273,11 +273,13 @@ class CSVFileImporter extends Controller
 
     public function downloadFulfillmentsCsv(Request $request)
     {
+        // dd($request['month']);
+        // dd($request['year']);
 
         $date = Carbon::now();
 
         // Get all fulfillments where the requested week
-       $fulfillments = Fulfillment::all();
+       $fulfillments = Fulfillment::where('month', $request['month'])->where('year', $request['year'])->get();
 
        if ($fulfillments->isNotEmpty()) {
 
@@ -328,17 +330,14 @@ class CSVFileImporter extends Controller
         $originalFilename = $file->getClientOriginalName();
         $file->storeAs('uploads', $filename);
 
-        // Convert csv file in array variable called $array and convert that variable into a collection
-        // $array = array_map("str_getcsv", file($file));
+        // Handle csv file delimited by semicolon sign and convert data in array variable called $array, after that transform array variable into a collection.
         $array = array_map(function($v){return str_getcsv($v, ";");}, file($file));
         $collection = collect($array);
-/*
-        dd($collection); */
 
-        // Get the body of the collection, that means the body contain the rows of the table
+        // Get the body of the collection, that means the $collectBody variable contains all the data.
         $collectBody = $collection->splice(1);
 
-        // Get the header of the collection, that means the header is the columns of the table
+        // Get the header of the collection, that means the $collectHeader variable contains the columns of the table
             $collectHeader = $collection->push(['created_at','updated_at'])->flatten()->all();
             $add = [$date, $date];
 

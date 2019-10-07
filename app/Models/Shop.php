@@ -73,8 +73,6 @@ class Shop extends Model
         return ($this->fulfillmentSameMonth()['goal']) ? $this->fulfillmentSameMonth()['goal'] : 0 ;
     }
 
-    //
-
     public function CategoryId()
     {
         return $this->user()->first()->category_id;
@@ -87,7 +85,7 @@ class Shop extends Model
 
     public function getPointsRedeemCategoryAttribute()
     {
-        return Category::find(2)->points_redeem;
+        return Category::find($this->CategoryId())->points_redeem;
     }
 
     public function getFirstGoalAttribute()
