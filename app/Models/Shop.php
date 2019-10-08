@@ -42,6 +42,12 @@ class Shop extends Model
         return $this->hasMany(Fulfillment::class)->where('month',$date->month)->where('year',$date->year)->first();
     }
 
+    public function CouponSameMonth($id)
+    {
+        $date = Carbon::now();
+        return $this->hasMany(Coupon::class)->wherePrizeCategoryId($id)->whereMonth('created_at', $date->month)->whereYear('created_at', $date->year)->first();
+    }
+
     public function fulfillmentAll()
     {
         return $this->hasMany(Fulfillment::class)->latest()->get();

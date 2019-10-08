@@ -63,6 +63,7 @@ class HomeController extends Controller
     public function showPrize(Request $request,$id)
     {
         $user = Auth::user();
+        $shop = Shop::whereCode(session('current_shop'))->first();
         $prize = PrizeCategory::whereCategoryId($user->category_id)->whereCode($id)->first();
         if ($prize) {
             $departments = Department::orderBy('name')->get();
@@ -77,7 +78,7 @@ class HomeController extends Controller
                 $redeem = ($tenMinutesValidation) ? true : false ;
             }
 
-            return view('pages.home.prize.show', compact('prize', 'redeem','user', 'departments', 'city'));
+            return view('pages.home.prize.show', compact('prize', 'redeem','user', 'departments', 'city', 'shop'));
         } else {
             return back()->with('status', 'No permitido');
         }
