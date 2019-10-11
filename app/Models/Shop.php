@@ -42,10 +42,10 @@ class Shop extends Model
         return $this->hasMany(Fulfillment::class)->where('month',$date->month)->where('year',$date->year)->first();
     }
 
-    public function CouponSameMonth($id)
+    public function CouponSameMonth()
     {
         $date = Carbon::now();
-        return $this->hasMany(Coupon::class)->wherePrizeCategoryId($id)->whereMonth('created_at', $date->month)->whereYear('created_at', $date->year)->first();
+        return $this->hasMany(Coupon::class)->whereMonth('created_at', $date->month)->whereYear('created_at', $date->year)->first();
     }
 
     public function fulfillmentAll()
@@ -54,6 +54,11 @@ class Shop extends Model
     }
 
     // Attributes zone
+    public function getHasCouponAttribute()
+    {
+        return $this->CouponSameMonth() ? true : false;
+    }
+
     public function getTotalPointsAttribute()
     {
         return $this->points()->sum('value');
