@@ -86,6 +86,9 @@ Route::middleware('auth')->group(function () {
             Route::get('/reports-admin', 'UserController@reportAdmin');
 
             Route::resource('/histories', 'CSVFileImporter')->only(['index']);
+
+
+            Route::get('gettingPoints', 'PointController@gettingPoints');
         });
     });
 });

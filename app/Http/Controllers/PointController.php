@@ -6,6 +6,8 @@ use App\Models\FulfillmentResult;
 use App\Models\Fulfillment;
 use Auth;
 use App\Models\Point;
+use App\Models\PrizeCategory;
+use App\Models\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
@@ -23,7 +25,7 @@ class PointController extends Controller
       $name = $request['query'];
       if(is_null($name))
       {
-        $points = Point::with('shop')->paginate();
+        $points = Point::with('shop')->orderBy('value', 'desc')->paginate();
       } else {
         $points = Point::whereHas('shop', function ($query) use ($name) {
             $query->where('code', 'LIKE', "%$name%");
@@ -31,6 +33,54 @@ class PointController extends Controller
       }
 
       return view('pages.admin.points.index',compact('points'));
+    }
+
+    public function gettingPoints(Request $request)
+    {
+
+            // Get all fulfillments where the requested week
+        //    $points = Point::with('shop.user.category')->orderBy('value', 'desc')->paginate();
+        $date = Carbon::now();
+        $model = Shop::has('points')->with('user')->get();
+
+           if ($model->isNotEmpty()) {
+               // Define download file name
+               $fileDir = '../storage/app/download/'.$date->format('Y-m-d_H-i-s').'download.csv';
+
+               // Open file to insert the csv file
+               $fp = fopen($fileDir, 'w');
+
+               // Define the headers and insert into the csv file
+               $headers = array('Codigo unico', 'Nit', 'Nombre', 'Email', 'Telefono', 'Categoria', 'Puntos');
+
+               fputcsv($fp, $headers);
+
+               foreach ($model->chunk(50000) as $t) {
+                   // Mapping the array and inserting data inside the csv file
+                   $t->map(function ($item, $key) use ($fp) {
+
+                         $var = [$item['code'], $item->user['identification'], $item->user['name_company'], $item->user['email'], $item->user['phone'], $item->user['category_id'], $item['totalpoints']];
+                        //  $collection = collect($var)->except(['created_at', 'updated_at'])->push([null, $item['shopidentification']]);
+                        //  $flattened = Arr::flatten($collection);
+                         fputcsv($fp, $var);
+
+                         return $var;
+
+                     })->filter()->values()->all();
+                }
+
+                // Closing the csv file
+                fclose($fp);
+
+                // Downloading the csv generated
+                return response()->download($fileDir)->deleteFileAfterSend();
+
+           } else {
+
+                return back()->with('status', 'No hay metas pendientes por actualizar');
+           }
+
+
     }
 
     /**

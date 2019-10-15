@@ -20,11 +20,10 @@ class ShopController extends Controller
     {
         if(!is_null($request['query']))
         {
-          $shops = Shop::FindUser($request['query'])->paginate();
+            $shops = Shop::FindUser($request['query'])->paginate();
         } else {
-          $shops = Shop::with('user')->paginate();
+            $shops = Shop::with('user')->paginate();
         }
-
 
         return view('pages.admin.shops', compact('shops'));
     }
