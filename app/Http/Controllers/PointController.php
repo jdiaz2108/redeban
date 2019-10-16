@@ -151,6 +151,7 @@ class PointController extends Controller
 
     public function liquidation()
     {
+        ini_set('memory_limit', '-1');
         // Define the collection with fulfillment relationship, liquidation has to be false and get uniques fulfillments id
         $collection = FulfillmentResult::whereLiquidated(false)->with('fulfillment')->get()->unique('fulfillment_id');
 
