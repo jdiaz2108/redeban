@@ -89,6 +89,8 @@ Route::middleware('auth')->group(function () {
 
 
             Route::get('gettingPoints', 'PointController@gettingPoints');
+            Route::get('activeUsersReport', 'UserController@activeUsersReport');
+            Route::get('inactiveUsersReport', 'UserController@inactiveUsersReport');
         });
     });
 });

@@ -6,6 +6,7 @@ use App\Http\Controllers\MailjetController;
 use App\Models\Shop;
 use App\Models\Category;
 use App\Models\AccessLog;
+use App\Models\City;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -45,6 +46,11 @@ class User extends Authenticatable
     public function userData()
     {
         return $this->hasOne('App\Models\UserData');
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
     }
 
     public function category()

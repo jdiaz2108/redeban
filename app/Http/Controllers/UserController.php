@@ -144,5 +144,68 @@ class UserController extends Controller
   		]);
     }
 
+    public function activeUsersReport()
+    {
+        $date = Carbon::now();
+        $model = User::has('userData')->with('userData.city', 'city')->get();
+
+           if ($model->isNotEmpty()) {
+               // Define download file name
+               $fileDir = '../storage/app/download/'.$date->format('Y-m-d_H-i-s').'ActiveUsers.csv';
+
+               // Open file to insert the csv file
+               $fp = fopen($fileDir, 'w');
+
+               // Define the headers and insert into the csv file
+               $headers = array('Nit', 'Nombre', 'Email', 'Telefono', 'Ciudad', 'Email Actualizado', 'Telefono Actualizado', 'Ciudad Actualizada');
+
+               fputcsv($fp, $headers);
+
+               foreach ($model->chunk(50000) as $t) {
+                   $t->map(function ($item, $key) use ($fp) {
+                         $var = [$item['identification'], $item['name_company'], $item['email'], $item['phone'], $item->city['name'], $item->userData['email'], $item->userData['phone'], $item->userData['city']['name']];
+                         fputcsv($fp, $var);
+                         return $var;
+                     })->filter()->values()->all();
+                }
+                // Closing the csv file
+                fclose($fp);
+                // Downloading the csv generated
+                return response()->download($fileDir)->deleteFileAfterSend();
+
+           }
+    }
+
+    public function inactiveUsersReport()
+    {
+        $date = Carbon::now();
+        $model = User::doesntHave('userData')->get();
+
+           if ($model->isNotEmpty()) {
+               // Define download file name
+               $fileDir = '../storage/app/download/'.$date->format('Y-m-d_H-i-s').'InactiveUsers.csv';
+
+               // Open file to insert the csv file
+               $fp = fopen($fileDir, 'w');
+
+               // Define the headers and insert into the csv file
+               $headers = array('Nit', 'Nombre', 'Email', 'Telefono', 'Ciudad');
+
+               fputcsv($fp, $headers);
+
+               foreach ($model->chunk(50000) as $t) {
+                   $t->map(function ($item, $key) use ($fp) {
+                         $var = [$item['identification'], $item['name_company'], $item['email'], $item['phone'], $item->city['name']];
+                         fputcsv($fp, $var);
+                         return $var;
+                     })->filter()->values()->all();
+                }
+                // Closing the csv file
+                fclose($fp);
+                // Downloading the csv generated
+                return response()->download($fileDir)->deleteFileAfterSend();
+
+           }
+    }
 
 }

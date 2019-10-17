@@ -29,9 +29,9 @@ class LogSuccessfulLogin
      */
     public function handle(Login $event)
     {
-        if (!$event->user->last_logged_at) {
-        //  Logic to send welcome email
-        }
+        $event->user->last_logged_at = Carbon::now();
+        $event->user->save(['timestamps' => false]);
+
         AccessLog::create([
             'ip_address' => $this->request->ip(),
             'user_id' => $event->user->id,
