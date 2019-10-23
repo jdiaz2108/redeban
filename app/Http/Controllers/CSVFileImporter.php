@@ -238,7 +238,7 @@ class CSVFileImporter extends Controller
         ini_set('memory_limit', '-1');
         $date = Carbon::now();
 
-        $users = User::all();
+        $shops = Shop::with('user')->get();
 
            // Define download file name
            $fileDir = '../storage/app/download/'.$date->format('Y-m-d_H-i-s').'user-points.csv';
@@ -247,19 +247,18 @@ class CSVFileImporter extends Controller
            $fp = fopen($fileDir, 'w');
 
            // Define the headers and insert into the csv file
-           $headers = array('id', 'event' ,'goal', 'value', 'user_id', 'created_at', 'identification');
+           $headers = array('Nit', 'Nombre' ,'Correo', 'Telefono o Celular', 'Direccion', 'Codigo Unico', 'Puntos');
            fputcsv($fp, $headers);
 
-           foreach ($users->chunk(50000) as $t) {
+           foreach ($shops->chunk(1000) as $t) {
 
                // Mapping the array and inserting data inside the csv file
                $t->map(function ($item, $key) use ($fp) {
-                     // Eliminate period and updated_at column from the object
-                     $collection = collect($item)->forget('period')->forget('updated_at')->push($item['useridentification']);
-                     $flattened = Arr::flatten($collection);
-                     fputcsv($fp, $flattened);
-
-                     return $flattened;
+                   // Eliminate period and updated_at column from the object
+                   if ($item['TotalPoints']) {
+                       $flattened = [$item['user']['identification'], $item['user']['name_company'], $item['user']['email'], $item['user']['phone'], $item['user']['address'], $item['code'], $item['TotalPoints']];
+                       fputcsv($fp, $flattened);
+                   }
 
                  })->filter()->values()->all();
             }
