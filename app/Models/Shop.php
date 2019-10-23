@@ -106,7 +106,7 @@ class Shop extends Model
 
     public function getFulfillmentValueAttribute()
     {
-        return ($this->fulfillment()['value']) ? $this->fulfillment()['value'] : 0 ;
+        return ($this->fulfillmentSameMonth()['value']) ? $this->fulfillmentSameMonth()['value'] : 0 ;
     }
 
 }

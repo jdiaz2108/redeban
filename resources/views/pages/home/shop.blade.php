@@ -12,7 +12,7 @@
                             @include('layouts.messages')
                         </div>
                         @if ($shop)
-                            <div class="col-12 col-md-5 col-lg-8 offset-lg-2 mb-4 mb-4">
+                            <div class="col-12 col-md-12 col-lg-8 offset-lg-2 mb-4 mb-4">
                                 <div class="card text-white shadow h-100 code code-active">
                                     <div class="card-body p-3">
                                         <div class="row">
