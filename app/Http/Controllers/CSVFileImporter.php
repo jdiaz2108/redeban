@@ -235,6 +235,7 @@ class CSVFileImporter extends Controller
 
     public function downloadUserPoints(Request $request)
     {
+        ini_set('memory_limit', '-1');
         $date = Carbon::now();
 
         $users = User::all();
