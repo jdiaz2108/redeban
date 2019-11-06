@@ -205,8 +205,6 @@
         backdrop: 'static'
         })
 
-
-
         $('#myModalShow').modal('show');
 
         $('.carousel').carousel({

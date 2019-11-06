@@ -10,17 +10,8 @@
             <h2 class="title">Cupones y Redenciones</h2>
             <hr class="line">
           </div>
-          <div class="col-md-7">
-            <form action="{{ route('admin::users.index') }}" method="GET">
-              <div class="form-group row">
-                <div class="col-md-7">
-                  {{-- <input class="form-control input-custom2" type="search" placeholder="Nombre ó identificación" name="query"> --}}
-                </div>
-                <div class="col-md-5 text-center">
-                  {{-- <button class="btn btn-custom fontSize18" type="submit"><i class="fa fa-search" aria-hidden="true"></i> Buscar</button> --}}
-                </div>
-              </div>
-            </form>
+          <div class="col-md-7 text-right">
+                <a href="{{url('dashboard/coupons-download')}}" class="btn btn-custom-green btn-sm"><i class="fa fa-cloud-download"></i> Descargar Cupones</a>
           </div>
         </div>
         <div class="row">
@@ -36,6 +27,8 @@
                           <th>Nit usuario</th>
                           <th>Nombre usuario</th>
                           <th>Fecha creación</th>
+                          <th>Estado</th>
+                          <th>Acciones</th>
                       </tr>
                   </thead>
                   <tbody class="content-directory">
@@ -59,10 +52,23 @@
                           <td>
                               {{$item->created_at}}
                           </td>
+                          <td class="{{($item->redeem) ? 'text-primary' : 'text-warning'}}">
+                            {{($item->redeem) ? 'Premio redimido' : 'Premio sin redimir'}}
+                        </td>
+                          <td>
+                            <div class="dropdown">
+                                <button class="btn btn-default border border-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="{{url('dashboard/coupons/'.$item->id.'/changeState')}}">{{($item->redeem) ? 'Cancelar Redención' : 'Redimir'}}</a>
+                                </div>
+                            </div>
+                          </td>
                       </tr>
                       @empty
                       <tr>
-                          <td colspan="9" class="alert aler-warning">
+                          <td colspan="7" class="alert aler-warning">
                               <center>No existen registros.</center>
                           </td>
                       </tr>

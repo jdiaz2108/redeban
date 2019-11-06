@@ -62,6 +62,7 @@ Route::middleware('auth')->group(function () {
         Route::group(['prefix' => 'dashboard', 'as' => 'admin::'], function() {
 
             Route::resource('/coupons', 'CouponController')->only(['index']);
+            Route::get('coupons/{coupon}/changeState', 'CouponController@toggleState');
             Route::get('/coupons-download', 'CouponController@download');
 
             Route::resource('/shops', 'ShopController')->only(['index', 'store']);

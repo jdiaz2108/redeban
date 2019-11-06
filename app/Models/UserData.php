@@ -14,4 +14,14 @@ class UserData extends Model
     {
         return $this->belongsTo(City::class);
     }
+
+    public function getCityNameAttribute()
+    {
+        return $this->city()->first()->name;
+    }
+
+    public function getDepartmentNameAttribute()
+    {
+        return $this->city()->first()->department()->first()->name;
+    }
 }

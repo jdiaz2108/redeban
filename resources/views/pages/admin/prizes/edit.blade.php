@@ -58,7 +58,7 @@
                         <div class="form-group">
                             <label>Descripción</label>
                             <textarea name="description" rows="4"
-                            class="wysiwyg form-control">{{old('description', $prize['description'] ?? '')}}</textarea>
+                            class="form-control">{{old('description', $prize['description'] ?? '')}}</textarea>
                         </div>
                     </div>
 

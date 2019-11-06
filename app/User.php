@@ -55,7 +55,7 @@ class User extends Authenticatable
 
     public function category()
     {
-        return $this->belongsTo('App\Models\Category')->withDefault();
+        return $this->belongsTo(Category::class)->withDefault();
     }
 
     public function accessLogs()
@@ -178,7 +178,11 @@ class User extends Authenticatable
         return $this->category()->first()->points_update_data;
     }
 
-    protected $with = ['shops'];
+    public function getCategoryAttribute()
+    {
+        return $this->category()->first();
+    }
 
+    protected $with = ['shops'];
 
   }

@@ -50,7 +50,7 @@
                         <div class="form-group">
                             <label>Descripción</label>
                             <textarea name="description" rows="10"
-                                class="wysiwyg form-control">{{old('description')}}</textarea>
+                                class="form-control">{{old('description')}}</textarea>
                         </div>
                     </div>
                     <div class="col-md-12 text-center">
