@@ -138,9 +138,9 @@ class UserController extends Controller
 
   		return response()->json([
   			"access_logs" => $access_logs,
-        "users_categories" => $users_categories,
-        "access_sections" => $access_sections,
-        "fulfillments_category" => $fulfillments_category
+            "users_categories" => $users_categories,
+            "access_sections" => $access_sections,
+            "fulfillments_category" => $fulfillments_category
   		]);
     }
 
