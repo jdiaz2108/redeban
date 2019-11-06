@@ -52,7 +52,7 @@ class UserController extends Controller
         $file = $request->file('data');
 
         // Call a Controller and use the processCVSFile method
-        CSVFileImporter::loadUserFromFile($file, 'users');
+        CSVFileImporter::loadUserFromFile($file, 'questions');
 
         $collection = User::get(['id']);
 

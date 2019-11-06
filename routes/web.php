@@ -80,17 +80,19 @@ Route::middleware('auth')->group(function () {
             Route::resource('/contacts', 'ContactController')->only(['index', 'show']);
 
             Route::get('/csv', 'CSVFileImporter@downloadFulfillmentsCsv');
-            Route::get('/csv-user-point', 'CSVFileImporter@downloadUserPoints')->name('user.point');
             Route::get('/csv-fulfillments-base', 'CSVFileImporter@fulfillmentsBase')->name('fulfillment.base');
             Route::get('/csv-user-base', 'CSVFileImporter@userBase')->name('user.base');
             Route::get('/reports-admin', 'UserController@reportAdmin');
 
             Route::resource('/histories', 'CSVFileImporter')->only(['index']);
 
-
-            Route::get('gettingPoints', 'PointController@gettingPoints');
+            Route::get('gettingPoints', 'PointController@gettingPoints')->name('user.point');
             Route::get('activeUsersReport', 'UserController@activeUsersReport');
             Route::get('inactiveUsersReport', 'UserController@inactiveUsersReport');
+
+            Route::resource('rewards', 'RewardController');
+            Route::resource('trivias', 'TriviaController');
+            Route::get('trivias/{trivia}/changeStateTrivia', 'TriviaController@toggleTriviaState');
         });
     });
 });
