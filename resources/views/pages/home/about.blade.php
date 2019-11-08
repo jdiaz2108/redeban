@@ -17,6 +17,9 @@
                 <h5 class="font-weight-bold" style="color: #fff06e;">¿QUÉ ES?:</h5>
                 La Transacción Ganadora es un programa de recompensas especialmente pensado para nuestros clientes que tienen pequeños y medianos negocios. Por medio de transacciones que realicen con su datáfono de Redeban, podrán acumular puntos para redimirlos en diferentes premios.
                 <br><br>
+                <h5 class="font-weight-bold" style="color: #fff06e;">¿CÓMO SÉ CUÁL ES MI META?:</h5>
+                Dirígete a tu perfil dando clic en INICIO. En esta sección podrás encontrar tus puntos acumualdos a la fecha, tú meta actual de transacciones y las transacciones hechas hasta la fecha.
+                <br><br>
                 <h5 class="font-weight-bold" style="color: #fff06e;">¿CÓMO ACUMULO PUNTOS?:</h5>
                 Podrás acumular puntos por código único. Es decir, entre más transacciones realices con tu datáfono, o datáfonos de Redeban, más puntos acumularás para redimirlos en increíbles premios.
                 <br><br>
