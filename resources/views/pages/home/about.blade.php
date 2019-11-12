@@ -29,6 +29,9 @@
                 <h5 class="font-weight-bold" style="color: #fff06e;">¿A DÓNDE LLEGAN LAS REDENCIONES?:</h5>
                 Los premios que has redimido serán enviadas a la dirección que está registrada en la plataforma, de no ser así, deberás actualizarla. Recuerda que tenemos 15 días hábiles para hacer llegar tu premio.
                 <br><br>
+                <h5 class="font-weight-bold" style="color: #fff06e;">¿QUÉ TRANSACCIONES CUENTAN Y SUMAN PARA GANAR?:</h5>
+                Recuerda que todas las transacciones suman y cuentan. Las de pago de servicios públicos, recargas y compras.
+                <br><br>
                 <h5 class="font-weight-bold" style="color: #fff06e;">¿CUÁL ES LA VIGENCIA DE LOS PUNTOS?:</h5>
                 La vigencia de los puntos acaba el 30 de noviembre, fecha en la que se acaba esta primera fase del programa.
                 <br><br>
