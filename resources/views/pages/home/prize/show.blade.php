@@ -23,7 +23,7 @@
                             <h2 class="name">{{$prize['prize']['name']}}</h2>
                             <p class="points">{{$prize['point']}} Puntos {{$redeem}}</p>
                             <p class="description">{{$prize['prize']['description']}}</p>
-                            <button class="btn btn-primary btn-custom disabled mx-auto">YA HAS REDIMIDO UN PREMIO ESTE MISMO MES</button>
+                            <button class="btn btn-primary btn-custom disabled mx-auto">YA HAS REDIMIDO DOS PREMIOS ESTE MISMO MES</button>
                         @else
                             @if ($redeem && !session('redeemed'))
                                 <h2 class="name">{{$prize['prize']['name']}}</h2>
